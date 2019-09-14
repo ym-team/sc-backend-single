@@ -8,6 +8,8 @@ public class mq {
 	//PriorityBlockingQueue
 	//SynchronousQueue
 	
+	//DelayQueue  可参考Cacheutil的使用
+	
 	//多个线程去消费
 
 }
