@@ -31,7 +31,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.and().authorizeRequests()
 				.antMatchers(PermitAllUrl.permitAllUrl("/backend-anon/**", "/favicon.ico", "/css/**", "/js/**","/fonts/**", "/layui/**", "/img/**", "/pages/**", "/pages/**/*.html", "/*.html"
                         								,"/users-anon/**", "/wechat/**"
-                        								,"/notification-anon/**")).permitAll() // 放开权限的url
+                        								,"/notification-anon/**","/druid/**")).permitAll() // 放开权限的url
 				.anyRequest().authenticated().and().httpBasic();
 		
 		

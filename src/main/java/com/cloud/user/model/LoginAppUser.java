@@ -1,5 +1,6 @@
 package com.cloud.user.model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class LoginAppUser extends AppUser implements UserDetails {
+public class LoginAppUser extends AppUser implements UserDetails, Serializable{
 
 	private static final long serialVersionUID = 1753977564987556640L;
 
