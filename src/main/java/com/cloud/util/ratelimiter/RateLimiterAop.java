@@ -1,12 +1,11 @@
 package com.cloud.util.ratelimiter;
-/*package com.cloud.util;
 
 
-*//**
+/**
  * 功能说明:
  * 功能作者:
  * 创建日期:
- *//*
+ */
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,10 +25,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.google.common.util.concurrent.RateLimiter;
-import com.itmayiedu.annotation.ExtRateLimiter;
 
-*//**
- *//*
 @Aspect
 @Component
 public class RateLimiterAop {
@@ -52,9 +48,9 @@ public class RateLimiterAop {
 		}
 		// ############获取注解上的参数 配置固定速率 ###############
 		// 获取配置的速率
-		double value = extRateLimiter.value();
+		double value = extRateLimiter.permitsPerSecond();
 		// 获取等待令牌等待时间
-		long timeOut = extRateLimiter.timeOut();
+		long timeOut = extRateLimiter.timeout();
 		RateLimiter rateLimiter = getRateLimiter(value, timeOut);
 		// 判断令牌桶获取token 是否超时
 		boolean tryAcquire = rateLimiter.tryAcquire(timeOut, TimeUnit.MILLISECONDS);
@@ -102,12 +98,11 @@ public class RateLimiterAop {
 		}
 
 	}
-
+/*
 	public static void main(String[] args) {
 		// 使用Java反射技术获取方法上是否有@ExtRateLimiter注解类
 		ExtRateLimiter extRateLimiter = IndexController.class.getClass().getAnnotation(ExtRateLimiter.class);
 		System.out.println(extRateLimiter);
 	}
-
-}
 */
+}

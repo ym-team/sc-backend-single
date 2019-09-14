@@ -2,6 +2,8 @@ package com.cloud.util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 
+import com.cloud.user.model.AppUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,4 +127,5 @@ public final class BeanConvertUtils {
     public static <K, T> List<K> convertList(List<T> sources, Class<K> targetClass) {
         return convertList(sources, targetClass, null);
     }
+  
 }
