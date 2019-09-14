@@ -47,7 +47,6 @@ public class TokenController {
      */
     @PostMapping("/sys/login")
     public Map<String, Object> login(String username, String password) throws Exception {
-    	System.out.println("==========");
         Map<String, Object> parameters = new HashMap<>();
         parameters.put(OAuth2Utils.GRANT_TYPE, "password");
         parameters.put(OAuth2Utils.CLIENT_ID, SystemClientInfo.CLIENT_ID);
@@ -137,7 +136,7 @@ public class TokenController {
         ObjectMapper mapper = new ObjectMapper();    
         Map<String,Object> m = mapper.readValue(httpPost, Map.class);  
         
-        Map<String, Object> tokenInfo = null;//oauth2Client.postAccessToken(parameters);
+        Map<String, Object> tokenInfo = m;//oauth2Client.postAccessToken(parameters);
         saveLoginLog(openid, "微信登陆");
 
         return tokenInfo;
