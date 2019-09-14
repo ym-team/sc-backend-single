@@ -20,10 +20,9 @@ public class SpringbootMybatisApplication {
 	
 	
 	/**
-	 * 差 druid
 	 * 差引入ehcache  
 	 * 监控中心
-	 * 还有一些工具类
+	 * 还有一些工具类,aop 异步 log beanConvertsUtil
 	 * 
 	 * */
 }
