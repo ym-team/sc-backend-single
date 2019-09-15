@@ -2,9 +2,7 @@ package com.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
+
 
 @SpringBootApplication
 public class SpringbootMybatisApplication {
@@ -23,6 +21,8 @@ public class SpringbootMybatisApplication {
 	 * 差引入ehcache  
 	 * 监控中心
 	 * 还有一些工具类,aop 异步 log 
+	 * 
+	 * 页面还差一个多选删除，还差一个排序 
 	 * 
 	 * */
 }

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
+</head>
+<body>
+    <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <header style="height: 100%">
+                    <div align="left">
+	                    <table style="width: 100%">
+	                   		<tr>
+	                   			<td>
+		                   			<form class="form-inline" onsubmit="return false">
+										<div class="form-group">
+											主键ID：
+											<input id="id" type="text" class="form-control" placeholder="主键ID">
+											医院名称：
+											<input id="name" type="text" class="form-control" placeholder="医院名称">
+											医院地址：
+											<input id="address" type="text" class="form-control" placeholder="医院地址">
+											logo：
+											<input id="logo" type="text" class="form-control" placeholder="logo">
+											手机号码：
+											<input id="phone" type="text" class="form-control" placeholder="手机号码">
+											医院介绍：
+											<input id="remark" type="text" class="form-control" placeholder="医院介绍">
+											联系人：
+											<input id="contactor" type="text" class="form-control" placeholder="联系人">
+											更新者id：
+											<input id="updateId" type="text" class="form-control" placeholder="更新者id">
+											更新时间：
+											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
+											创建者Id：
+											<input id="createId" type="text" class="form-control" placeholder="创建者Id">
+											创建时间：
+											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
+											
+											
+											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:hospital:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
+										</div>
+									</form>
+	                   			</td>
+	                   			<td align="right">
+	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addHospital.html'" permission="back:hospital:save">
+                                      <i class="layui-icon">&#xe608;</i> 添加
+                                    </button>
+	                   			</td>
+	                   		</tr> 
+	                    </table>
+					</div>
+                </header>
+                
+                <div>
+                    <div class="widget-body no-padding">
+                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                </tr>                       
+                                <tr>
+                                    <th>主键ID</th>
+									<th>医院名称</th>
+									<th>医院地址</th>
+									<th>logo</th>
+									<th>手机号码</th>
+									<th>医院介绍</th>
+									<th>联系人</th>
+									<th>更新者id</th>
+									<th>更新时间</th>
+									<th>创建者Id</th>
+									<th>创建时间</th>
+									
+									<th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="../../../js/constant.js"></script>
+<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../../js/jq.js"></script>
+<script type="text/javascript" src="../../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript" src="../../../js/my/permission.js"></script>
+<script type="text/javascript">
+var pers = checkPermission();
+var example;
+
+layui.use(['layer','util'], function(){
+    var layer = layui.layer;
+    var util = layui.util;
+    
+    function init(){
+    	example = 
+        	$('#dt-table').DataTable({
+            	"searching": false,
+            	"processing": false,
+            	"serverSide" : true,
+            	"ordering" :false,
+            	"language": {
+                    "url": "../../../js/plugin/datatables/Chinese.lang"
+                },
+            	"ajax": {
+            		"url" : domainName + "/api-business/hospital/queryListByPage",
+            		"type":"get",
+            		"data":function(d){
+        				d.id = $('#id').val();
+        				d.name = $('#name').val();
+        				d.address = $('#address').val();
+        				d.logo = $('#logo').val();
+        				d.phone = $('#phone').val();
+        				d.remark = $('#remark').val();
+        				d.contactor = $('#contactor').val();
+        				d.updateId = $('#updateId').val();
+        				d.updateTime = $('#updateTime').val();
+        				d.createId = $('#createId').val();
+        				d.createTime = $('#createTime').val();
+        				
+            		},
+            		"dataSrc": function (json) {
+            			json.recordsTotal=json.total;
+            			json.recordsFiltered=json.total;
+            			return json.data;
+            		},
+        			"error":function(xhr, textStatus, errorThrown){
+        				var msg = xhr.responseText;
+        				console.log(msg);
+        				if (xhr.status == 400) {
+        					layer.msg(JSON.parse(msg).message);
+        				} else if (xhr.status == 401) {
+        					localStorage.removeItem("token");
+        					layer.msg("token过期，请重新登录", {shift: -1, time: 1000}, function(){
+                                location.href = loginPage;
+                            });
+        				} else if (xhr.status == 403) {
+        					layer.msg('未授权');
+        				} else if (xhr.status == 500) {
+        					var info = JSON.parse(msg);
+        					var exception = info.exception;
+        					var message = info.message;
+        					layer.msg('系统错误：' + (exception ? exception : message));
+        				}
+        			}
+            	},
+            	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
+                "columns": [
+                    { "data": "id", "defaultContent": ""},
+                    { "data": "name", "defaultContent": ""},
+                    { "data": "address", "defaultContent": ""},
+                    { "data": "logo", "defaultContent": ""},
+                    { "data": "phone", "defaultContent": ""},
+                    { "data": "remark", "defaultContent": ""},
+                    { "data": "contactor", "defaultContent": ""},
+                    { "data": "updateId", "defaultContent": ""},
+                    { 
+                    	"data": "updateTime","defaultContent": "",
+                    	"render": function (data, type, row) {return util.toDateString(data);}
+                    },
+                    { "data": "createId", "defaultContent": ""},
+                    
+                    { 
+                    	"data": "createTime","defaultContent": "",
+                    	"render": function (data, type, row) {return util.toDateString(data);}
+                    },
+                    
+                    { 
+                    	"data": "", 
+                    	"defaultContent": "",
+                    	"render": function (data, type, row) {
+                    		var id = row['id'];
+                    		//var name = encodeURIComponent(row['name']);
+                    		var href = "updateHospital.html?id=" + id;
+                            var edit = buttonEdit(href, "back:hospital:update", pers);
+                    		var del = buttonDel(id, "back:hospital:delete", pers);
+                    		
+                            return edit + del;
+                      	}
+                    },
+                ],
+            } );
+    }
+
+    init();
+});
+
+function del(id){
+    layer.confirm('确定要删除吗？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            type : 'delete',
+            url : domainName + "/api-business/hospital/delete/"+id,
+            success : function(data) {
+                example.ajax.reload();
+                layer.msg("删除成功");
+            }
+        });
+        
+        layer.close(1);
+    });
+}
+
+$("#searchBt").click(function(){
+	example.ajax.reload();
+});
+</script>
+</html>

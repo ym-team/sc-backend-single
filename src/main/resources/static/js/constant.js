@@ -7,4 +7,5 @@ var domainName = "http://localhost:8080";
 
 
 // 登陆页地址，未登录或过期时进行跳转，如果是前端单独部署的话，这里请写全路径，如http://xx.xx.xx/login.html
-var loginPage = "/api-b/login.html";
+//var loginPage = "/api-b/login.html";
+var loginPage = "/login.html"
