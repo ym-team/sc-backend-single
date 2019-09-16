@@ -47,7 +47,7 @@ INSERT INTO `app_user` VALUES ('2', 'superadmin', '$2a$10$.gLkG0j2kM0stWoOvPBvqu
 DROP TABLE IF EXISTS `sys_permission`;
 CREATE TABLE `sys_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `permission` varchar(32) NOT NULL COMMENT '权限标识',
+  `permission` varchar(128) NOT NULL COMMENT '权限标识',
   `name` varchar(50) NOT NULL COMMENT '名称',
   `createTime` datetime NOT NULL COMMENT '创建时间',
   `updateTime` datetime NOT NULL COMMENT '修改时间',

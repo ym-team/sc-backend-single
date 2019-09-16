@@ -22,7 +22,10 @@ public class SpringbootMybatisApplication {
 	 * 监控中心
 	 * 还有一些工具类,aop 异步 log 
 	 * 
-	 * 页面还差一个多选删除，还差一个排序 
-	 * 
+	 * 页面还差一个多选删除，还差一个排序,差excel上传和下载，详情页（直接用update页）
+	 * 还差一个加解密 传输
+	 * traceId
+	 * 阻止二次提交 表单重复提交
+	 * crf之类
 	 * */
 }

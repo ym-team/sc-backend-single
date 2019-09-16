@@ -2,7 +2,6 @@ package com.cloud.business.hospital;
 
 import java.util.List;
 
-import com.cloud.util.Page;
 import com.cloud.util.page.PageInfo;
 import com.cloud.util.page.PageQuery;
 
