@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.consumeDtl.ConsumeDtlMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.consumeDtl.ConsumeDtlModel">
+            <result property="id" column="id"/>
+            <result property="projectName" column="project_name"/>
+            <result property="sumFee" column="sum_fee"/>
+            <result property="materialsFee" column="materials_fee"/>
+            <result property="consumerId" column="consumer_id"/>
+            <result property="hospitalId" column="hospital_id"/>
+            <result property="shopId" column="shop_id"/>
+            <result property="bussinessUserId" column="bussiness_user_id"/>
+            <result property="attrUrl" column="attr_url"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="remark" column="remark"/>
+            <result property="updateId" column="update_id"/>
+            <result property="status" column="status"/>
+            <result property="auditStatus" column="audit_status"/>
+            <result property="auditReason" column="audit_reason"/>
+            <result property="createId" column="create_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	project_name
+,
+	sum_fee
+,
+	materials_fee
+,
+	consumer_id
+,
+	hospital_id
+,
+	shop_id
+,
+	bussiness_user_id
+,
+	attr_url
+,
+	create_time
+,
+	update_time
+,
+	remark
+,
+	update_id
+,
+	status
+,
+	audit_status
+,
+	audit_reason
+,
+	create_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="consumeDtlModel != null">
+	<if test="consumeDtlModel.id > 0 ">
+		AND id =	#{consumeDtlModel.id}
+ </if>
+	<if test="consumeDtlModel.projectName != null and consumeDtlModel.projectName !=''">
+	AND project_name =	#{consumeDtlModel.projectName}
+ </if>
+	<if test="consumeDtlModel.sumFee != null and consumeDtlModel.sumFee !=''">
+	AND sum_fee =	#{consumeDtlModel.sumFee}
+ </if>
+	<if test="consumeDtlModel.materialsFee != null and consumeDtlModel.materialsFee !=''">
+	AND materials_fee =	#{consumeDtlModel.materialsFee}
+ </if>
+	<if test="consumeDtlModel.consumerId > 0 ">
+		AND consumer_id =	#{consumeDtlModel.consumerId}
+ </if>
+	<if test="consumeDtlModel.hospitalId > 0 ">
+		AND hospital_id =	#{consumeDtlModel.hospitalId}
+ </if>
+	<if test="consumeDtlModel.shopId > 0 ">
+		AND shop_id =	#{consumeDtlModel.shopId}
+ </if>
+	<if test="consumeDtlModel.bussinessUserId > 0 ">
+		AND bussiness_user_id =	#{consumeDtlModel.bussinessUserId}
+ </if>
+	<if test="consumeDtlModel.attrUrl != null and consumeDtlModel.attrUrl !=''">
+	AND attr_url =	#{consumeDtlModel.attrUrl}
+ </if>
+	<if test="consumeDtlModel.createTime != null and consumeDtlModel.createTime !=''">
+	AND create_time =	#{consumeDtlModel.createTime}
+ </if>
+	<if test="consumeDtlModel.updateTime != null and consumeDtlModel.updateTime !=''">
+	AND update_time =	#{consumeDtlModel.updateTime}
+ </if>
+	<if test="consumeDtlModel.remark != null and consumeDtlModel.remark !=''">
+	AND remark =	#{consumeDtlModel.remark}
+ </if>
+	<if test="consumeDtlModel.updateId > 0 ">
+		AND update_id =	#{consumeDtlModel.updateId}
+ </if>
+	<if test="consumeDtlModel.status > 0 ">
+		AND status =	#{consumeDtlModel.status}
+ </if>
+	<if test="consumeDtlModel.auditStatus > 0 ">
+		AND audit_status =	#{consumeDtlModel.auditStatus}
+ </if>
+	<if test="consumeDtlModel.auditReason != null and consumeDtlModel.auditReason !=''">
+	AND audit_reason =	#{consumeDtlModel.auditReason}
+ </if>
+	<if test="consumeDtlModel.createId > 0 ">
+		AND create_id =	#{consumeDtlModel.createId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel" useGeneratedKeys="true" keyProperty="consumeDtl.id" keyColumn="id">
+		insert into t_consume_dtl
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="consumeDtlModel != null">
+		<if test="consumeDtlModel.id >0">
+				id
+, 
+        </if>
+		<if test="consumeDtlModel.projectName != null">
+				project_name
+, 
+        </if>
+		<if test="consumeDtlModel.sumFee != null">
+				sum_fee
+, 
+        </if>
+		<if test="consumeDtlModel.materialsFee != null">
+				materials_fee
+, 
+        </if>
+		<if test="consumeDtlModel.consumerId >0">
+				consumer_id
+, 
+        </if>
+		<if test="consumeDtlModel.hospitalId >0">
+				hospital_id
+, 
+        </if>
+		<if test="consumeDtlModel.shopId >0">
+				shop_id
+, 
+        </if>
+		<if test="consumeDtlModel.bussinessUserId >0">
+				bussiness_user_id
+, 
+        </if>
+		<if test="consumeDtlModel.attrUrl != null">
+				attr_url
+, 
+        </if>
+		<if test="consumeDtlModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="consumeDtlModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="consumeDtlModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="consumeDtlModel.updateId >0">
+				update_id
+, 
+        </if>
+		<if test="consumeDtlModel.status != null">
+				status
+, 
+        </if>
+		<if test="consumeDtlModel.auditStatus != null">
+				audit_status
+, 
+        </if>
+		<if test="consumeDtlModel.auditReason != null">
+				audit_reason
+, 
+        </if>
+		<if test="consumeDtlModel.createId >0">
+				create_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="consumeDtlModel.id >0">
+			#{consumeDtlModel.id}
+, 
+		 </if>
+			<if test="consumeDtlModel.projectName != null and consumeDtlModel.projectName !=''">
+			#{consumeDtlModel.projectName}
+, 
+		 </if>
+			<if test="consumeDtlModel.sumFee != null and consumeDtlModel.sumFee !=''">
+			#{consumeDtlModel.sumFee}
+, 
+		 </if>
+			<if test="consumeDtlModel.materialsFee != null and consumeDtlModel.materialsFee !=''">
+			#{consumeDtlModel.materialsFee}
+, 
+		 </if>
+			<if test="consumeDtlModel.consumerId >0">
+			#{consumeDtlModel.consumerId}
+, 
+		 </if>
+			<if test="consumeDtlModel.hospitalId >0">
+			#{consumeDtlModel.hospitalId}
+, 
+		 </if>
+			<if test="consumeDtlModel.shopId >0">
+			#{consumeDtlModel.shopId}
+, 
+		 </if>
+			<if test="consumeDtlModel.bussinessUserId >0">
+			#{consumeDtlModel.bussinessUserId}
+, 
+		 </if>
+			<if test="consumeDtlModel.attrUrl != null and consumeDtlModel.attrUrl !=''">
+			#{consumeDtlModel.attrUrl}
+, 
+		 </if>
+			<if test="consumeDtlModel.createTime != null and consumeDtlModel.createTime !=''">
+			#{consumeDtlModel.createTime}
+, 
+		 </if>
+			<if test="consumeDtlModel.updateTime != null and consumeDtlModel.updateTime !=''">
+			#{consumeDtlModel.updateTime}
+, 
+		 </if>
+			<if test="consumeDtlModel.remark != null and consumeDtlModel.remark !=''">
+			#{consumeDtlModel.remark}
+, 
+		 </if>
+			<if test="consumeDtlModel.updateId >0">
+			#{consumeDtlModel.updateId}
+, 
+		 </if>
+			<if test="consumeDtlModel.status != null and consumeDtlModel.status !=''">
+			#{consumeDtlModel.status}
+, 
+		 </if>
+			<if test="consumeDtlModel.auditStatus != null and consumeDtlModel.auditStatus !=''">
+			#{consumeDtlModel.auditStatus}
+, 
+		 </if>
+			<if test="consumeDtlModel.auditReason != null and consumeDtlModel.auditReason !=''">
+			#{consumeDtlModel.auditReason}
+, 
+		 </if>
+			<if test="consumeDtlModel.createId >0">
+			#{consumeDtlModel.createId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_consume_dtl
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="consumeDtlModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.projectName != null">
+									project_name
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.sumFee != null">
+									sum_fee
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.materialsFee != null">
+									materials_fee
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.consumerId >0">
+						consumer_id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.hospitalId >0">
+						hospital_id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.shopId >0">
+						shop_id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.bussinessUserId >0">
+						bussiness_user_id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.attrUrl != null">
+									attr_url
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.updateId >0">
+						update_id
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.status >0">
+						status
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.auditStatus >0">
+						audit_status
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.auditReason != null">
+									audit_reason
+, 
+		        	</if>
+				
+					<if test="consumeDtlModel.createId >0">
+						create_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listConsumeDtlModel" item="consumeDtlModel" index="index"
+				separator="," >
+			(
+			
+				<if test="consumeDtlModel.id >0">
+				#{consumeDtlModel.id}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.projectName != null">
+				#{consumeDtlModel.projectName}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.sumFee != null">
+				#{consumeDtlModel.sumFee}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.materialsFee != null">
+				#{consumeDtlModel.materialsFee}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.consumerId >0">
+				#{consumeDtlModel.consumerId}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.hospitalId >0">
+				#{consumeDtlModel.hospitalId}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.shopId >0">
+				#{consumeDtlModel.shopId}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.bussinessUserId >0">
+				#{consumeDtlModel.bussinessUserId}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.attrUrl != null">
+				#{consumeDtlModel.attrUrl}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.createTime != null">
+				#{consumeDtlModel.createTime}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.updateTime != null">
+				#{consumeDtlModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.remark != null">
+				#{consumeDtlModel.remark}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.updateId >0">
+				#{consumeDtlModel.updateId}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.status >0">
+				#{consumeDtlModel.status}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.auditStatus >0">
+				#{consumeDtlModel.auditStatus}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.auditReason != null">
+				#{consumeDtlModel.auditReason}
+, 
+			     	</if>
+			
+				<if test="consumeDtlModel.createId >0">
+				#{consumeDtlModel.createId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_consume_dtl 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel">
+		select <include refid="baseColumns"/> from t_consume_dtl 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel">
+        select
+        <include refid="baseColumns"/>  from t_consume_dtl
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_consume_dtl 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel" >
+		update t_consume_dtl 
+		<set> 
+					
+			<if test="consumeDtlModel.id > 0">
+				id = #{consumeDtlModel.id}
+,
+			</if>
+					
+			<if test="consumeDtlModel.projectName != null and consumeDtlModel.projectName !=''">
+				project_name =	#{consumeDtlModel.projectName}
+,
+			</if>
+					
+			<if test="consumeDtlModel.sumFee != null and consumeDtlModel.sumFee !=''">
+				sum_fee =	#{consumeDtlModel.sumFee}
+,
+			</if>
+					
+			<if test="consumeDtlModel.materialsFee != null and consumeDtlModel.materialsFee !=''">
+				materials_fee =	#{consumeDtlModel.materialsFee}
+,
+			</if>
+					
+			<if test="consumeDtlModel.consumerId > 0">
+				consumer_id = #{consumeDtlModel.consumerId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.hospitalId > 0">
+				hospital_id = #{consumeDtlModel.hospitalId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.shopId > 0">
+				shop_id = #{consumeDtlModel.shopId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.bussinessUserId > 0">
+				bussiness_user_id = #{consumeDtlModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.attrUrl != null and consumeDtlModel.attrUrl !=''">
+				attr_url =	#{consumeDtlModel.attrUrl}
+,
+			</if>
+					
+			<if test="consumeDtlModel.createTime != null and consumeDtlModel.createTime !=''">
+				create_time =	#{consumeDtlModel.createTime}
+,
+			</if>
+					
+			<if test="consumeDtlModel.updateTime != null and consumeDtlModel.updateTime !=''">
+				update_time =	#{consumeDtlModel.updateTime}
+,
+			</if>
+					
+			<if test="consumeDtlModel.remark != null and consumeDtlModel.remark !=''">
+				remark =	#{consumeDtlModel.remark}
+,
+			</if>
+					
+			<if test="consumeDtlModel.updateId > 0">
+				update_id = #{consumeDtlModel.updateId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.status >0">
+				status = #{consumeDtlModel.status}
+,
+			</if>
+					
+			<if test="consumeDtlModel.auditStatus >0">
+				audit_status = #{consumeDtlModel.auditStatus}
+,
+			</if>
+					
+			<if test="consumeDtlModel.auditReason != null and consumeDtlModel.auditReason !=''">
+				audit_reason =	#{consumeDtlModel.auditReason}
+,
+			</if>
+					
+			<if test="consumeDtlModel.createId > 0">
+				create_id = #{consumeDtlModel.createId}
+			</if>
+		</set>	
+			where id = #{consumeDtlModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listConsumeDtlModel" item="consumeDtlModel" index="index" open="" close="" separator=";">
+		update t_consume_dtl 
+		<set> 
+					
+			<if test="consumeDtlModel.id > 0">
+				id = #{consumeDtlModel.id}
+,
+			</if>
+					
+			<if test="consumeDtlModel.projectName != null and consumeDtlModel.projectName !=''">
+				project_name =	#{consumeDtlModel.projectName}
+,
+			</if>
+					
+			<if test="consumeDtlModel.sumFee != null and consumeDtlModel.sumFee !=''">
+				sum_fee =	#{consumeDtlModel.sumFee}
+,
+			</if>
+					
+			<if test="consumeDtlModel.materialsFee != null and consumeDtlModel.materialsFee !=''">
+				materials_fee =	#{consumeDtlModel.materialsFee}
+,
+			</if>
+					
+			<if test="consumeDtlModel.consumerId > 0">
+				consumer_id = #{consumeDtlModel.consumerId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.hospitalId > 0">
+				hospital_id = #{consumeDtlModel.hospitalId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.shopId > 0">
+				shop_id = #{consumeDtlModel.shopId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.bussinessUserId > 0">
+				bussiness_user_id = #{consumeDtlModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.attrUrl != null and consumeDtlModel.attrUrl !=''">
+				attr_url =	#{consumeDtlModel.attrUrl}
+,
+			</if>
+					
+			<if test="consumeDtlModel.createTime != null and consumeDtlModel.createTime !=''">
+				create_time =	#{consumeDtlModel.createTime}
+,
+			</if>
+					
+			<if test="consumeDtlModel.updateTime != null and consumeDtlModel.updateTime !=''">
+				update_time =	#{consumeDtlModel.updateTime}
+,
+			</if>
+					
+			<if test="consumeDtlModel.remark != null and consumeDtlModel.remark !=''">
+				remark =	#{consumeDtlModel.remark}
+,
+			</if>
+					
+			<if test="consumeDtlModel.updateId > 0">
+				update_id = #{consumeDtlModel.updateId}
+,
+			</if>
+					
+			<if test="consumeDtlModel.status >0">
+				status = #{consumeDtlModel.status}
+,
+			</if>
+					
+			<if test="consumeDtlModel.auditStatus >0">
+				audit_status = #{consumeDtlModel.auditStatus}
+,
+			</if>
+					
+			<if test="consumeDtlModel.auditReason != null and consumeDtlModel.auditReason !=''">
+				audit_reason =	#{consumeDtlModel.auditReason}
+,
+			</if>
+					
+			<if test="consumeDtlModel.createId > 0">
+				create_id = #{consumeDtlModel.createId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.consumeDtl.ConsumeDtlModel">
+		 delete from t_consume_dtl 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

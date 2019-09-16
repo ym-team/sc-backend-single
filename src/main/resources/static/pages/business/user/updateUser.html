@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+	<input type="hidden" id="id" name="id">
+	<fieldset>
+	
+
+	
+			
+<div class="form-group">
+	<label class="col-md-2 control-label">主键ID</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="主键ID" type="text" name="id" id="id" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="主键ID不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">手机号码</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="手机号码" type="text" name="phone" id="phone" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="手机号码不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">密码</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="密码" type="text" name="password" id="password" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="密码不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">用户类型( 1：业务员  2：店家 3：消费者 )</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="用户类型( 1：业务员  2：店家 3：消费者 )" type="text" name="type" id="type" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="用户类型( 1：业务员  2：店家 3：消费者 )不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">用户状态( 1：有效  2：失效 )</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="用户状态( 1：有效  2：失效 )" type="text" name="status" id="status" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="用户状态( 1：有效  2：失效 )不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">邀请码</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="邀请码" type="text" name="inviteCode" id="inviteCode" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="邀请码不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">邀请用户Id</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="邀请用户Id" type="text" name="parentId" id="parentId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="邀请用户Id不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">创建时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建时间" type="text" name="createTime" id="createTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建时间不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">创建者Id</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建者Id" type="text" name="updateId" id="updateId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建者Id不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">更新时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="更新时间" type="text" name="updateTime" id="updateTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="更新时间不能为空">
+	</div>
+</div>
+
+			
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button class="btn btn-primary" onclick="location.href='userList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+
+	<script src="../../../js/constant.js"></script>
+	<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/jq.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use('layer', function(){
+	    var layer = layui.layer;
+	});
+	
+	initData();
+	
+	function initData(){
+		/**
+		$("#id").val(getUrlParam("id"));
+		$("#name").val(decodeURIComponent(getUrlParam("name")));
+		$("#permission").val(decodeURIComponent(getUrlParam("permission")));
+		*/
+		
+		$("#id").val(getUrlParam("id"));
+		var id = getUrlParam("id");
+		
+		$.ajax({
+			type : 'get',
+			url : domainName + '/api-business/user/queryDetail',
+			contentType: "application/json; charset=utf-8",  
+			data : { "id": id},
+			success : function(data) {
+				console.log(data);
+$('#id').val(data.id);
+$('#phone').val(data.phone);
+$('#password').val(data.password);
+$('#type').val(data.type);
+$('#status').val(data.status);
+$('#inviteCode').val(data.inviteCode);
+$('#parentId').val(data.parentId);
+$('#createTime').val(data.createTime);
+$('#updateId').val(data.updateId);
+$('#updateTime').val(data.updateTime);
+			}
+		});
+		
+		
+	}
+	
+	function update() {
+		$('#form').bootstrapValidator();
+		var bootstrapValidator = $("#form").data('bootstrapValidator');
+		bootstrapValidator.validate();
+	    if(!bootstrapValidator.isValid()){
+		   return;
+	    }
+	    
+	    var formdata = $("#form").serializeObject();
+
+		$.ajax({
+			type : 'put',
+			url : domainName + '/api-business/user/businessupdate',
+			contentType: "application/json; charset=utf-8",  
+			data : JSON.stringify(formdata),
+			success : function(data) {
+				layer.msg("成功", {shift: -1, time: 1000}, function(){
+                    location.href = "userList.html";
+                });
+			}
+		});
+	}
+		
+</script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.cfgCooperationRate.CfgCooperationRateMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel">
+            <result property="id" column="id"/>
+            <result property="amortizationId" column="amortization_id"/>
+            <result property="status" column="status"/>
+            <result property="rate" column="rate"/>
+            <result property="type" column="type"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="remark" column="remark"/>
+            <result property="updateId" column="update_id"/>
+            <result property="createId" column="create_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	amortization_id
+,
+	status
+,
+	rate
+,
+	type
+,
+	create_time
+,
+	update_time
+,
+	remark
+,
+	update_id
+,
+	create_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="cfgCooperationRateModel != null">
+	<if test="cfgCooperationRateModel.id > 0 ">
+		AND id =	#{cfgCooperationRateModel.id}
+ </if>
+	<if test="cfgCooperationRateModel.amortizationId > 0 ">
+		AND amortization_id =	#{cfgCooperationRateModel.amortizationId}
+ </if>
+	<if test="cfgCooperationRateModel.status > 0 ">
+		AND status =	#{cfgCooperationRateModel.status}
+ </if>
+	<if test="cfgCooperationRateModel.rate != null and cfgCooperationRateModel.rate !=''">
+	AND rate =	#{cfgCooperationRateModel.rate}
+ </if>
+	<if test="cfgCooperationRateModel.type > 0 ">
+		AND type =	#{cfgCooperationRateModel.type}
+ </if>
+	<if test="cfgCooperationRateModel.createTime != null and cfgCooperationRateModel.createTime !=''">
+	AND create_time =	#{cfgCooperationRateModel.createTime}
+ </if>
+	<if test="cfgCooperationRateModel.updateTime != null and cfgCooperationRateModel.updateTime !=''">
+	AND update_time =	#{cfgCooperationRateModel.updateTime}
+ </if>
+	<if test="cfgCooperationRateModel.remark != null and cfgCooperationRateModel.remark !=''">
+	AND remark =	#{cfgCooperationRateModel.remark}
+ </if>
+	<if test="cfgCooperationRateModel.updateId > 0 ">
+		AND update_id =	#{cfgCooperationRateModel.updateId}
+ </if>
+	<if test="cfgCooperationRateModel.createId > 0 ">
+		AND create_id =	#{cfgCooperationRateModel.createId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel" useGeneratedKeys="true" keyProperty="cfgCooperationRate.id" keyColumn="id">
+		insert into t_cfg_cooperation_rate
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="cfgCooperationRateModel != null">
+		<if test="cfgCooperationRateModel.id >0">
+				id
+, 
+        </if>
+		<if test="cfgCooperationRateModel.amortizationId >0">
+				amortization_id
+, 
+        </if>
+		<if test="cfgCooperationRateModel.status >0">
+				status
+, 
+        </if>
+		<if test="cfgCooperationRateModel.rate != null">
+				rate
+, 
+        </if>
+		<if test="cfgCooperationRateModel.type != null">
+				type
+, 
+        </if>
+		<if test="cfgCooperationRateModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="cfgCooperationRateModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="cfgCooperationRateModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="cfgCooperationRateModel.updateId >0">
+				update_id
+, 
+        </if>
+		<if test="cfgCooperationRateModel.createId >0">
+				create_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="cfgCooperationRateModel.id >0">
+			#{cfgCooperationRateModel.id}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.amortizationId >0">
+			#{cfgCooperationRateModel.amortizationId}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.status >0">
+			#{cfgCooperationRateModel.status}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.rate != null and cfgCooperationRateModel.rate !=''">
+			#{cfgCooperationRateModel.rate}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.type != null and cfgCooperationRateModel.type !=''">
+			#{cfgCooperationRateModel.type}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.createTime != null and cfgCooperationRateModel.createTime !=''">
+			#{cfgCooperationRateModel.createTime}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.updateTime != null and cfgCooperationRateModel.updateTime !=''">
+			#{cfgCooperationRateModel.updateTime}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.remark != null and cfgCooperationRateModel.remark !=''">
+			#{cfgCooperationRateModel.remark}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.updateId >0">
+			#{cfgCooperationRateModel.updateId}
+, 
+		 </if>
+			<if test="cfgCooperationRateModel.createId >0">
+			#{cfgCooperationRateModel.createId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_cfg_cooperation_rate
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="cfgCooperationRateModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.amortizationId >0">
+						amortization_id
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.status >0">
+						status
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.rate != null">
+									rate
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.type >0">
+						type
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.updateId >0">
+						update_id
+, 
+		        	</if>
+				
+					<if test="cfgCooperationRateModel.createId >0">
+						create_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listCfgCooperationRateModel" item="cfgCooperationRateModel" index="index"
+				separator="," >
+			(
+			
+				<if test="cfgCooperationRateModel.id >0">
+				#{cfgCooperationRateModel.id}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.amortizationId >0">
+				#{cfgCooperationRateModel.amortizationId}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.status >0">
+				#{cfgCooperationRateModel.status}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.rate != null">
+				#{cfgCooperationRateModel.rate}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.type >0">
+				#{cfgCooperationRateModel.type}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.createTime != null">
+				#{cfgCooperationRateModel.createTime}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.updateTime != null">
+				#{cfgCooperationRateModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.remark != null">
+				#{cfgCooperationRateModel.remark}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.updateId >0">
+				#{cfgCooperationRateModel.updateId}
+, 
+			     	</if>
+			
+				<if test="cfgCooperationRateModel.createId >0">
+				#{cfgCooperationRateModel.createId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_cfg_cooperation_rate 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel">
+		select <include refid="baseColumns"/> from t_cfg_cooperation_rate 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel">
+        select
+        <include refid="baseColumns"/>  from t_cfg_cooperation_rate
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_cfg_cooperation_rate 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel" >
+		update t_cfg_cooperation_rate 
+		<set> 
+					
+			<if test="cfgCooperationRateModel.id > 0">
+				id = #{cfgCooperationRateModel.id}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.amortizationId > 0">
+				amortization_id = #{cfgCooperationRateModel.amortizationId}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.status > 0">
+				status = #{cfgCooperationRateModel.status}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.rate != null and cfgCooperationRateModel.rate !=''">
+				rate =	#{cfgCooperationRateModel.rate}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.type >0">
+				type = #{cfgCooperationRateModel.type}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.createTime != null and cfgCooperationRateModel.createTime !=''">
+				create_time =	#{cfgCooperationRateModel.createTime}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.updateTime != null and cfgCooperationRateModel.updateTime !=''">
+				update_time =	#{cfgCooperationRateModel.updateTime}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.remark != null and cfgCooperationRateModel.remark !=''">
+				remark =	#{cfgCooperationRateModel.remark}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.updateId > 0">
+				update_id = #{cfgCooperationRateModel.updateId}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.createId > 0">
+				create_id = #{cfgCooperationRateModel.createId}
+			</if>
+		</set>	
+			where id = #{cfgCooperationRateModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listCfgCooperationRateModel" item="cfgCooperationRateModel" index="index" open="" close="" separator=";">
+		update t_cfg_cooperation_rate 
+		<set> 
+					
+			<if test="cfgCooperationRateModel.id > 0">
+				id = #{cfgCooperationRateModel.id}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.amortizationId > 0">
+				amortization_id = #{cfgCooperationRateModel.amortizationId}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.status > 0">
+				status = #{cfgCooperationRateModel.status}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.rate != null and cfgCooperationRateModel.rate !=''">
+				rate =	#{cfgCooperationRateModel.rate}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.type >0">
+				type = #{cfgCooperationRateModel.type}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.createTime != null and cfgCooperationRateModel.createTime !=''">
+				create_time =	#{cfgCooperationRateModel.createTime}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.updateTime != null and cfgCooperationRateModel.updateTime !=''">
+				update_time =	#{cfgCooperationRateModel.updateTime}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.remark != null and cfgCooperationRateModel.remark !=''">
+				remark =	#{cfgCooperationRateModel.remark}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.updateId > 0">
+				update_id = #{cfgCooperationRateModel.updateId}
+,
+			</if>
+					
+			<if test="cfgCooperationRateModel.createId > 0">
+				create_id = #{cfgCooperationRateModel.createId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.cfgCooperationRate.CfgCooperationRateModel">
+		 delete from t_cfg_cooperation_rate 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.cusconsumer.CusconsumerMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.cusconsumer.CusconsumerModel">
+            <result property="id" column="id"/>
+            <result property="consuName" column="consu_name"/>
+            <result property="consuPhone" column="consu_phone"/>
+            <result property="shopId" column="shop_id"/>
+            <result property="consuAge" column="consu_age"/>
+            <result property="consuConfirmItem" column="consu_confirm_item"/>
+            <result property="consuWanttoItem" column="consu_wantto_item"/>
+            <result property="enjoyPolicy" column="enjoy_policy"/>
+            <result property="serviceConsult" column="service_consult"/>
+            <result property="consuAnaylise" column="consu_anaylise"/>
+            <result property="consuWork" column="consu_work"/>
+            <result property="consuCharacter" column="consu_character"/>
+            <result property="consuIncome" column="consu_income"/>
+            <result property="consuValue" column="consu_value"/>
+            <result property="consuPreCount" column="consu_pre_count"/>
+            <result property="consuMaxReject" column="consu_max_reject"/>
+            <result property="bussinessUserId" column="bussiness_user_id"/>
+            <result property="consuStatus" column="consu_status"/>
+            <result property="remark" column="remark"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateId" column="update_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	consu_name
+,
+	consu_phone
+,
+	shop_id
+,
+	consu_age
+,
+	consu_confirm_item
+,
+	consu_wantto_item
+,
+	enjoy_policy
+,
+	service_consult
+,
+	consu_anaylise
+,
+	consu_work
+,
+	consu_character
+,
+	consu_income
+,
+	consu_value
+,
+	consu_pre_count
+,
+	consu_max_reject
+,
+	bussiness_user_id
+,
+	consu_status
+,
+	remark
+,
+	update_time
+,
+	create_time
+,
+	create_id
+,
+	update_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="cusconsumerModel != null">
+	<if test="cusconsumerModel.id > 0 ">
+		AND id =	#{cusconsumerModel.id}
+ </if>
+	<if test="cusconsumerModel.consuName != null and cusconsumerModel.consuName !=''">
+	AND consu_name =	#{cusconsumerModel.consuName}
+ </if>
+	<if test="cusconsumerModel.consuPhone != null and cusconsumerModel.consuPhone !=''">
+	AND consu_phone =	#{cusconsumerModel.consuPhone}
+ </if>
+	<if test="cusconsumerModel.shopId > 0 ">
+		AND shop_id =	#{cusconsumerModel.shopId}
+ </if>
+	<if test="cusconsumerModel.consuAge > 0 ">
+		AND consu_age =	#{cusconsumerModel.consuAge}
+ </if>
+	<if test="cusconsumerModel.consuConfirmItem != null and cusconsumerModel.consuConfirmItem !=''">
+	AND consu_confirm_item =	#{cusconsumerModel.consuConfirmItem}
+ </if>
+	<if test="cusconsumerModel.consuWanttoItem != null and cusconsumerModel.consuWanttoItem !=''">
+	AND consu_wantto_item =	#{cusconsumerModel.consuWanttoItem}
+ </if>
+	<if test="cusconsumerModel.enjoyPolicy != null and cusconsumerModel.enjoyPolicy !=''">
+	AND enjoy_policy =	#{cusconsumerModel.enjoyPolicy}
+ </if>
+	<if test="cusconsumerModel.serviceConsult != null and cusconsumerModel.serviceConsult !=''">
+	AND service_consult =	#{cusconsumerModel.serviceConsult}
+ </if>
+	<if test="cusconsumerModel.consuAnaylise != null and cusconsumerModel.consuAnaylise !=''">
+	AND consu_anaylise =	#{cusconsumerModel.consuAnaylise}
+ </if>
+	<if test="cusconsumerModel.consuWork != null and cusconsumerModel.consuWork !=''">
+	AND consu_work =	#{cusconsumerModel.consuWork}
+ </if>
+	<if test="cusconsumerModel.consuCharacter != null and cusconsumerModel.consuCharacter !=''">
+	AND consu_character =	#{cusconsumerModel.consuCharacter}
+ </if>
+	<if test="cusconsumerModel.consuIncome != null and cusconsumerModel.consuIncome !=''">
+	AND consu_income =	#{cusconsumerModel.consuIncome}
+ </if>
+	<if test="cusconsumerModel.consuValue != null and cusconsumerModel.consuValue !=''">
+	AND consu_value =	#{cusconsumerModel.consuValue}
+ </if>
+	<if test="cusconsumerModel.consuPreCount != null and cusconsumerModel.consuPreCount !=''">
+	AND consu_pre_count =	#{cusconsumerModel.consuPreCount}
+ </if>
+	<if test="cusconsumerModel.consuMaxReject != null and cusconsumerModel.consuMaxReject !=''">
+	AND consu_max_reject =	#{cusconsumerModel.consuMaxReject}
+ </if>
+	<if test="cusconsumerModel.bussinessUserId > 0 ">
+		AND bussiness_user_id =	#{cusconsumerModel.bussinessUserId}
+ </if>
+	<if test="cusconsumerModel.consuStatus > 0 ">
+		AND consu_status =	#{cusconsumerModel.consuStatus}
+ </if>
+	<if test="cusconsumerModel.remark != null and cusconsumerModel.remark !=''">
+	AND remark =	#{cusconsumerModel.remark}
+ </if>
+	<if test="cusconsumerModel.updateTime != null and cusconsumerModel.updateTime !=''">
+	AND update_time =	#{cusconsumerModel.updateTime}
+ </if>
+	<if test="cusconsumerModel.createTime != null and cusconsumerModel.createTime !=''">
+	AND create_time =	#{cusconsumerModel.createTime}
+ </if>
+	<if test="cusconsumerModel.createId > 0 ">
+		AND create_id =	#{cusconsumerModel.createId}
+ </if>
+	<if test="cusconsumerModel.updateId > 0 ">
+		AND update_id =	#{cusconsumerModel.updateId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.cusconsumer.CusconsumerModel" useGeneratedKeys="true" keyProperty="cusconsumer.id" keyColumn="id">
+		insert into t_cust_consumer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="cusconsumerModel != null">
+		<if test="cusconsumerModel.id >0">
+				id
+, 
+        </if>
+		<if test="cusconsumerModel.consuName != null">
+				consu_name
+, 
+        </if>
+		<if test="cusconsumerModel.consuPhone != null">
+				consu_phone
+, 
+        </if>
+		<if test="cusconsumerModel.shopId >0">
+				shop_id
+, 
+        </if>
+		<if test="cusconsumerModel.consuAge != null">
+				consu_age
+, 
+        </if>
+		<if test="cusconsumerModel.consuConfirmItem != null">
+				consu_confirm_item
+, 
+        </if>
+		<if test="cusconsumerModel.consuWanttoItem != null">
+				consu_wantto_item
+, 
+        </if>
+		<if test="cusconsumerModel.enjoyPolicy != null">
+				enjoy_policy
+, 
+        </if>
+		<if test="cusconsumerModel.serviceConsult != null">
+				service_consult
+, 
+        </if>
+		<if test="cusconsumerModel.consuAnaylise != null">
+				consu_anaylise
+, 
+        </if>
+		<if test="cusconsumerModel.consuWork != null">
+				consu_work
+, 
+        </if>
+		<if test="cusconsumerModel.consuCharacter != null">
+				consu_character
+, 
+        </if>
+		<if test="cusconsumerModel.consuIncome != null">
+				consu_income
+, 
+        </if>
+		<if test="cusconsumerModel.consuValue != null">
+				consu_value
+, 
+        </if>
+		<if test="cusconsumerModel.consuPreCount != null">
+				consu_pre_count
+, 
+        </if>
+		<if test="cusconsumerModel.consuMaxReject != null">
+				consu_max_reject
+, 
+        </if>
+		<if test="cusconsumerModel.bussinessUserId >0">
+				bussiness_user_id
+, 
+        </if>
+		<if test="cusconsumerModel.consuStatus != null">
+				consu_status
+, 
+        </if>
+		<if test="cusconsumerModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="cusconsumerModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="cusconsumerModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="cusconsumerModel.createId >0">
+				create_id
+, 
+        </if>
+		<if test="cusconsumerModel.updateId >0">
+				update_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="cusconsumerModel.id >0">
+			#{cusconsumerModel.id}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuName != null and cusconsumerModel.consuName !=''">
+			#{cusconsumerModel.consuName}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuPhone != null and cusconsumerModel.consuPhone !=''">
+			#{cusconsumerModel.consuPhone}
+, 
+		 </if>
+			<if test="cusconsumerModel.shopId >0">
+			#{cusconsumerModel.shopId}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuAge != null and cusconsumerModel.consuAge !=''">
+			#{cusconsumerModel.consuAge}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuConfirmItem != null and cusconsumerModel.consuConfirmItem !=''">
+			#{cusconsumerModel.consuConfirmItem}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuWanttoItem != null and cusconsumerModel.consuWanttoItem !=''">
+			#{cusconsumerModel.consuWanttoItem}
+, 
+		 </if>
+			<if test="cusconsumerModel.enjoyPolicy != null and cusconsumerModel.enjoyPolicy !=''">
+			#{cusconsumerModel.enjoyPolicy}
+, 
+		 </if>
+			<if test="cusconsumerModel.serviceConsult != null and cusconsumerModel.serviceConsult !=''">
+			#{cusconsumerModel.serviceConsult}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuAnaylise != null and cusconsumerModel.consuAnaylise !=''">
+			#{cusconsumerModel.consuAnaylise}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuWork != null and cusconsumerModel.consuWork !=''">
+			#{cusconsumerModel.consuWork}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuCharacter != null and cusconsumerModel.consuCharacter !=''">
+			#{cusconsumerModel.consuCharacter}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuIncome != null and cusconsumerModel.consuIncome !=''">
+			#{cusconsumerModel.consuIncome}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuValue != null and cusconsumerModel.consuValue !=''">
+			#{cusconsumerModel.consuValue}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuPreCount != null and cusconsumerModel.consuPreCount !=''">
+			#{cusconsumerModel.consuPreCount}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuMaxReject != null and cusconsumerModel.consuMaxReject !=''">
+			#{cusconsumerModel.consuMaxReject}
+, 
+		 </if>
+			<if test="cusconsumerModel.bussinessUserId >0">
+			#{cusconsumerModel.bussinessUserId}
+, 
+		 </if>
+			<if test="cusconsumerModel.consuStatus != null and cusconsumerModel.consuStatus !=''">
+			#{cusconsumerModel.consuStatus}
+, 
+		 </if>
+			<if test="cusconsumerModel.remark != null and cusconsumerModel.remark !=''">
+			#{cusconsumerModel.remark}
+, 
+		 </if>
+			<if test="cusconsumerModel.updateTime != null and cusconsumerModel.updateTime !=''">
+			#{cusconsumerModel.updateTime}
+, 
+		 </if>
+			<if test="cusconsumerModel.createTime != null and cusconsumerModel.createTime !=''">
+			#{cusconsumerModel.createTime}
+, 
+		 </if>
+			<if test="cusconsumerModel.createId >0">
+			#{cusconsumerModel.createId}
+, 
+		 </if>
+			<if test="cusconsumerModel.updateId >0">
+			#{cusconsumerModel.updateId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_cust_consumer
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="cusconsumerModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuName != null">
+									consu_name
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuPhone != null">
+									consu_phone
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.shopId >0">
+						shop_id
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuAge >0">
+						consu_age
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuConfirmItem != null">
+									consu_confirm_item
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuWanttoItem != null">
+									consu_wantto_item
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.enjoyPolicy != null">
+									enjoy_policy
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.serviceConsult != null">
+									service_consult
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuAnaylise != null">
+									consu_anaylise
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuWork != null">
+									consu_work
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuCharacter != null">
+									consu_character
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuIncome != null">
+									consu_income
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuValue != null">
+									consu_value
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuPreCount != null">
+									consu_pre_count
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuMaxReject != null">
+									consu_max_reject
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.bussinessUserId >0">
+						bussiness_user_id
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.consuStatus >0">
+						consu_status
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.createId >0">
+						create_id
+, 
+		        	</if>
+				
+					<if test="cusconsumerModel.updateId >0">
+						update_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listCusconsumerModel" item="cusconsumerModel" index="index"
+				separator="," >
+			(
+			
+				<if test="cusconsumerModel.id >0">
+				#{cusconsumerModel.id}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuName != null">
+				#{cusconsumerModel.consuName}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuPhone != null">
+				#{cusconsumerModel.consuPhone}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.shopId >0">
+				#{cusconsumerModel.shopId}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuAge >0">
+				#{cusconsumerModel.consuAge}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuConfirmItem != null">
+				#{cusconsumerModel.consuConfirmItem}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuWanttoItem != null">
+				#{cusconsumerModel.consuWanttoItem}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.enjoyPolicy != null">
+				#{cusconsumerModel.enjoyPolicy}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.serviceConsult != null">
+				#{cusconsumerModel.serviceConsult}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuAnaylise != null">
+				#{cusconsumerModel.consuAnaylise}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuWork != null">
+				#{cusconsumerModel.consuWork}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuCharacter != null">
+				#{cusconsumerModel.consuCharacter}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuIncome != null">
+				#{cusconsumerModel.consuIncome}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuValue != null">
+				#{cusconsumerModel.consuValue}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuPreCount != null">
+				#{cusconsumerModel.consuPreCount}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuMaxReject != null">
+				#{cusconsumerModel.consuMaxReject}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.bussinessUserId >0">
+				#{cusconsumerModel.bussinessUserId}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.consuStatus >0">
+				#{cusconsumerModel.consuStatus}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.remark != null">
+				#{cusconsumerModel.remark}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.updateTime != null">
+				#{cusconsumerModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.createTime != null">
+				#{cusconsumerModel.createTime}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.createId >0">
+				#{cusconsumerModel.createId}
+, 
+			     	</if>
+			
+				<if test="cusconsumerModel.updateId >0">
+				#{cusconsumerModel.updateId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.cusconsumer.CusconsumerModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_cust_consumer 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.cusconsumer.CusconsumerModel">
+		select <include refid="baseColumns"/> from t_cust_consumer 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.cusconsumer.CusconsumerModel">
+        select
+        <include refid="baseColumns"/>  from t_cust_consumer
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.cusconsumer.CusconsumerModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_cust_consumer 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.cusconsumer.CusconsumerModel" >
+		update t_cust_consumer 
+		<set> 
+					
+			<if test="cusconsumerModel.id > 0">
+				id = #{cusconsumerModel.id}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuName != null and cusconsumerModel.consuName !=''">
+				consu_name =	#{cusconsumerModel.consuName}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuPhone != null and cusconsumerModel.consuPhone !=''">
+				consu_phone =	#{cusconsumerModel.consuPhone}
+,
+			</if>
+					
+			<if test="cusconsumerModel.shopId > 0">
+				shop_id = #{cusconsumerModel.shopId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuAge >0">
+				consu_age = #{cusconsumerModel.consuAge}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuConfirmItem != null and cusconsumerModel.consuConfirmItem !=''">
+				consu_confirm_item =	#{cusconsumerModel.consuConfirmItem}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuWanttoItem != null and cusconsumerModel.consuWanttoItem !=''">
+				consu_wantto_item =	#{cusconsumerModel.consuWanttoItem}
+,
+			</if>
+					
+			<if test="cusconsumerModel.enjoyPolicy != null and cusconsumerModel.enjoyPolicy !=''">
+				enjoy_policy =	#{cusconsumerModel.enjoyPolicy}
+,
+			</if>
+					
+			<if test="cusconsumerModel.serviceConsult != null and cusconsumerModel.serviceConsult !=''">
+				service_consult =	#{cusconsumerModel.serviceConsult}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuAnaylise != null and cusconsumerModel.consuAnaylise !=''">
+				consu_anaylise =	#{cusconsumerModel.consuAnaylise}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuWork != null and cusconsumerModel.consuWork !=''">
+				consu_work =	#{cusconsumerModel.consuWork}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuCharacter != null and cusconsumerModel.consuCharacter !=''">
+				consu_character =	#{cusconsumerModel.consuCharacter}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuIncome != null and cusconsumerModel.consuIncome !=''">
+				consu_income =	#{cusconsumerModel.consuIncome}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuValue != null and cusconsumerModel.consuValue !=''">
+				consu_value =	#{cusconsumerModel.consuValue}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuPreCount != null and cusconsumerModel.consuPreCount !=''">
+				consu_pre_count =	#{cusconsumerModel.consuPreCount}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuMaxReject != null and cusconsumerModel.consuMaxReject !=''">
+				consu_max_reject =	#{cusconsumerModel.consuMaxReject}
+,
+			</if>
+					
+			<if test="cusconsumerModel.bussinessUserId > 0">
+				bussiness_user_id = #{cusconsumerModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuStatus >0">
+				consu_status = #{cusconsumerModel.consuStatus}
+,
+			</if>
+					
+			<if test="cusconsumerModel.remark != null and cusconsumerModel.remark !=''">
+				remark =	#{cusconsumerModel.remark}
+,
+			</if>
+					
+			<if test="cusconsumerModel.updateTime != null and cusconsumerModel.updateTime !=''">
+				update_time =	#{cusconsumerModel.updateTime}
+,
+			</if>
+					
+			<if test="cusconsumerModel.createTime != null and cusconsumerModel.createTime !=''">
+				create_time =	#{cusconsumerModel.createTime}
+,
+			</if>
+					
+			<if test="cusconsumerModel.createId > 0">
+				create_id = #{cusconsumerModel.createId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.updateId > 0">
+				update_id = #{cusconsumerModel.updateId}
+			</if>
+		</set>	
+			where id = #{cusconsumerModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listCusconsumerModel" item="cusconsumerModel" index="index" open="" close="" separator=";">
+		update t_cust_consumer 
+		<set> 
+					
+			<if test="cusconsumerModel.id > 0">
+				id = #{cusconsumerModel.id}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuName != null and cusconsumerModel.consuName !=''">
+				consu_name =	#{cusconsumerModel.consuName}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuPhone != null and cusconsumerModel.consuPhone !=''">
+				consu_phone =	#{cusconsumerModel.consuPhone}
+,
+			</if>
+					
+			<if test="cusconsumerModel.shopId > 0">
+				shop_id = #{cusconsumerModel.shopId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuAge >0">
+				consu_age = #{cusconsumerModel.consuAge}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuConfirmItem != null and cusconsumerModel.consuConfirmItem !=''">
+				consu_confirm_item =	#{cusconsumerModel.consuConfirmItem}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuWanttoItem != null and cusconsumerModel.consuWanttoItem !=''">
+				consu_wantto_item =	#{cusconsumerModel.consuWanttoItem}
+,
+			</if>
+					
+			<if test="cusconsumerModel.enjoyPolicy != null and cusconsumerModel.enjoyPolicy !=''">
+				enjoy_policy =	#{cusconsumerModel.enjoyPolicy}
+,
+			</if>
+					
+			<if test="cusconsumerModel.serviceConsult != null and cusconsumerModel.serviceConsult !=''">
+				service_consult =	#{cusconsumerModel.serviceConsult}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuAnaylise != null and cusconsumerModel.consuAnaylise !=''">
+				consu_anaylise =	#{cusconsumerModel.consuAnaylise}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuWork != null and cusconsumerModel.consuWork !=''">
+				consu_work =	#{cusconsumerModel.consuWork}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuCharacter != null and cusconsumerModel.consuCharacter !=''">
+				consu_character =	#{cusconsumerModel.consuCharacter}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuIncome != null and cusconsumerModel.consuIncome !=''">
+				consu_income =	#{cusconsumerModel.consuIncome}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuValue != null and cusconsumerModel.consuValue !=''">
+				consu_value =	#{cusconsumerModel.consuValue}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuPreCount != null and cusconsumerModel.consuPreCount !=''">
+				consu_pre_count =	#{cusconsumerModel.consuPreCount}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuMaxReject != null and cusconsumerModel.consuMaxReject !=''">
+				consu_max_reject =	#{cusconsumerModel.consuMaxReject}
+,
+			</if>
+					
+			<if test="cusconsumerModel.bussinessUserId > 0">
+				bussiness_user_id = #{cusconsumerModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.consuStatus >0">
+				consu_status = #{cusconsumerModel.consuStatus}
+,
+			</if>
+					
+			<if test="cusconsumerModel.remark != null and cusconsumerModel.remark !=''">
+				remark =	#{cusconsumerModel.remark}
+,
+			</if>
+					
+			<if test="cusconsumerModel.updateTime != null and cusconsumerModel.updateTime !=''">
+				update_time =	#{cusconsumerModel.updateTime}
+,
+			</if>
+					
+			<if test="cusconsumerModel.createTime != null and cusconsumerModel.createTime !=''">
+				create_time =	#{cusconsumerModel.createTime}
+,
+			</if>
+					
+			<if test="cusconsumerModel.createId > 0">
+				create_id = #{cusconsumerModel.createId}
+,
+			</if>
+					
+			<if test="cusconsumerModel.updateId > 0">
+				update_id = #{cusconsumerModel.updateId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.cusconsumer.CusconsumerModel">
+		 delete from t_cust_consumer 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

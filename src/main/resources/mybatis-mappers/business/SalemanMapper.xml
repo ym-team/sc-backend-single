@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.saleman.SalemanMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.saleman.SalemanModel">
+            <result property="id" column="id"/>
+            <result property="userId" column="user_id"/>
+            <result property="realName" column="real_name"/>
+            <result property="idCard" column="id_card"/>
+            <result property="phone" column="phone"/>
+            <result property="auditStatus" column="audit_status"/>
+            <result property="sfzSc" column="sfz_sc"/>
+            <result property="sfzZm" column="sfz_zm"/>
+            <result property="sfzFm" column="sfz_fm"/>
+            <result property="remark" column="remark"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateId" column="update_id"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="rate" column="rate"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	user_id
+,
+	real_name
+,
+	id_card
+,
+	phone
+,
+	audit_status
+,
+	sfz_sc
+,
+	sfz_zm
+,
+	sfz_fm
+,
+	remark
+,
+	create_time
+,
+	update_id
+,
+	update_time
+,
+	rate
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="salemanModel != null">
+	<if test="salemanModel.id > 0 ">
+		AND id =	#{salemanModel.id}
+ </if>
+	<if test="salemanModel.userId > 0 ">
+		AND user_id =	#{salemanModel.userId}
+ </if>
+	<if test="salemanModel.realName != null and salemanModel.realName !=''">
+	AND real_name =	#{salemanModel.realName}
+ </if>
+	<if test="salemanModel.idCard != null and salemanModel.idCard !=''">
+	AND id_card =	#{salemanModel.idCard}
+ </if>
+	<if test="salemanModel.phone != null and salemanModel.phone !=''">
+	AND phone =	#{salemanModel.phone}
+ </if>
+	<if test="salemanModel.auditStatus > 0 ">
+		AND audit_status =	#{salemanModel.auditStatus}
+ </if>
+	<if test="salemanModel.sfzSc != null and salemanModel.sfzSc !=''">
+	AND sfz_sc =	#{salemanModel.sfzSc}
+ </if>
+	<if test="salemanModel.sfzZm != null and salemanModel.sfzZm !=''">
+	AND sfz_zm =	#{salemanModel.sfzZm}
+ </if>
+	<if test="salemanModel.sfzFm != null and salemanModel.sfzFm !=''">
+	AND sfz_fm =	#{salemanModel.sfzFm}
+ </if>
+	<if test="salemanModel.remark != null and salemanModel.remark !=''">
+	AND remark =	#{salemanModel.remark}
+ </if>
+	<if test="salemanModel.createTime != null and salemanModel.createTime !=''">
+	AND create_time =	#{salemanModel.createTime}
+ </if>
+	<if test="salemanModel.updateId > 0 ">
+		AND update_id =	#{salemanModel.updateId}
+ </if>
+	<if test="salemanModel.updateTime != null and salemanModel.updateTime !=''">
+	AND update_time =	#{salemanModel.updateTime}
+ </if>
+	<if test="salemanModel.rate != null and salemanModel.rate !=''">
+	AND rate =	#{salemanModel.rate}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.saleman.SalemanModel" useGeneratedKeys="true" keyProperty="saleman.id" keyColumn="id">
+		insert into t_saleman
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="salemanModel != null">
+		<if test="salemanModel.id >0">
+				id
+, 
+        </if>
+		<if test="salemanModel.userId >0">
+				user_id
+, 
+        </if>
+		<if test="salemanModel.realName != null">
+				real_name
+, 
+        </if>
+		<if test="salemanModel.idCard != null">
+				id_card
+, 
+        </if>
+		<if test="salemanModel.phone != null">
+				phone
+, 
+        </if>
+		<if test="salemanModel.auditStatus != null">
+				audit_status
+, 
+        </if>
+		<if test="salemanModel.sfzSc != null">
+				sfz_sc
+, 
+        </if>
+		<if test="salemanModel.sfzZm != null">
+				sfz_zm
+, 
+        </if>
+		<if test="salemanModel.sfzFm != null">
+				sfz_fm
+, 
+        </if>
+		<if test="salemanModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="salemanModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="salemanModel.updateId >0">
+				update_id
+, 
+        </if>
+		<if test="salemanModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="salemanModel.rate != null">
+				rate
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="salemanModel.id >0">
+			#{salemanModel.id}
+, 
+		 </if>
+			<if test="salemanModel.userId >0">
+			#{salemanModel.userId}
+, 
+		 </if>
+			<if test="salemanModel.realName != null and salemanModel.realName !=''">
+			#{salemanModel.realName}
+, 
+		 </if>
+			<if test="salemanModel.idCard != null and salemanModel.idCard !=''">
+			#{salemanModel.idCard}
+, 
+		 </if>
+			<if test="salemanModel.phone != null and salemanModel.phone !=''">
+			#{salemanModel.phone}
+, 
+		 </if>
+			<if test="salemanModel.auditStatus != null and salemanModel.auditStatus !=''">
+			#{salemanModel.auditStatus}
+, 
+		 </if>
+			<if test="salemanModel.sfzSc != null and salemanModel.sfzSc !=''">
+			#{salemanModel.sfzSc}
+, 
+		 </if>
+			<if test="salemanModel.sfzZm != null and salemanModel.sfzZm !=''">
+			#{salemanModel.sfzZm}
+, 
+		 </if>
+			<if test="salemanModel.sfzFm != null and salemanModel.sfzFm !=''">
+			#{salemanModel.sfzFm}
+, 
+		 </if>
+			<if test="salemanModel.remark != null and salemanModel.remark !=''">
+			#{salemanModel.remark}
+, 
+		 </if>
+			<if test="salemanModel.createTime != null and salemanModel.createTime !=''">
+			#{salemanModel.createTime}
+, 
+		 </if>
+			<if test="salemanModel.updateId >0">
+			#{salemanModel.updateId}
+, 
+		 </if>
+			<if test="salemanModel.updateTime != null and salemanModel.updateTime !=''">
+			#{salemanModel.updateTime}
+, 
+		 </if>
+			<if test="salemanModel.rate != null and salemanModel.rate !=''">
+			#{salemanModel.rate}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_saleman
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="salemanModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="salemanModel.userId >0">
+						user_id
+, 
+		        	</if>
+				
+					<if test="salemanModel.realName != null">
+									real_name
+, 
+		        	</if>
+				
+					<if test="salemanModel.idCard != null">
+									id_card
+, 
+		        	</if>
+				
+					<if test="salemanModel.phone != null">
+									phone
+, 
+		        	</if>
+				
+					<if test="salemanModel.auditStatus >0">
+						audit_status
+, 
+		        	</if>
+				
+					<if test="salemanModel.sfzSc != null">
+									sfz_sc
+, 
+		        	</if>
+				
+					<if test="salemanModel.sfzZm != null">
+									sfz_zm
+, 
+		        	</if>
+				
+					<if test="salemanModel.sfzFm != null">
+									sfz_fm
+, 
+		        	</if>
+				
+					<if test="salemanModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="salemanModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="salemanModel.updateId >0">
+						update_id
+, 
+		        	</if>
+				
+					<if test="salemanModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="salemanModel.rate != null">
+									rate
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listSalemanModel" item="salemanModel" index="index"
+				separator="," >
+			(
+			
+				<if test="salemanModel.id >0">
+				#{salemanModel.id}
+, 
+			     	</if>
+			
+				<if test="salemanModel.userId >0">
+				#{salemanModel.userId}
+, 
+			     	</if>
+			
+				<if test="salemanModel.realName != null">
+				#{salemanModel.realName}
+, 
+			     	</if>
+			
+				<if test="salemanModel.idCard != null">
+				#{salemanModel.idCard}
+, 
+			     	</if>
+			
+				<if test="salemanModel.phone != null">
+				#{salemanModel.phone}
+, 
+			     	</if>
+			
+				<if test="salemanModel.auditStatus >0">
+				#{salemanModel.auditStatus}
+, 
+			     	</if>
+			
+				<if test="salemanModel.sfzSc != null">
+				#{salemanModel.sfzSc}
+, 
+			     	</if>
+			
+				<if test="salemanModel.sfzZm != null">
+				#{salemanModel.sfzZm}
+, 
+			     	</if>
+			
+				<if test="salemanModel.sfzFm != null">
+				#{salemanModel.sfzFm}
+, 
+			     	</if>
+			
+				<if test="salemanModel.remark != null">
+				#{salemanModel.remark}
+, 
+			     	</if>
+			
+				<if test="salemanModel.createTime != null">
+				#{salemanModel.createTime}
+, 
+			     	</if>
+			
+				<if test="salemanModel.updateId >0">
+				#{salemanModel.updateId}
+, 
+			     	</if>
+			
+				<if test="salemanModel.updateTime != null">
+				#{salemanModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="salemanModel.rate != null">
+				#{salemanModel.rate}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.saleman.SalemanModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_saleman 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.saleman.SalemanModel">
+		select <include refid="baseColumns"/> from t_saleman 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.saleman.SalemanModel">
+        select
+        <include refid="baseColumns"/>  from t_saleman
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.saleman.SalemanModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_saleman 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.saleman.SalemanModel" >
+		update t_saleman 
+		<set> 
+					
+			<if test="salemanModel.id > 0">
+				id = #{salemanModel.id}
+,
+			</if>
+					
+			<if test="salemanModel.userId > 0">
+				user_id = #{salemanModel.userId}
+,
+			</if>
+					
+			<if test="salemanModel.realName != null and salemanModel.realName !=''">
+				real_name =	#{salemanModel.realName}
+,
+			</if>
+					
+			<if test="salemanModel.idCard != null and salemanModel.idCard !=''">
+				id_card =	#{salemanModel.idCard}
+,
+			</if>
+					
+			<if test="salemanModel.phone != null and salemanModel.phone !=''">
+				phone =	#{salemanModel.phone}
+,
+			</if>
+					
+			<if test="salemanModel.auditStatus >0">
+				audit_status = #{salemanModel.auditStatus}
+,
+			</if>
+					
+			<if test="salemanModel.sfzSc != null and salemanModel.sfzSc !=''">
+				sfz_sc =	#{salemanModel.sfzSc}
+,
+			</if>
+					
+			<if test="salemanModel.sfzZm != null and salemanModel.sfzZm !=''">
+				sfz_zm =	#{salemanModel.sfzZm}
+,
+			</if>
+					
+			<if test="salemanModel.sfzFm != null and salemanModel.sfzFm !=''">
+				sfz_fm =	#{salemanModel.sfzFm}
+,
+			</if>
+					
+			<if test="salemanModel.remark != null and salemanModel.remark !=''">
+				remark =	#{salemanModel.remark}
+,
+			</if>
+					
+			<if test="salemanModel.createTime != null and salemanModel.createTime !=''">
+				create_time =	#{salemanModel.createTime}
+,
+			</if>
+					
+			<if test="salemanModel.updateId > 0">
+				update_id = #{salemanModel.updateId}
+,
+			</if>
+					
+			<if test="salemanModel.updateTime != null and salemanModel.updateTime !=''">
+				update_time =	#{salemanModel.updateTime}
+,
+			</if>
+					
+			<if test="salemanModel.rate != null and salemanModel.rate !=''">
+				rate =	#{salemanModel.rate}
+			</if>
+		</set>	
+			where id = #{salemanModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listSalemanModel" item="salemanModel" index="index" open="" close="" separator=";">
+		update t_saleman 
+		<set> 
+					
+			<if test="salemanModel.id > 0">
+				id = #{salemanModel.id}
+,
+			</if>
+					
+			<if test="salemanModel.userId > 0">
+				user_id = #{salemanModel.userId}
+,
+			</if>
+					
+			<if test="salemanModel.realName != null and salemanModel.realName !=''">
+				real_name =	#{salemanModel.realName}
+,
+			</if>
+					
+			<if test="salemanModel.idCard != null and salemanModel.idCard !=''">
+				id_card =	#{salemanModel.idCard}
+,
+			</if>
+					
+			<if test="salemanModel.phone != null and salemanModel.phone !=''">
+				phone =	#{salemanModel.phone}
+,
+			</if>
+					
+			<if test="salemanModel.auditStatus >0">
+				audit_status = #{salemanModel.auditStatus}
+,
+			</if>
+					
+			<if test="salemanModel.sfzSc != null and salemanModel.sfzSc !=''">
+				sfz_sc =	#{salemanModel.sfzSc}
+,
+			</if>
+					
+			<if test="salemanModel.sfzZm != null and salemanModel.sfzZm !=''">
+				sfz_zm =	#{salemanModel.sfzZm}
+,
+			</if>
+					
+			<if test="salemanModel.sfzFm != null and salemanModel.sfzFm !=''">
+				sfz_fm =	#{salemanModel.sfzFm}
+,
+			</if>
+					
+			<if test="salemanModel.remark != null and salemanModel.remark !=''">
+				remark =	#{salemanModel.remark}
+,
+			</if>
+					
+			<if test="salemanModel.createTime != null and salemanModel.createTime !=''">
+				create_time =	#{salemanModel.createTime}
+,
+			</if>
+					
+			<if test="salemanModel.updateId > 0">
+				update_id = #{salemanModel.updateId}
+,
+			</if>
+					
+			<if test="salemanModel.updateTime != null and salemanModel.updateTime !=''">
+				update_time =	#{salemanModel.updateTime}
+,
+			</if>
+					
+			<if test="salemanModel.rate != null and salemanModel.rate !=''">
+				rate =	#{salemanModel.rate}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.saleman.SalemanModel">
+		 delete from t_saleman 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

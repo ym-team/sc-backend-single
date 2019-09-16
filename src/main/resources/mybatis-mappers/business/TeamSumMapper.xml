@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.teamSum.TeamSumMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.teamSum.TeamSumModel">
+            <result property="id" column="id"/>
+            <result property="teamId" column="team_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="teamSumFee" column="team_sum_fee"/>
+            <result property="remark" column="remark"/>
+            <result property="yearsMonth" column="years_month"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	team_id
+,
+	create_time
+,
+	team_sum_fee
+,
+	remark
+,
+	years_month
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="teamSumModel != null">
+	<if test="teamSumModel.id > 0 ">
+		AND id =	#{teamSumModel.id}
+ </if>
+	<if test="teamSumModel.teamId > 0 ">
+		AND team_id =	#{teamSumModel.teamId}
+ </if>
+	<if test="teamSumModel.createTime != null and teamSumModel.createTime !=''">
+	AND create_time =	#{teamSumModel.createTime}
+ </if>
+	<if test="teamSumModel.teamSumFee != null and teamSumModel.teamSumFee !=''">
+	AND team_sum_fee =	#{teamSumModel.teamSumFee}
+ </if>
+	<if test="teamSumModel.remark != null and teamSumModel.remark !=''">
+	AND remark =	#{teamSumModel.remark}
+ </if>
+	<if test="teamSumModel.yearsMonth > 0 ">
+		AND years_month =	#{teamSumModel.yearsMonth}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.teamSum.TeamSumModel" useGeneratedKeys="true" keyProperty="teamSum.id" keyColumn="id">
+		insert into t_team_sum
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="teamSumModel != null">
+		<if test="teamSumModel.id >0">
+				id
+, 
+        </if>
+		<if test="teamSumModel.teamId >0">
+				team_id
+, 
+        </if>
+		<if test="teamSumModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="teamSumModel.teamSumFee != null">
+				team_sum_fee
+, 
+        </if>
+		<if test="teamSumModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="teamSumModel.yearsMonth != null">
+				years_month
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="teamSumModel.id >0">
+			#{teamSumModel.id}
+, 
+		 </if>
+			<if test="teamSumModel.teamId >0">
+			#{teamSumModel.teamId}
+, 
+		 </if>
+			<if test="teamSumModel.createTime != null and teamSumModel.createTime !=''">
+			#{teamSumModel.createTime}
+, 
+		 </if>
+			<if test="teamSumModel.teamSumFee != null and teamSumModel.teamSumFee !=''">
+			#{teamSumModel.teamSumFee}
+, 
+		 </if>
+			<if test="teamSumModel.remark != null and teamSumModel.remark !=''">
+			#{teamSumModel.remark}
+, 
+		 </if>
+			<if test="teamSumModel.yearsMonth != null and teamSumModel.yearsMonth !=''">
+			#{teamSumModel.yearsMonth}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_team_sum
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="teamSumModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="teamSumModel.teamId >0">
+						team_id
+, 
+		        	</if>
+				
+					<if test="teamSumModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="teamSumModel.teamSumFee != null">
+									team_sum_fee
+, 
+		        	</if>
+				
+					<if test="teamSumModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="teamSumModel.yearsMonth >0">
+						years_month
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listTeamSumModel" item="teamSumModel" index="index"
+				separator="," >
+			(
+			
+				<if test="teamSumModel.id >0">
+				#{teamSumModel.id}
+, 
+			     	</if>
+			
+				<if test="teamSumModel.teamId >0">
+				#{teamSumModel.teamId}
+, 
+			     	</if>
+			
+				<if test="teamSumModel.createTime != null">
+				#{teamSumModel.createTime}
+, 
+			     	</if>
+			
+				<if test="teamSumModel.teamSumFee != null">
+				#{teamSumModel.teamSumFee}
+, 
+			     	</if>
+			
+				<if test="teamSumModel.remark != null">
+				#{teamSumModel.remark}
+, 
+			     	</if>
+			
+				<if test="teamSumModel.yearsMonth >0">
+				#{teamSumModel.yearsMonth}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.teamSum.TeamSumModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_team_sum 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.teamSum.TeamSumModel">
+		select <include refid="baseColumns"/> from t_team_sum 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.teamSum.TeamSumModel">
+        select
+        <include refid="baseColumns"/>  from t_team_sum
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.teamSum.TeamSumModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_team_sum 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.teamSum.TeamSumModel" >
+		update t_team_sum 
+		<set> 
+					
+			<if test="teamSumModel.id > 0">
+				id = #{teamSumModel.id}
+,
+			</if>
+					
+			<if test="teamSumModel.teamId > 0">
+				team_id = #{teamSumModel.teamId}
+,
+			</if>
+					
+			<if test="teamSumModel.createTime != null and teamSumModel.createTime !=''">
+				create_time =	#{teamSumModel.createTime}
+,
+			</if>
+					
+			<if test="teamSumModel.teamSumFee != null and teamSumModel.teamSumFee !=''">
+				team_sum_fee =	#{teamSumModel.teamSumFee}
+,
+			</if>
+					
+			<if test="teamSumModel.remark != null and teamSumModel.remark !=''">
+				remark =	#{teamSumModel.remark}
+,
+			</if>
+					
+			<if test="teamSumModel.yearsMonth >0">
+				years_month = #{teamSumModel.yearsMonth}
+			</if>
+		</set>	
+			where id = #{teamSumModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listTeamSumModel" item="teamSumModel" index="index" open="" close="" separator=";">
+		update t_team_sum 
+		<set> 
+					
+			<if test="teamSumModel.id > 0">
+				id = #{teamSumModel.id}
+,
+			</if>
+					
+			<if test="teamSumModel.teamId > 0">
+				team_id = #{teamSumModel.teamId}
+,
+			</if>
+					
+			<if test="teamSumModel.createTime != null and teamSumModel.createTime !=''">
+				create_time =	#{teamSumModel.createTime}
+,
+			</if>
+					
+			<if test="teamSumModel.teamSumFee != null and teamSumModel.teamSumFee !=''">
+				team_sum_fee =	#{teamSumModel.teamSumFee}
+,
+			</if>
+					
+			<if test="teamSumModel.remark != null and teamSumModel.remark !=''">
+				remark =	#{teamSumModel.remark}
+,
+			</if>
+					
+			<if test="teamSumModel.yearsMonth >0">
+				years_month = #{teamSumModel.yearsMonth}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.teamSum.TeamSumModel">
+		 delete from t_team_sum 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

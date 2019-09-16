@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+<div class="form-group">
+	<label class="col-md-2 control-label">主键ID</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="主键ID" type="text" name="id" id="id" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="主键ID不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">用户Id</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="用户Id" type="text" name="userId" id="userId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="用户Id不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">业务员真实姓名</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="业务员真实姓名" type="text" name="realName" id="realName" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="业务员真实姓名不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">身份证号</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="身份证号" type="text" name="idCard" id="idCard" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="身份证号不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">手机号码</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="手机号码" type="text" name="phone" id="phone" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="手机号码不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">认证状态(1：认证通过  2：未认证  3：认证不通过</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="认证状态(1：认证通过  2：未认证  3：认证不通过" type="text" name="auditStatus" id="auditStatus" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="认证状态(1：认证通过  2：未认证  3：认证不通过不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">身份证手持</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="身份证手持" type="text" name="sfzSc" id="sfzSc" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="身份证手持不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">身份证正面</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="身份证正面" type="text" name="sfzZm" id="sfzZm" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="身份证正面不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">身份证反面</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="身份证反面" type="text" name="sfzFm" id="sfzFm" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="身份证反面不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">备注</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="备注" type="text" name="remark" id="remark" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="备注不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">创建时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建时间" type="text" name="createTime" id="createTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建时间不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">创建者Id</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建者Id" type="text" name="updateId" id="updateId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建者Id不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">更新时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="更新时间" type="text" name="updateTime" id="updateTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="更新时间不能为空">
+	</div>
+</div>
+<div class="form-group">
+	<label class="col-md-2 control-label">个人提成比例分配</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="个人提成比例分配" type="text" name="rate" id="rate" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="个人提成比例分配不能为空">
+	</div>
+</div>
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button class="btn btn-primary" onclick="location.href='salemanList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+
+	<script src="../../../js/constant.js"></script>
+	<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/jq.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use('layer', function(){
+	    var layer = layui.layer;
+	});
+	
+	function add() {
+		$('#form').bootstrapValidator();
+		var bootstrapValidator = $("#form").data('bootstrapValidator');
+		bootstrapValidator.validate();
+	    if(!bootstrapValidator.isValid()){
+		   return;
+	    }
+	    
+	    var formdata = $("#form").serializeObject();
+
+		$.ajax({
+			type : 'post',
+			url : domainName + '/api-business/saleman/save',
+			contentType: "application/json; charset=utf-8",  
+			data : JSON.stringify(formdata),
+			success : function(data) {
+				layer.msg("成功", {shift: -1, time: 1000}, function(){
+                    location.href = "salemanList.html";
+                });
+			}
+		});
+	}
+		
+</script>
+</body>
+</html>

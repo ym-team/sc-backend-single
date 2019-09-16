@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.hospitalDoctor.HospitalDoctorMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.hospitalDoctor.HospitalDoctorModel">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="position" column="position"/>
+            <result property="headImg" column="head_img"/>
+            <result property="phone" column="phone"/>
+            <result property="hospitalId" column="hospital_id"/>
+            <result property="remark" column="remark"/>
+            <result property="createId" column="create_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateId" column="update_id"/>
+            <result property="updateTime" column="update_time"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	name
+,
+	position
+,
+	head_img
+,
+	phone
+,
+	hospital_id
+,
+	remark
+,
+	create_id
+,
+	create_time
+,
+	update_id
+,
+	update_time
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="hospitalDoctorModel != null">
+	<if test="hospitalDoctorModel.id > 0 ">
+		AND id =	#{hospitalDoctorModel.id}
+ </if>
+	<if test="hospitalDoctorModel.name != null and hospitalDoctorModel.name !=''">
+	AND name =	#{hospitalDoctorModel.name}
+ </if>
+	<if test="hospitalDoctorModel.position != null and hospitalDoctorModel.position !=''">
+	AND position =	#{hospitalDoctorModel.position}
+ </if>
+	<if test="hospitalDoctorModel.headImg != null and hospitalDoctorModel.headImg !=''">
+	AND head_img =	#{hospitalDoctorModel.headImg}
+ </if>
+	<if test="hospitalDoctorModel.phone != null and hospitalDoctorModel.phone !=''">
+	AND phone =	#{hospitalDoctorModel.phone}
+ </if>
+	<if test="hospitalDoctorModel.hospitalId > 0 ">
+		AND hospital_id =	#{hospitalDoctorModel.hospitalId}
+ </if>
+	<if test="hospitalDoctorModel.remark != null and hospitalDoctorModel.remark !=''">
+	AND remark =	#{hospitalDoctorModel.remark}
+ </if>
+	<if test="hospitalDoctorModel.createId > 0 ">
+		AND create_id =	#{hospitalDoctorModel.createId}
+ </if>
+	<if test="hospitalDoctorModel.createTime != null and hospitalDoctorModel.createTime !=''">
+	AND create_time =	#{hospitalDoctorModel.createTime}
+ </if>
+	<if test="hospitalDoctorModel.updateId > 0 ">
+		AND update_id =	#{hospitalDoctorModel.updateId}
+ </if>
+	<if test="hospitalDoctorModel.updateTime != null and hospitalDoctorModel.updateTime !=''">
+	AND update_time =	#{hospitalDoctorModel.updateTime}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel" useGeneratedKeys="true" keyProperty="hospitalDoctor.id" keyColumn="id">
+		insert into t_hospital_doctor
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="hospitalDoctorModel != null">
+		<if test="hospitalDoctorModel.id >0">
+				id
+, 
+        </if>
+		<if test="hospitalDoctorModel.name != null">
+				name
+, 
+        </if>
+		<if test="hospitalDoctorModel.position != null">
+				position
+, 
+        </if>
+		<if test="hospitalDoctorModel.headImg != null">
+				head_img
+, 
+        </if>
+		<if test="hospitalDoctorModel.phone != null">
+				phone
+, 
+        </if>
+		<if test="hospitalDoctorModel.hospitalId >0">
+				hospital_id
+, 
+        </if>
+		<if test="hospitalDoctorModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="hospitalDoctorModel.createId >0">
+				create_id
+, 
+        </if>
+		<if test="hospitalDoctorModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="hospitalDoctorModel.updateId >0">
+				update_id
+, 
+        </if>
+		<if test="hospitalDoctorModel.updateTime != null">
+				update_time
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="hospitalDoctorModel.id >0">
+			#{hospitalDoctorModel.id}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.name != null and hospitalDoctorModel.name !=''">
+			#{hospitalDoctorModel.name}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.position != null and hospitalDoctorModel.position !=''">
+			#{hospitalDoctorModel.position}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.headImg != null and hospitalDoctorModel.headImg !=''">
+			#{hospitalDoctorModel.headImg}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.phone != null and hospitalDoctorModel.phone !=''">
+			#{hospitalDoctorModel.phone}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.hospitalId >0">
+			#{hospitalDoctorModel.hospitalId}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.remark != null and hospitalDoctorModel.remark !=''">
+			#{hospitalDoctorModel.remark}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.createId >0">
+			#{hospitalDoctorModel.createId}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.createTime != null and hospitalDoctorModel.createTime !=''">
+			#{hospitalDoctorModel.createTime}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.updateId >0">
+			#{hospitalDoctorModel.updateId}
+, 
+		 </if>
+			<if test="hospitalDoctorModel.updateTime != null and hospitalDoctorModel.updateTime !=''">
+			#{hospitalDoctorModel.updateTime}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_hospital_doctor
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="hospitalDoctorModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.name != null">
+									name
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.position != null">
+									position
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.headImg != null">
+									head_img
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.phone != null">
+									phone
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.hospitalId >0">
+						hospital_id
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.createId >0">
+						create_id
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.updateId >0">
+						update_id
+, 
+		        	</if>
+				
+					<if test="hospitalDoctorModel.updateTime != null">
+									update_time
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listHospitalDoctorModel" item="hospitalDoctorModel" index="index"
+				separator="," >
+			(
+			
+				<if test="hospitalDoctorModel.id >0">
+				#{hospitalDoctorModel.id}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.name != null">
+				#{hospitalDoctorModel.name}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.position != null">
+				#{hospitalDoctorModel.position}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.headImg != null">
+				#{hospitalDoctorModel.headImg}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.phone != null">
+				#{hospitalDoctorModel.phone}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.hospitalId >0">
+				#{hospitalDoctorModel.hospitalId}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.remark != null">
+				#{hospitalDoctorModel.remark}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.createId >0">
+				#{hospitalDoctorModel.createId}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.createTime != null">
+				#{hospitalDoctorModel.createTime}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.updateId >0">
+				#{hospitalDoctorModel.updateId}
+, 
+			     	</if>
+			
+				<if test="hospitalDoctorModel.updateTime != null">
+				#{hospitalDoctorModel.updateTime}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_hospital_doctor 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel">
+		select <include refid="baseColumns"/> from t_hospital_doctor 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel">
+        select
+        <include refid="baseColumns"/>  from t_hospital_doctor
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_hospital_doctor 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel" >
+		update t_hospital_doctor 
+		<set> 
+					
+			<if test="hospitalDoctorModel.id > 0">
+				id = #{hospitalDoctorModel.id}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.name != null and hospitalDoctorModel.name !=''">
+				name =	#{hospitalDoctorModel.name}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.position != null and hospitalDoctorModel.position !=''">
+				position =	#{hospitalDoctorModel.position}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.headImg != null and hospitalDoctorModel.headImg !=''">
+				head_img =	#{hospitalDoctorModel.headImg}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.phone != null and hospitalDoctorModel.phone !=''">
+				phone =	#{hospitalDoctorModel.phone}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.hospitalId > 0">
+				hospital_id = #{hospitalDoctorModel.hospitalId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.remark != null and hospitalDoctorModel.remark !=''">
+				remark =	#{hospitalDoctorModel.remark}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.createId > 0">
+				create_id = #{hospitalDoctorModel.createId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.createTime != null and hospitalDoctorModel.createTime !=''">
+				create_time =	#{hospitalDoctorModel.createTime}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.updateId > 0">
+				update_id = #{hospitalDoctorModel.updateId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.updateTime != null and hospitalDoctorModel.updateTime !=''">
+				update_time =	#{hospitalDoctorModel.updateTime}
+			</if>
+		</set>	
+			where id = #{hospitalDoctorModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listHospitalDoctorModel" item="hospitalDoctorModel" index="index" open="" close="" separator=";">
+		update t_hospital_doctor 
+		<set> 
+					
+			<if test="hospitalDoctorModel.id > 0">
+				id = #{hospitalDoctorModel.id}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.name != null and hospitalDoctorModel.name !=''">
+				name =	#{hospitalDoctorModel.name}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.position != null and hospitalDoctorModel.position !=''">
+				position =	#{hospitalDoctorModel.position}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.headImg != null and hospitalDoctorModel.headImg !=''">
+				head_img =	#{hospitalDoctorModel.headImg}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.phone != null and hospitalDoctorModel.phone !=''">
+				phone =	#{hospitalDoctorModel.phone}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.hospitalId > 0">
+				hospital_id = #{hospitalDoctorModel.hospitalId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.remark != null and hospitalDoctorModel.remark !=''">
+				remark =	#{hospitalDoctorModel.remark}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.createId > 0">
+				create_id = #{hospitalDoctorModel.createId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.createTime != null and hospitalDoctorModel.createTime !=''">
+				create_time =	#{hospitalDoctorModel.createTime}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.updateId > 0">
+				update_id = #{hospitalDoctorModel.updateId}
+,
+			</if>
+					
+			<if test="hospitalDoctorModel.updateTime != null and hospitalDoctorModel.updateTime !=''">
+				update_time =	#{hospitalDoctorModel.updateTime}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel">
+		 delete from t_hospital_doctor 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

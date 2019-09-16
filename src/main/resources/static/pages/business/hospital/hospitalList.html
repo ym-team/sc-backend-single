@@ -17,30 +17,28 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											主键ID：
+											主键ID
 											<input id="id" type="text" class="form-control" placeholder="主键ID">
-											医院名称：
+											医院名称
 											<input id="name" type="text" class="form-control" placeholder="医院名称">
-											医院地址：
+											医院地址
 											<input id="address" type="text" class="form-control" placeholder="医院地址">
-											logo：
+											logo
 											<input id="logo" type="text" class="form-control" placeholder="logo">
-											手机号码：
+											手机号码
 											<input id="phone" type="text" class="form-control" placeholder="手机号码">
-											医院介绍：
+											医院介绍
 											<input id="remark" type="text" class="form-control" placeholder="医院介绍">
-											联系人：
+											联系人
 											<input id="contactor" type="text" class="form-control" placeholder="联系人">
-											更新者id：
+											更新者id
 											<input id="updateId" type="text" class="form-control" placeholder="更新者id">
-											更新时间：
+											更新时间
 											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
-											创建者Id：
+											创建者Id
 											<input id="createId" type="text" class="form-control" placeholder="创建者Id">
-											创建时间：
+											创建时间
 											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
-											
-											
 											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:hospital:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
@@ -62,7 +60,7 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-                                    <th>主键ID</th>
+									<th>主键ID</th>
 									<th>医院名称</th>
 									<th>医院地址</th>
 									<th>logo</th>
@@ -73,7 +71,6 @@
 									<th>更新时间</th>
 									<th>创建者Id</th>
 									<th>创建时间</th>
-									
 									<th>操作</th>
                                 </tr>
                             </thead>
@@ -116,18 +113,17 @@ layui.use(['layer','util'], function(){
             		"url" : domainName + "/api-business/hospital/queryListByPage",
             		"type":"get",
             		"data":function(d){
-        				d.id = $('#id').val();
-        				d.name = $('#name').val();
-        				d.address = $('#address').val();
-        				d.logo = $('#logo').val();
-        				d.phone = $('#phone').val();
-        				d.remark = $('#remark').val();
-        				d.contactor = $('#contactor').val();
-        				d.updateId = $('#updateId').val();
-        				d.updateTime = $('#updateTime').val();
-        				d.createId = $('#createId').val();
-        				d.createTime = $('#createTime').val();
-        				
+						d.id = $('#id').val();
+						d.name = $('#name').val();
+						d.address = $('#address').val();
+						d.logo = $('#logo').val();
+						d.phone = $('#phone').val();
+						d.remark = $('#remark').val();
+						d.contactor = $('#contactor').val();
+						d.updateId = $('#updateId').val();
+						d.updateTime = $('#updateTime').val();
+						d.createId = $('#createId').val();
+						d.createTime = $('#createTime').val();
             		},
             		"dataSrc": function (json) {
             			json.recordsTotal=json.total;
@@ -156,25 +152,23 @@ layui.use(['layer','util'], function(){
             	},
             	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
                 "columns": [
-                    { "data": "id", "defaultContent": ""},
-                    { "data": "name", "defaultContent": ""},
-                    { "data": "address", "defaultContent": ""},
-                    { "data": "logo", "defaultContent": ""},
-                    { "data": "phone", "defaultContent": ""},
-                    { "data": "remark", "defaultContent": ""},
-                    { "data": "contactor", "defaultContent": ""},
-                    { "data": "updateId", "defaultContent": ""},
-                    { 
-                    	"data": "updateTime","defaultContent": "",
-                    	"render": function (data, type, row) {return util.toDateString(data);}
-                    },
-                    { "data": "createId", "defaultContent": ""},
-                    
-                    { 
-                    	"data": "createTime","defaultContent": "",
-                    	"render": function (data, type, row) {return util.toDateString(data);}
-                    },
-                    
+		{ "data": "id", "defaultContent": ""},
+		{ "data": "name", "defaultContent": ""},
+		{ "data": "address", "defaultContent": ""},
+		{ "data": "logo", "defaultContent": ""},
+		{ "data": "phone", "defaultContent": ""},
+		{ "data": "remark", "defaultContent": ""},
+		{ "data": "contactor", "defaultContent": ""},
+		{ "data": "updateId", "defaultContent": ""},
+        { 
+        	"data": "updateTime","defaultContent": "",
+        	"render": function (data, type, row) {return util.toDateString(data);}
+        },
+		{ "data": "createId", "defaultContent": ""},
+        { 
+        	"data": "createTime","defaultContent": "",
+        	"render": function (data, type, row) {return util.toDateString(data);}
+        },
                     { 
                     	"data": "", 
                     	"defaultContent": "",

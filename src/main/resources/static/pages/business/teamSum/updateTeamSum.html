@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+	<input type="hidden" id="id" name="id">
+	<fieldset>
+	
+
+	
+			
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="" type="text" name="id" id="id" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="" type="text" name="teamId" id="teamId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="" type="text" name="createTime" id="createTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">团队金额</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="团队金额" type="text" name="teamSumFee" id="teamSumFee" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="团队金额不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">备注信息</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="备注信息" type="text" name="remark" id="remark" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="备注信息不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">当前月份</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="当前月份" type="text" name="yearsMonth" id="yearsMonth" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="当前月份不能为空">
+	</div>
+</div>
+
+			
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button class="btn btn-primary" onclick="location.href='teamSumList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+
+	<script src="../../../js/constant.js"></script>
+	<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/jq.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use('layer', function(){
+	    var layer = layui.layer;
+	});
+	
+	initData();
+	
+	function initData(){
+		/**
+		$("#id").val(getUrlParam("id"));
+		$("#name").val(decodeURIComponent(getUrlParam("name")));
+		$("#permission").val(decodeURIComponent(getUrlParam("permission")));
+		*/
+		
+		$("#id").val(getUrlParam("id"));
+		var id = getUrlParam("id");
+		
+		$.ajax({
+			type : 'get',
+			url : domainName + '/api-business/teamSum/queryDetail',
+			contentType: "application/json; charset=utf-8",  
+			data : { "id": id},
+			success : function(data) {
+				console.log(data);
+$('#id').val(data.id);
+$('#teamId').val(data.teamId);
+$('#createTime').val(data.createTime);
+$('#teamSumFee').val(data.teamSumFee);
+$('#remark').val(data.remark);
+$('#yearsMonth').val(data.yearsMonth);
+			}
+		});
+		
+		
+	}
+	
+	function update() {
+		$('#form').bootstrapValidator();
+		var bootstrapValidator = $("#form").data('bootstrapValidator');
+		bootstrapValidator.validate();
+	    if(!bootstrapValidator.isValid()){
+		   return;
+	    }
+	    
+	    var formdata = $("#form").serializeObject();
+
+		$.ajax({
+			type : 'put',
+			url : domainName + '/api-business/teamSum/update',
+			contentType: "application/json; charset=utf-8",  
+			data : JSON.stringify(formdata),
+			success : function(data) {
+				layer.msg("成功", {shift: -1, time: 1000}, function(){
+                    location.href = "teamSumList.html";
+                });
+			}
+		});
+	}
+		
+</script>
+</body>
+</html>

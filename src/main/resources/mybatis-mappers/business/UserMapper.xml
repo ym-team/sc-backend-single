@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.user.UserMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.user.UserModel">
+            <result property="id" column="id"/>
+            <result property="phone" column="phone"/>
+            <result property="password" column="password"/>
+            <result property="type" column="type"/>
+            <result property="status" column="status"/>
+            <result property="inviteCode" column="invite_code"/>
+            <result property="parentId" column="parent_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateId" column="update_id"/>
+            <result property="updateTime" column="update_time"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	phone
+,
+	password
+,
+	type
+,
+	status
+,
+	invite_code
+,
+	parent_id
+,
+	create_time
+,
+	update_id
+,
+	update_time
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="userModel != null">
+	<if test="userModel.id > 0 ">
+		AND id =	#{userModel.id}
+ </if>
+	<if test="userModel.phone != null and userModel.phone !=''">
+	AND phone =	#{userModel.phone}
+ </if>
+	<if test="userModel.password != null and userModel.password !=''">
+	AND password =	#{userModel.password}
+ </if>
+	<if test="userModel.type > 0 ">
+		AND type =	#{userModel.type}
+ </if>
+	<if test="userModel.status > 0 ">
+		AND status =	#{userModel.status}
+ </if>
+	<if test="userModel.inviteCode != null and userModel.inviteCode !=''">
+	AND invite_code =	#{userModel.inviteCode}
+ </if>
+	<if test="userModel.parentId > 0 ">
+		AND parent_id =	#{userModel.parentId}
+ </if>
+	<if test="userModel.createTime != null and userModel.createTime !=''">
+	AND create_time =	#{userModel.createTime}
+ </if>
+	<if test="userModel.updateId > 0 ">
+		AND update_id =	#{userModel.updateId}
+ </if>
+	<if test="userModel.updateTime != null and userModel.updateTime !=''">
+	AND update_time =	#{userModel.updateTime}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.user.UserModel" useGeneratedKeys="true" keyProperty="user.id" keyColumn="id">
+		insert into t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="userModel != null">
+		<if test="userModel.id >0">
+				id
+, 
+        </if>
+		<if test="userModel.phone != null">
+				phone
+, 
+        </if>
+		<if test="userModel.password != null">
+				password
+, 
+        </if>
+		<if test="userModel.type != null">
+				type
+, 
+        </if>
+		<if test="userModel.status != null">
+				status
+, 
+        </if>
+		<if test="userModel.inviteCode != null">
+				invite_code
+, 
+        </if>
+		<if test="userModel.parentId >0">
+				parent_id
+, 
+        </if>
+		<if test="userModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="userModel.updateId >0">
+				update_id
+, 
+        </if>
+		<if test="userModel.updateTime != null">
+				update_time
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="userModel.id >0">
+			#{userModel.id}
+, 
+		 </if>
+			<if test="userModel.phone != null and userModel.phone !=''">
+			#{userModel.phone}
+, 
+		 </if>
+			<if test="userModel.password != null and userModel.password !=''">
+			#{userModel.password}
+, 
+		 </if>
+			<if test="userModel.type != null and userModel.type !=''">
+			#{userModel.type}
+, 
+		 </if>
+			<if test="userModel.status != null and userModel.status !=''">
+			#{userModel.status}
+, 
+		 </if>
+			<if test="userModel.inviteCode != null and userModel.inviteCode !=''">
+			#{userModel.inviteCode}
+, 
+		 </if>
+			<if test="userModel.parentId >0">
+			#{userModel.parentId}
+, 
+		 </if>
+			<if test="userModel.createTime != null and userModel.createTime !=''">
+			#{userModel.createTime}
+, 
+		 </if>
+			<if test="userModel.updateId >0">
+			#{userModel.updateId}
+, 
+		 </if>
+			<if test="userModel.updateTime != null and userModel.updateTime !=''">
+			#{userModel.updateTime}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_user
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="userModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="userModel.phone != null">
+									phone
+, 
+		        	</if>
+				
+					<if test="userModel.password != null">
+									password
+, 
+		        	</if>
+				
+					<if test="userModel.type >0">
+						type
+, 
+		        	</if>
+				
+					<if test="userModel.status >0">
+						status
+, 
+		        	</if>
+				
+					<if test="userModel.inviteCode != null">
+									invite_code
+, 
+		        	</if>
+				
+					<if test="userModel.parentId >0">
+						parent_id
+, 
+		        	</if>
+				
+					<if test="userModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="userModel.updateId >0">
+						update_id
+, 
+		        	</if>
+				
+					<if test="userModel.updateTime != null">
+									update_time
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listUserModel" item="userModel" index="index"
+				separator="," >
+			(
+			
+				<if test="userModel.id >0">
+				#{userModel.id}
+, 
+			     	</if>
+			
+				<if test="userModel.phone != null">
+				#{userModel.phone}
+, 
+			     	</if>
+			
+				<if test="userModel.password != null">
+				#{userModel.password}
+, 
+			     	</if>
+			
+				<if test="userModel.type >0">
+				#{userModel.type}
+, 
+			     	</if>
+			
+				<if test="userModel.status >0">
+				#{userModel.status}
+, 
+			     	</if>
+			
+				<if test="userModel.inviteCode != null">
+				#{userModel.inviteCode}
+, 
+			     	</if>
+			
+				<if test="userModel.parentId >0">
+				#{userModel.parentId}
+, 
+			     	</if>
+			
+				<if test="userModel.createTime != null">
+				#{userModel.createTime}
+, 
+			     	</if>
+			
+				<if test="userModel.updateId >0">
+				#{userModel.updateId}
+, 
+			     	</if>
+			
+				<if test="userModel.updateTime != null">
+				#{userModel.updateTime}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.user.UserModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_user 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.user.UserModel">
+		select <include refid="baseColumns"/> from t_user 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.user.UserModel">
+        select
+        <include refid="baseColumns"/>  from t_user
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.user.UserModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_user 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.user.UserModel" >
+		update t_user 
+		<set> 
+					
+			<if test="userModel.id > 0">
+				id = #{userModel.id}
+,
+			</if>
+					
+			<if test="userModel.phone != null and userModel.phone !=''">
+				phone =	#{userModel.phone}
+,
+			</if>
+					
+			<if test="userModel.password != null and userModel.password !=''">
+				password =	#{userModel.password}
+,
+			</if>
+					
+			<if test="userModel.type >0">
+				type = #{userModel.type}
+,
+			</if>
+					
+			<if test="userModel.status >0">
+				status = #{userModel.status}
+,
+			</if>
+					
+			<if test="userModel.inviteCode != null and userModel.inviteCode !=''">
+				invite_code =	#{userModel.inviteCode}
+,
+			</if>
+					
+			<if test="userModel.parentId > 0">
+				parent_id = #{userModel.parentId}
+,
+			</if>
+					
+			<if test="userModel.createTime != null and userModel.createTime !=''">
+				create_time =	#{userModel.createTime}
+,
+			</if>
+					
+			<if test="userModel.updateId > 0">
+				update_id = #{userModel.updateId}
+,
+			</if>
+					
+			<if test="userModel.updateTime != null and userModel.updateTime !=''">
+				update_time =	#{userModel.updateTime}
+			</if>
+		</set>	
+			where id = #{userModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listUserModel" item="userModel" index="index" open="" close="" separator=";">
+		update t_user 
+		<set> 
+					
+			<if test="userModel.id > 0">
+				id = #{userModel.id}
+,
+			</if>
+					
+			<if test="userModel.phone != null and userModel.phone !=''">
+				phone =	#{userModel.phone}
+,
+			</if>
+					
+			<if test="userModel.password != null and userModel.password !=''">
+				password =	#{userModel.password}
+,
+			</if>
+					
+			<if test="userModel.type >0">
+				type = #{userModel.type}
+,
+			</if>
+					
+			<if test="userModel.status >0">
+				status = #{userModel.status}
+,
+			</if>
+					
+			<if test="userModel.inviteCode != null and userModel.inviteCode !=''">
+				invite_code =	#{userModel.inviteCode}
+,
+			</if>
+					
+			<if test="userModel.parentId > 0">
+				parent_id = #{userModel.parentId}
+,
+			</if>
+					
+			<if test="userModel.createTime != null and userModel.createTime !=''">
+				create_time =	#{userModel.createTime}
+,
+			</if>
+					
+			<if test="userModel.updateId > 0">
+				update_id = #{userModel.updateId}
+,
+			</if>
+					
+			<if test="userModel.updateTime != null and userModel.updateTime !=''">
+				update_time =	#{userModel.updateTime}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.user.UserModel">
+		 delete from t_user 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

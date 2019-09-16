@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
+</head>
+<body>
+    <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <header style="height: 100%">
+                    <div align="left">
+	                    <table style="width: 100%">
+	                   		<tr>
+	                   			<td>
+		                   			<form class="form-inline" onsubmit="return false">
+										<div class="form-group">
+											主键id
+											<input id="id" type="text" class="form-control" placeholder="主键id">
+											顾客姓名
+											<input id="consuName" type="text" class="form-control" placeholder="顾客姓名">
+											电话
+											<input id="consuPhone" type="text" class="form-control" placeholder="电话">
+											店家id
+											<input id="shopId" type="text" class="form-control" placeholder="店家id">
+											客户年龄
+											<input id="consuAge" type="text" class="form-control" placeholder="客户年龄">
+											确定项目
+											<input id="consuConfirmItem" type="text" class="form-control" placeholder="确定项目">
+											意向项目
+											<input id="consuWanttoItem" type="text" class="form-control" placeholder="意向项目">
+											享受政策
+											<input id="enjoyPolicy" type="text" class="form-control" placeholder="享受政策">
+											服务顾问
+											<input id="serviceConsult" type="text" class="form-control" placeholder="服务顾问">
+											顾客分析
+											<input id="consuAnaylise" type="text" class="form-control" placeholder="顾客分析">
+											顾客工作
+											<input id="consuWork" type="text" class="form-control" placeholder="顾客工作">
+											顾客性格
+											<input id="consuCharacter" type="text" class="form-control" placeholder="顾客性格">
+											顾客年收入
+											<input id="consuIncome" type="text" class="form-control" placeholder="顾客年收入">
+											顾客消费价值观
+											<input id="consuValue" type="text" class="form-control" placeholder="顾客消费价值观">
+											铺垫次数
+											<input id="consuPreCount" type="text" class="form-control" placeholder="铺垫次数">
+											最大的抗拒点
+											<input id="consuMaxReject" type="text" class="form-control" placeholder="最大的抗拒点">
+											业务员id
+											<input id="bussinessUserId" type="text" class="form-control" placeholder="业务员id">
+											1 正常  2 不正常
+											<input id="consuStatus" type="text" class="form-control" placeholder="1 正常  2 不正常">
+											备注
+											<input id="remark" type="text" class="form-control" placeholder="备注">
+											更新时间
+											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
+											创建时间
+											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
+											创建者
+											<input id="createId" type="text" class="form-control" placeholder="创建者">
+											更新者
+											<input id="updateId" type="text" class="form-control" placeholder="更新者">
+											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:cusconsumer:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
+										</div>
+									</form>
+	                   			</td>
+	                   			<td align="right">
+	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addCusconsumer.html'" permission="back:cusconsumer:save">
+                                      <i class="layui-icon">&#xe608;</i> 添加
+                                    </button>
+	                   			</td>
+	                   		</tr> 
+	                    </table>
+					</div>
+                </header>
+                
+                <div>
+                    <div class="widget-body no-padding">
+                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                </tr>                       
+                                <tr>
+									<th>主键id</th>
+									<th>顾客姓名</th>
+									<th>电话</th>
+									<th>店家id</th>
+									<th>客户年龄</th>
+									<th>确定项目</th>
+									<th>意向项目</th>
+									<th>享受政策</th>
+									<th>服务顾问</th>
+									<th>顾客分析</th>
+									<th>顾客工作</th>
+									<th>顾客性格</th>
+									<th>顾客年收入</th>
+									<th>顾客消费价值观</th>
+									<th>铺垫次数</th>
+									<th>最大的抗拒点</th>
+									<th>业务员id</th>
+									<th>1 正常  2 不正常</th>
+									<th>备注</th>
+									<th>更新时间</th>
+									<th>创建时间</th>
+									<th>创建者</th>
+									<th>更新者</th>
+									<th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="../../../js/constant.js"></script>
+<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../../js/jq.js"></script>
+<script type="text/javascript" src="../../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript" src="../../../js/my/permission.js"></script>
+<script type="text/javascript">
+var pers = checkPermission();
+var example;
+
+layui.use(['layer','util'], function(){
+    var layer = layui.layer;
+    var util = layui.util;
+    
+    function init(){
+    	example = 
+        	$('#dt-table').DataTable({
+            	"searching": false,
+            	"processing": false,
+            	"serverSide" : true,
+            	"ordering" :false,
+            	"language": {
+                    "url": "../../../js/plugin/datatables/Chinese.lang"
+                },
+            	"ajax": {
+            		"url" : domainName + "/api-business/cusconsumer/queryListByPage",
+            		"type":"get",
+            		"data":function(d){
+						d.id = $('#id').val();
+						d.consuName = $('#consuName').val();
+						d.consuPhone = $('#consuPhone').val();
+						d.shopId = $('#shopId').val();
+						d.consuAge = $('#consuAge').val();
+						d.consuConfirmItem = $('#consuConfirmItem').val();
+						d.consuWanttoItem = $('#consuWanttoItem').val();
+						d.enjoyPolicy = $('#enjoyPolicy').val();
+						d.serviceConsult = $('#serviceConsult').val();
+						d.consuAnaylise = $('#consuAnaylise').val();
+						d.consuWork = $('#consuWork').val();
+						d.consuCharacter = $('#consuCharacter').val();
+						d.consuIncome = $('#consuIncome').val();
+						d.consuValue = $('#consuValue').val();
+						d.consuPreCount = $('#consuPreCount').val();
+						d.consuMaxReject = $('#consuMaxReject').val();
+						d.bussinessUserId = $('#bussinessUserId').val();
+						d.consuStatus = $('#consuStatus').val();
+						d.remark = $('#remark').val();
+						d.updateTime = $('#updateTime').val();
+						d.createTime = $('#createTime').val();
+						d.createId = $('#createId').val();
+						d.updateId = $('#updateId').val();
+            		},
+            		"dataSrc": function (json) {
+            			json.recordsTotal=json.total;
+            			json.recordsFiltered=json.total;
+            			return json.data;
+            		},
+        			"error":function(xhr, textStatus, errorThrown){
+        				var msg = xhr.responseText;
+        				console.log(msg);
+        				if (xhr.status == 400) {
+        					layer.msg(JSON.parse(msg).message);
+        				} else if (xhr.status == 401) {
+        					localStorage.removeItem("token");
+        					layer.msg("token过期，请重新登录", {shift: -1, time: 1000}, function(){
+                                location.href = loginPage;
+                            });
+        				} else if (xhr.status == 403) {
+        					layer.msg('未授权');
+        				} else if (xhr.status == 500) {
+        					var info = JSON.parse(msg);
+        					var exception = info.exception;
+        					var message = info.message;
+        					layer.msg('系统错误：' + (exception ? exception : message));
+        				}
+        			}
+            	},
+            	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
+                "columns": [
+		{ "data": "id", "defaultContent": ""},
+		{ "data": "consuName", "defaultContent": ""},
+		{ "data": "consuPhone", "defaultContent": ""},
+		{ "data": "shopId", "defaultContent": ""},
+		{ "data": "consuAge", "defaultContent": ""},
+		{ "data": "consuConfirmItem", "defaultContent": ""},
+		{ "data": "consuWanttoItem", "defaultContent": ""},
+		{ "data": "enjoyPolicy", "defaultContent": ""},
+		{ "data": "serviceConsult", "defaultContent": ""},
+		{ "data": "consuAnaylise", "defaultContent": ""},
+		{ "data": "consuWork", "defaultContent": ""},
+		{ "data": "consuCharacter", "defaultContent": ""},
+		{ "data": "consuIncome", "defaultContent": ""},
+		{ "data": "consuValue", "defaultContent": ""},
+		{ "data": "consuPreCount", "defaultContent": ""},
+		{ "data": "consuMaxReject", "defaultContent": ""},
+		{ "data": "bussinessUserId", "defaultContent": ""},
+		{ "data": "consuStatus", "defaultContent": ""},
+		{ "data": "remark", "defaultContent": ""},
+        { 
+        	"data": "updateTime","defaultContent": "",
+        	"render": function (data, type, row) {return util.toDateString(data);}
+        },
+        { 
+        	"data": "createTime","defaultContent": "",
+        	"render": function (data, type, row) {return util.toDateString(data);}
+        },
+		{ "data": "createId", "defaultContent": ""},
+		{ "data": "updateId", "defaultContent": ""},
+                    { 
+                    	"data": "", 
+                    	"defaultContent": "",
+                    	"render": function (data, type, row) {
+                    		var id = row['id'];
+                    		//var name = encodeURIComponent(row['name']);
+                    		var href = "updateCusconsumer.html?id=" + id;
+                            var edit = buttonEdit(href, "back:cusconsumer:update", pers);
+                    		var del = buttonDel(id, "back:cusconsumer:delete", pers);
+                    		
+                            return edit + del;
+                      	}
+                    },
+                ],
+            } );
+    }
+
+    init();
+});
+
+function del(id){
+    layer.confirm('确定要删除吗？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            type : 'delete',
+            url : domainName + "/api-business/cusconsumer/delete/"+id,
+            success : function(data) {
+                example.ajax.reload();
+                layer.msg("删除成功");
+            }
+        });
+        
+        layer.close(1);
+    });
+}
+
+$("#searchBt").click(function(){
+	example.ajax.reload();
+});
+</script>
+</html>

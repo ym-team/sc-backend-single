@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.cusshop.CusshopMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.cusshop.CusshopModel">
+            <result property="id" column="id"/>
+            <result property="shopName" column="shop_name"/>
+            <result property="shopAddress" column="shop_address"/>
+            <result property="shopDesc" column="shop_desc"/>
+            <result property="shopUserName" column="shop_user_name"/>
+            <result property="shopPhone" column="shop_phone"/>
+            <result property="shopIdCard" column="shop_id_card"/>
+            <result property="shopXieyiStatus" column="shop_xieyi_status"/>
+            <result property="bussinessUserId" column="bussiness_user_id"/>
+            <result property="userId" column="user_id"/>
+            <result property="shopStatus" column="shop_status"/>
+            <result property="remark" column="remark"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateId" column="update_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	shop_name
+,
+	shop_address
+,
+	shop_desc
+,
+	shop_user_name
+,
+	shop_phone
+,
+	shop_id_card
+,
+	shop_xieyi_status
+,
+	bussiness_user_id
+,
+	user_id
+,
+	shop_status
+,
+	remark
+,
+	update_time
+,
+	create_time
+,
+	create_id
+,
+	update_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="cusshopModel != null">
+	<if test="cusshopModel.id > 0 ">
+		AND id =	#{cusshopModel.id}
+ </if>
+	<if test="cusshopModel.shopName != null and cusshopModel.shopName !=''">
+	AND shop_name =	#{cusshopModel.shopName}
+ </if>
+	<if test="cusshopModel.shopAddress != null and cusshopModel.shopAddress !=''">
+	AND shop_address =	#{cusshopModel.shopAddress}
+ </if>
+	<if test="cusshopModel.shopDesc != null and cusshopModel.shopDesc !=''">
+	AND shop_desc =	#{cusshopModel.shopDesc}
+ </if>
+	<if test="cusshopModel.shopUserName != null and cusshopModel.shopUserName !=''">
+	AND shop_user_name =	#{cusshopModel.shopUserName}
+ </if>
+	<if test="cusshopModel.shopPhone != null and cusshopModel.shopPhone !=''">
+	AND shop_phone =	#{cusshopModel.shopPhone}
+ </if>
+	<if test="cusshopModel.shopIdCard != null and cusshopModel.shopIdCard !=''">
+	AND shop_id_card =	#{cusshopModel.shopIdCard}
+ </if>
+	<if test="cusshopModel.shopXieyiStatus > 0 ">
+		AND shop_xieyi_status =	#{cusshopModel.shopXieyiStatus}
+ </if>
+	<if test="cusshopModel.bussinessUserId > 0 ">
+		AND bussiness_user_id =	#{cusshopModel.bussinessUserId}
+ </if>
+	<if test="cusshopModel.userId > 0 ">
+		AND user_id =	#{cusshopModel.userId}
+ </if>
+	<if test="cusshopModel.shopStatus > 0 ">
+		AND shop_status =	#{cusshopModel.shopStatus}
+ </if>
+	<if test="cusshopModel.remark != null and cusshopModel.remark !=''">
+	AND remark =	#{cusshopModel.remark}
+ </if>
+	<if test="cusshopModel.updateTime != null and cusshopModel.updateTime !=''">
+	AND update_time =	#{cusshopModel.updateTime}
+ </if>
+	<if test="cusshopModel.createTime != null and cusshopModel.createTime !=''">
+	AND create_time =	#{cusshopModel.createTime}
+ </if>
+	<if test="cusshopModel.createId > 0 ">
+		AND create_id =	#{cusshopModel.createId}
+ </if>
+	<if test="cusshopModel.updateId > 0 ">
+		AND update_id =	#{cusshopModel.updateId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.cusshop.CusshopModel" useGeneratedKeys="true" keyProperty="cusshop.id" keyColumn="id">
+		insert into t_cust_shop
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="cusshopModel != null">
+		<if test="cusshopModel.id >0">
+				id
+, 
+        </if>
+		<if test="cusshopModel.shopName != null">
+				shop_name
+, 
+        </if>
+		<if test="cusshopModel.shopAddress != null">
+				shop_address
+, 
+        </if>
+		<if test="cusshopModel.shopDesc != null">
+				shop_desc
+, 
+        </if>
+		<if test="cusshopModel.shopUserName != null">
+				shop_user_name
+, 
+        </if>
+		<if test="cusshopModel.shopPhone != null">
+				shop_phone
+, 
+        </if>
+		<if test="cusshopModel.shopIdCard != null">
+				shop_id_card
+, 
+        </if>
+		<if test="cusshopModel.shopXieyiStatus != null">
+				shop_xieyi_status
+, 
+        </if>
+		<if test="cusshopModel.bussinessUserId >0">
+				bussiness_user_id
+, 
+        </if>
+		<if test="cusshopModel.userId >0">
+				user_id
+, 
+        </if>
+		<if test="cusshopModel.shopStatus != null">
+				shop_status
+, 
+        </if>
+		<if test="cusshopModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="cusshopModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="cusshopModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="cusshopModel.createId >0">
+				create_id
+, 
+        </if>
+		<if test="cusshopModel.updateId >0">
+				update_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="cusshopModel.id >0">
+			#{cusshopModel.id}
+, 
+		 </if>
+			<if test="cusshopModel.shopName != null and cusshopModel.shopName !=''">
+			#{cusshopModel.shopName}
+, 
+		 </if>
+			<if test="cusshopModel.shopAddress != null and cusshopModel.shopAddress !=''">
+			#{cusshopModel.shopAddress}
+, 
+		 </if>
+			<if test="cusshopModel.shopDesc != null and cusshopModel.shopDesc !=''">
+			#{cusshopModel.shopDesc}
+, 
+		 </if>
+			<if test="cusshopModel.shopUserName != null and cusshopModel.shopUserName !=''">
+			#{cusshopModel.shopUserName}
+, 
+		 </if>
+			<if test="cusshopModel.shopPhone != null and cusshopModel.shopPhone !=''">
+			#{cusshopModel.shopPhone}
+, 
+		 </if>
+			<if test="cusshopModel.shopIdCard != null and cusshopModel.shopIdCard !=''">
+			#{cusshopModel.shopIdCard}
+, 
+		 </if>
+			<if test="cusshopModel.shopXieyiStatus != null and cusshopModel.shopXieyiStatus !=''">
+			#{cusshopModel.shopXieyiStatus}
+, 
+		 </if>
+			<if test="cusshopModel.bussinessUserId >0">
+			#{cusshopModel.bussinessUserId}
+, 
+		 </if>
+			<if test="cusshopModel.userId >0">
+			#{cusshopModel.userId}
+, 
+		 </if>
+			<if test="cusshopModel.shopStatus != null and cusshopModel.shopStatus !=''">
+			#{cusshopModel.shopStatus}
+, 
+		 </if>
+			<if test="cusshopModel.remark != null and cusshopModel.remark !=''">
+			#{cusshopModel.remark}
+, 
+		 </if>
+			<if test="cusshopModel.updateTime != null and cusshopModel.updateTime !=''">
+			#{cusshopModel.updateTime}
+, 
+		 </if>
+			<if test="cusshopModel.createTime != null and cusshopModel.createTime !=''">
+			#{cusshopModel.createTime}
+, 
+		 </if>
+			<if test="cusshopModel.createId >0">
+			#{cusshopModel.createId}
+, 
+		 </if>
+			<if test="cusshopModel.updateId >0">
+			#{cusshopModel.updateId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_cust_shop
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="cusshopModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopName != null">
+									shop_name
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopAddress != null">
+									shop_address
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopDesc != null">
+									shop_desc
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopUserName != null">
+									shop_user_name
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopPhone != null">
+									shop_phone
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopIdCard != null">
+									shop_id_card
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopXieyiStatus >0">
+						shop_xieyi_status
+, 
+		        	</if>
+				
+					<if test="cusshopModel.bussinessUserId >0">
+						bussiness_user_id
+, 
+		        	</if>
+				
+					<if test="cusshopModel.userId >0">
+						user_id
+, 
+		        	</if>
+				
+					<if test="cusshopModel.shopStatus >0">
+						shop_status
+, 
+		        	</if>
+				
+					<if test="cusshopModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="cusshopModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="cusshopModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="cusshopModel.createId >0">
+						create_id
+, 
+		        	</if>
+				
+					<if test="cusshopModel.updateId >0">
+						update_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listCusshopModel" item="cusshopModel" index="index"
+				separator="," >
+			(
+			
+				<if test="cusshopModel.id >0">
+				#{cusshopModel.id}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopName != null">
+				#{cusshopModel.shopName}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopAddress != null">
+				#{cusshopModel.shopAddress}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopDesc != null">
+				#{cusshopModel.shopDesc}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopUserName != null">
+				#{cusshopModel.shopUserName}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopPhone != null">
+				#{cusshopModel.shopPhone}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopIdCard != null">
+				#{cusshopModel.shopIdCard}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopXieyiStatus >0">
+				#{cusshopModel.shopXieyiStatus}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.bussinessUserId >0">
+				#{cusshopModel.bussinessUserId}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.userId >0">
+				#{cusshopModel.userId}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.shopStatus >0">
+				#{cusshopModel.shopStatus}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.remark != null">
+				#{cusshopModel.remark}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.updateTime != null">
+				#{cusshopModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.createTime != null">
+				#{cusshopModel.createTime}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.createId >0">
+				#{cusshopModel.createId}
+, 
+			     	</if>
+			
+				<if test="cusshopModel.updateId >0">
+				#{cusshopModel.updateId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.cusshop.CusshopModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_cust_shop 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.cusshop.CusshopModel">
+		select <include refid="baseColumns"/> from t_cust_shop 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.cusshop.CusshopModel">
+        select
+        <include refid="baseColumns"/>  from t_cust_shop
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.cusshop.CusshopModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_cust_shop 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.cusshop.CusshopModel" >
+		update t_cust_shop 
+		<set> 
+					
+			<if test="cusshopModel.id > 0">
+				id = #{cusshopModel.id}
+,
+			</if>
+					
+			<if test="cusshopModel.shopName != null and cusshopModel.shopName !=''">
+				shop_name =	#{cusshopModel.shopName}
+,
+			</if>
+					
+			<if test="cusshopModel.shopAddress != null and cusshopModel.shopAddress !=''">
+				shop_address =	#{cusshopModel.shopAddress}
+,
+			</if>
+					
+			<if test="cusshopModel.shopDesc != null and cusshopModel.shopDesc !=''">
+				shop_desc =	#{cusshopModel.shopDesc}
+,
+			</if>
+					
+			<if test="cusshopModel.shopUserName != null and cusshopModel.shopUserName !=''">
+				shop_user_name =	#{cusshopModel.shopUserName}
+,
+			</if>
+					
+			<if test="cusshopModel.shopPhone != null and cusshopModel.shopPhone !=''">
+				shop_phone =	#{cusshopModel.shopPhone}
+,
+			</if>
+					
+			<if test="cusshopModel.shopIdCard != null and cusshopModel.shopIdCard !=''">
+				shop_id_card =	#{cusshopModel.shopIdCard}
+,
+			</if>
+					
+			<if test="cusshopModel.shopXieyiStatus >0">
+				shop_xieyi_status = #{cusshopModel.shopXieyiStatus}
+,
+			</if>
+					
+			<if test="cusshopModel.bussinessUserId > 0">
+				bussiness_user_id = #{cusshopModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="cusshopModel.userId > 0">
+				user_id = #{cusshopModel.userId}
+,
+			</if>
+					
+			<if test="cusshopModel.shopStatus >0">
+				shop_status = #{cusshopModel.shopStatus}
+,
+			</if>
+					
+			<if test="cusshopModel.remark != null and cusshopModel.remark !=''">
+				remark =	#{cusshopModel.remark}
+,
+			</if>
+					
+			<if test="cusshopModel.updateTime != null and cusshopModel.updateTime !=''">
+				update_time =	#{cusshopModel.updateTime}
+,
+			</if>
+					
+			<if test="cusshopModel.createTime != null and cusshopModel.createTime !=''">
+				create_time =	#{cusshopModel.createTime}
+,
+			</if>
+					
+			<if test="cusshopModel.createId > 0">
+				create_id = #{cusshopModel.createId}
+,
+			</if>
+					
+			<if test="cusshopModel.updateId > 0">
+				update_id = #{cusshopModel.updateId}
+			</if>
+		</set>	
+			where id = #{cusshopModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listCusshopModel" item="cusshopModel" index="index" open="" close="" separator=";">
+		update t_cust_shop 
+		<set> 
+					
+			<if test="cusshopModel.id > 0">
+				id = #{cusshopModel.id}
+,
+			</if>
+					
+			<if test="cusshopModel.shopName != null and cusshopModel.shopName !=''">
+				shop_name =	#{cusshopModel.shopName}
+,
+			</if>
+					
+			<if test="cusshopModel.shopAddress != null and cusshopModel.shopAddress !=''">
+				shop_address =	#{cusshopModel.shopAddress}
+,
+			</if>
+					
+			<if test="cusshopModel.shopDesc != null and cusshopModel.shopDesc !=''">
+				shop_desc =	#{cusshopModel.shopDesc}
+,
+			</if>
+					
+			<if test="cusshopModel.shopUserName != null and cusshopModel.shopUserName !=''">
+				shop_user_name =	#{cusshopModel.shopUserName}
+,
+			</if>
+					
+			<if test="cusshopModel.shopPhone != null and cusshopModel.shopPhone !=''">
+				shop_phone =	#{cusshopModel.shopPhone}
+,
+			</if>
+					
+			<if test="cusshopModel.shopIdCard != null and cusshopModel.shopIdCard !=''">
+				shop_id_card =	#{cusshopModel.shopIdCard}
+,
+			</if>
+					
+			<if test="cusshopModel.shopXieyiStatus >0">
+				shop_xieyi_status = #{cusshopModel.shopXieyiStatus}
+,
+			</if>
+					
+			<if test="cusshopModel.bussinessUserId > 0">
+				bussiness_user_id = #{cusshopModel.bussinessUserId}
+,
+			</if>
+					
+			<if test="cusshopModel.userId > 0">
+				user_id = #{cusshopModel.userId}
+,
+			</if>
+					
+			<if test="cusshopModel.shopStatus >0">
+				shop_status = #{cusshopModel.shopStatus}
+,
+			</if>
+					
+			<if test="cusshopModel.remark != null and cusshopModel.remark !=''">
+				remark =	#{cusshopModel.remark}
+,
+			</if>
+					
+			<if test="cusshopModel.updateTime != null and cusshopModel.updateTime !=''">
+				update_time =	#{cusshopModel.updateTime}
+,
+			</if>
+					
+			<if test="cusshopModel.createTime != null and cusshopModel.createTime !=''">
+				create_time =	#{cusshopModel.createTime}
+,
+			</if>
+					
+			<if test="cusshopModel.createId > 0">
+				create_id = #{cusshopModel.createId}
+,
+			</if>
+					
+			<if test="cusshopModel.updateId > 0">
+				update_id = #{cusshopModel.updateId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.cusshop.CusshopModel">
+		 delete from t_cust_shop 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

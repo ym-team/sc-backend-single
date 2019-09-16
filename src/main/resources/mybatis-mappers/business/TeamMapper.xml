@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.team.TeamMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.team.TeamModel">
+            <result property="id" column="id"/>
+            <result property="userId" column="user_id"/>
+            <result property="parentId" column="parent_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="remark" column="remark"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	user_id
+,
+	parent_id
+,
+	create_time
+,
+	update_time
+,
+	remark
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="teamModel != null">
+	<if test="teamModel.id > 0 ">
+		AND id =	#{teamModel.id}
+ </if>
+	<if test="teamModel.userId > 0 ">
+		AND user_id =	#{teamModel.userId}
+ </if>
+	<if test="teamModel.parentId > 0 ">
+		AND parent_id =	#{teamModel.parentId}
+ </if>
+	<if test="teamModel.createTime != null and teamModel.createTime !=''">
+	AND create_time =	#{teamModel.createTime}
+ </if>
+	<if test="teamModel.updateTime != null and teamModel.updateTime !=''">
+	AND update_time =	#{teamModel.updateTime}
+ </if>
+	<if test="teamModel.remark != null and teamModel.remark !=''">
+	AND remark =	#{teamModel.remark}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.team.TeamModel" useGeneratedKeys="true" keyProperty="team.id" keyColumn="id">
+		insert into t_team
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="teamModel != null">
+		<if test="teamModel.id >0">
+				id
+, 
+        </if>
+		<if test="teamModel.userId >0">
+				user_id
+, 
+        </if>
+		<if test="teamModel.parentId >0">
+				parent_id
+, 
+        </if>
+		<if test="teamModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="teamModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="teamModel.remark != null">
+				remark
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="teamModel.id >0">
+			#{teamModel.id}
+, 
+		 </if>
+			<if test="teamModel.userId >0">
+			#{teamModel.userId}
+, 
+		 </if>
+			<if test="teamModel.parentId >0">
+			#{teamModel.parentId}
+, 
+		 </if>
+			<if test="teamModel.createTime != null and teamModel.createTime !=''">
+			#{teamModel.createTime}
+, 
+		 </if>
+			<if test="teamModel.updateTime != null and teamModel.updateTime !=''">
+			#{teamModel.updateTime}
+, 
+		 </if>
+			<if test="teamModel.remark != null and teamModel.remark !=''">
+			#{teamModel.remark}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_team
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="teamModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="teamModel.userId >0">
+						user_id
+, 
+		        	</if>
+				
+					<if test="teamModel.parentId >0">
+						parent_id
+, 
+		        	</if>
+				
+					<if test="teamModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="teamModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="teamModel.remark != null">
+									remark
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listTeamModel" item="teamModel" index="index"
+				separator="," >
+			(
+			
+				<if test="teamModel.id >0">
+				#{teamModel.id}
+, 
+			     	</if>
+			
+				<if test="teamModel.userId >0">
+				#{teamModel.userId}
+, 
+			     	</if>
+			
+				<if test="teamModel.parentId >0">
+				#{teamModel.parentId}
+, 
+			     	</if>
+			
+				<if test="teamModel.createTime != null">
+				#{teamModel.createTime}
+, 
+			     	</if>
+			
+				<if test="teamModel.updateTime != null">
+				#{teamModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="teamModel.remark != null">
+				#{teamModel.remark}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.team.TeamModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_team 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.team.TeamModel">
+		select <include refid="baseColumns"/> from t_team 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.team.TeamModel">
+        select
+        <include refid="baseColumns"/>  from t_team
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.team.TeamModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_team 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.team.TeamModel" >
+		update t_team 
+		<set> 
+					
+			<if test="teamModel.id > 0">
+				id = #{teamModel.id}
+,
+			</if>
+					
+			<if test="teamModel.userId > 0">
+				user_id = #{teamModel.userId}
+,
+			</if>
+					
+			<if test="teamModel.parentId > 0">
+				parent_id = #{teamModel.parentId}
+,
+			</if>
+					
+			<if test="teamModel.createTime != null and teamModel.createTime !=''">
+				create_time =	#{teamModel.createTime}
+,
+			</if>
+					
+			<if test="teamModel.updateTime != null and teamModel.updateTime !=''">
+				update_time =	#{teamModel.updateTime}
+,
+			</if>
+					
+			<if test="teamModel.remark != null and teamModel.remark !=''">
+				remark =	#{teamModel.remark}
+			</if>
+		</set>	
+			where id = #{teamModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listTeamModel" item="teamModel" index="index" open="" close="" separator=";">
+		update t_team 
+		<set> 
+					
+			<if test="teamModel.id > 0">
+				id = #{teamModel.id}
+,
+			</if>
+					
+			<if test="teamModel.userId > 0">
+				user_id = #{teamModel.userId}
+,
+			</if>
+					
+			<if test="teamModel.parentId > 0">
+				parent_id = #{teamModel.parentId}
+,
+			</if>
+					
+			<if test="teamModel.createTime != null and teamModel.createTime !=''">
+				create_time =	#{teamModel.createTime}
+,
+			</if>
+					
+			<if test="teamModel.updateTime != null and teamModel.updateTime !=''">
+				update_time =	#{teamModel.updateTime}
+,
+			</if>
+					
+			<if test="teamModel.remark != null and teamModel.remark !=''">
+				remark =	#{teamModel.remark}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.team.TeamModel">
+		 delete from t_team 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>
