@@ -24,7 +24,7 @@ public class SpringbootMybatisApplication {
 	 * 
 	 * 页面还差一个多选删除，还差一个排序,差excel上传和下载，详情页（直接用update页）
 	 * 还差一个加解密 传输
-	 * aop 异步 log+ traceId	：https://www.jianshu.com/p/08f5231c3d32   https://www.cnblogs.com/baobaoxiaokeai/p/11052738.html
+	 * aop 异步 log + traceId	 ：https://www.jianshu.com/p/08f5231c3d32   https://www.cnblogs.com/baobaoxiaokeai/p/11052738.html
 	 * 阻止二次提交 表单重复提交
 	 * crf之类
 	 * 限流策略

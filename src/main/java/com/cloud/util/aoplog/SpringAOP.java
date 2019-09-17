@@ -60,7 +60,7 @@ public class SpringAOP {
         log.info("请求开始, 各个参数, url: {}, method: {}, uri: {}, params: {}", url, method, uri, queryString);
         // result的值就是被拦截方法的返回值
         Object result = pjp.proceed();
-        log.info(result.toString());
+        log.info(String.valueOf(result));
         //JSONObject dd = JSONObject.parseObject(JSON.toJSONString(result));
         //dd.put("traceId",requestId);
 

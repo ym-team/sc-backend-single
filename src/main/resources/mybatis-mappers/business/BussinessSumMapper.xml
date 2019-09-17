@@ -81,7 +81,7 @@
 
 
 
-<insert id="save" parameterType="com.cloud.business.bussinessSum.BussinessSumModel" useGeneratedKeys="true" keyProperty="bussinessSum.id" keyColumn="id">
+<insert id="save" parameterType="com.cloud.business.bussinessSum.BussinessSumModel" useGeneratedKeys="true" keyProperty="bussinessSumModel.id" keyColumn="id">
 		insert into t_bussiness_sum
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 		<if test="bussinessSumModel != null">
