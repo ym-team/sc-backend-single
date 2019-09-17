@@ -1,204 +1,124 @@
 <!DOCTYPE html>
 <html lang="en-us" id="extr-page">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
 </head>
 <body>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<form class="form-horizontal" onsubmit="return false" id="form">
-	<input type="hidden" id="id" name="id">
-	<fieldset>
-	
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <input type="hidden" id="id" name="id">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-2 control-label">医院名称</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="医院名称" type="text" name="name" id="name" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="医院名称不能为空">
+                </div>
+            </div>
 
-	
-			
-<div class="form-group">
-	<label class="col-md-2 control-label">主键ID</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="主键ID" type="text" name="id" id="id" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="主键ID不能为空">
-	</div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">医院地址</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="医院地址" type="text" name="address" id="address" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="医院地址不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">logo</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="logo" type="text" name="logo" id="logo" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="logo不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">手机号码</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="手机号码" type="text" name="phone" id="phone" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="手机号码不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">医院介绍</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="医院介绍" type="text" name="remark" id="remark" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="医院介绍不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">联系人</label>
+                <div class="col-md-10">
+                    <input class="form-control" placeholder="联系人" type="text" name="contactor" id="contactor" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="联系人不能为空">
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="location.href='hospitalList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="update()">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>
 
-<div class="form-group">
-	<label class="col-md-2 control-label">医院名称</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="医院名称" type="text" name="name" id="name" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="医院名称不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">医院地址</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="医院地址" type="text" name="address" id="address" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="医院地址不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">logo</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="logo" type="text" name="logo" id="logo" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="logo不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">手机号码</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="手机号码" type="text" name="phone" id="phone" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="手机号码不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">医院介绍</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="医院介绍" type="text" name="remark" id="remark" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="医院介绍不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">联系人</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="联系人" type="text" name="contactor" id="contactor" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="联系人不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">更新者id</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="更新者id" type="text" name="updateId" id="updateId" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="更新者id不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">更新时间</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="更新时间" type="text" name="updateTime" id="updateTime" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="更新时间不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">创建者Id</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="创建者Id" type="text" name="createId" id="createId" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="创建者Id不能为空">
-	</div>
-</div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label">创建时间</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="创建时间" type="text" name="createTime" id="createTime" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="创建时间不能为空">
-	</div>
-</div>
-
-			
-
-			<div class="form-actions">
-				<div class="row" align="center">
-					<div class="col-md-12">
-						<button class="btn btn-primary" onclick="location.href='hospitalList.html'">返回</button>
-						<button class="btn btn-primary" type="submit" onclick="update()">
-							<i class="fa fa-save"></i> 保存
-						</button>
-					</div>
-				</div>
-			</div>
-
-		</fieldset>
-	</form>
-</div>
-
-	<script src="../../../js/constant.js"></script>
-	<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="../../../js/jq.js"></script>
-	<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
-	<script type="text/javascript" src="../../../js/common.js"></script>
-	<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script src="../../../js/constant.js"></script>
+<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../../js/jq.js"></script>
+<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../../js/common.js"></script>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
 <script type="text/javascript">
-	layui.use('layer', function(){
-	    var layer = layui.layer;
-	});
-	
-	initData();
-	
-	function initData(){
-		/**
-		$("#id").val(getUrlParam("id"));
-		$("#name").val(decodeURIComponent(getUrlParam("name")));
-		$("#permission").val(decodeURIComponent(getUrlParam("permission")));
-		*/
-		
-		$("#id").val(getUrlParam("id"));
-		var id = getUrlParam("id");
-		
-		$.ajax({
-			type : 'get',
-			url : domainName + '/api-business/hospital/queryDetail',
-			contentType: "application/json; charset=utf-8",  
-			data : { "id": id},
-			success : function(data) {
-				console.log(data);
-$('#id').val(data.id);
-$('#name').val(data.name);
-$('#address').val(data.address);
-$('#logo').val(data.logo);
-$('#phone').val(data.phone);
-$('#remark').val(data.remark);
-$('#contactor').val(data.contactor);
-$('#updateId').val(data.updateId);
-$('#updateTime').val(data.updateTime);
-$('#createId').val(data.createId);
-$('#createTime').val(data.createTime);
-			}
-		});
-		
-		
-	}
-	
-	function update() {
-		$('#form').bootstrapValidator();
-		var bootstrapValidator = $("#form").data('bootstrapValidator');
-		bootstrapValidator.validate();
-	    if(!bootstrapValidator.isValid()){
-		   return;
-	    }
-	    
-	    var formdata = $("#form").serializeObject();
+    layui.use('layer', function () {
+        var layer = layui.layer;
+    });
 
-		$.ajax({
-			type : 'put',
-			url : domainName + '/api-business/hospital/update',
-			contentType: "application/json; charset=utf-8",  
-			data : JSON.stringify(formdata),
-			success : function(data) {
-				layer.msg("成功", {shift: -1, time: 1000}, function(){
+    initData();
+
+    function initData() {
+        $("#id").val(getUrlParam("id"));
+        var id = getUrlParam("id");
+
+        $.ajax({
+            type: 'get',
+            url: domainName + '/api-business/hospital/queryDetail',
+            contentType: "application/json; charset=utf-8",
+            data: {"id": id},
+            success: function (data) {
+                console.log(data);
+                $('#id').val(data.id);
+                $('#name').val(data.name);
+                $('#address').val(data.address);
+                $('#logo').val(data.logo);
+                $('#phone').val(data.phone);
+                $('#remark').val(data.remark);
+                $('#contactor').val(data.contactor);
+            }
+        });
+    }
+
+    function update() {
+        $('#form').bootstrapValidator();
+        var bootstrapValidator = $("#form").data('bootstrapValidator');
+        bootstrapValidator.validate();
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
+        var formdata = $("#form").serializeObject();
+        $.ajax({
+            type: 'put',
+            url: domainName + '/api-business/hospital/update',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(formdata),
+            success: function (data) {
+                layer.msg("成功", {shift: -1, time: 1000}, function () {
                     location.href = "hospitalList.html";
                 });
-			}
-		});
-	}
-		
+            }
+        });
+    }
 </script>
 </body>
 </html>
