@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.cloud.util.LogAnnotation;
+import com.cloud.util.aoplog.SpringAOP;
 import com.cloud.util.page.PageInfo;
 import com.cloud.util.page.PageQuery;
+
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
 
@@ -29,6 +33,7 @@ import java.util.List;
  * @author Michael
  * @date  2019-09-17 01:13:24
  */
+@Slf4j
 @RestController
 public class BussinessSumController{
 
