@@ -2,6 +2,8 @@ package com.cloud.business.hospital;
 
 
 import com.alibaba.fastjson.JSON;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +14,8 @@ import java.util.Date;
  * @author Michael
  * @date 2019-09-17 01:13:29
  */
+@Getter
+@Setter
 public class HospitalBOQP implements Serializable {
 
 

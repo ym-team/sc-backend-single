@@ -136,8 +136,8 @@ public class HospitalController {
      * 分页查询列表
      *
      * @param HospitalBOQP
-     * @throws Exception
      * @return List<HospitalVO>
+     * @throws Exception
      */
     @LogAnnotation(module = "分页查询列表")
     @PreAuthorize("hasAuthority('back:hospital:queryListByPage')")

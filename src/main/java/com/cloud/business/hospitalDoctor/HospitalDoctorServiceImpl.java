@@ -6,6 +6,7 @@ package com.cloud.business.hospitalDoctor;
  * import com.cloud.business.HospitalDoctor.HospitalDoctorService;
  */
 
+import com.cloud.business.hospital.HospitalMapper;
 import com.cloud.user.model.LoginAppUser;
 import com.cloud.util.AppUserUtil;
 import com.cloud.util.BeanConvertUtils;
@@ -30,16 +31,15 @@ import java.util.List;
 @Slf4j
 @Service
 public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
-
-
     @Autowired
     private HospitalDoctorMapper hospitalDoctorMapper;
-
+    @Autowired
+    private HospitalMapper hospitalMapper;
 
     /**
      * 新增
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorBOS
      * @return long
      */
     @Override
@@ -57,7 +57,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
     /**
      * 批量新增
      *
-     * @param List<HospitalDoctorBOS>
+     * @param listHospitalDoctorBOS
      * @return int
      */
     @Override
@@ -71,7 +71,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
     /**
      * 查询详情
      *
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return HospitalDoctorVO
      */
     @Override
@@ -82,7 +82,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
     }
 
     /**
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return List<HospitalDoctorVO>
      * ${table.JavaName}
      */
@@ -95,7 +95,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
 
 
     /**
-     * @param HospitalDoctorBOQP
+     * @param hospitalDoctorBOQP
      * @param page
      * @return PageQuery<HospitalDoctorVO>
      */
@@ -104,12 +104,14 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
         HospitalDoctorModel hospitalDoctorModel = BeanConvertUtils.convert(hospitalDoctorBOQP, HospitalDoctorModel.class);
         PageHelper.startPage(page.getCurrPage(), page.getPageSize(), page.getOrderby());
         Page<HospitalDoctorModel> queryListByPage = this.hospitalDoctorMapper.queryListByPage(hospitalDoctorModel);
+        for (HospitalDoctorModel model : queryListByPage.getResult()) {
+        }
         return new PageQuery(queryListByPage, HospitalDoctorVO.class);
     }
 
 
     /**
-     * @param HospitalDoctorBOU
+     * @param hospitalDoctorBOU
      * @return int
      */
     @Override
@@ -124,7 +126,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
 
 
     /**
-     * @param List<HospitalDoctorBOU>
+     * @param listHospitalDoctorBOU
      * @return int
      */
     @Override
@@ -135,7 +137,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
 
 
     /**
-     * @param HospitalDoctorBOD
+     * @param hospitalDoctorBOD
      * @return int
      */
     @Override
@@ -145,7 +147,7 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
     }
 
     /**
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return Long
      */
     @Override
@@ -153,6 +155,4 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
         HospitalDoctorModel hospitalDoctorModel = BeanConvertUtils.convert(hospitalDoctorBOQ, HospitalDoctorModel.class);
         return this.hospitalDoctorMapper.queryCount(hospitalDoctorModel);
     }
-
-
 }
