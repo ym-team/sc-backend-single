@@ -8,14 +8,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	<form class="form-horizontal" onsubmit="return false" id="form">
 		<fieldset>
-<div class="form-group">
-	<label class="col-md-2 control-label">主键ID</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="主键ID" type="text" name="id" id="id" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="主键ID不能为空">
-	</div>
-</div>
+ 
 <div class="form-group">
 	<label class="col-md-2 control-label">手机号码</label>
 	<div class="col-md-10">
@@ -33,19 +26,24 @@
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-md-2 control-label">用户类型( 1：业务员  2：店家 3：消费者 )</label>
+	<label class="col-md-2 control-label">用户类型</label>
 	<div class="col-md-10">
-		<input class="form-control" placeholder="用户类型( 1：业务员  2：店家 3：消费者 )" type="text" name="type" id="type" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="用户类型( 1：业务员  2：店家 3：消费者 )不能为空">
+	
+		<select class="form-control input-sm" name="type" id="type" data-bv-notempty="true" data-bv-notempty-message="用户类型( 1：业务员  2：店家 3：消费者 )不能为空">
+						<option value="1">业务员</option>
+						<option value="2">店家</option>
+						<option value="3">消费者</option>
+					</select>
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-md-2 control-label">用户状态( 1：有效  2：失效 )</label>
+	<label class="col-md-2 control-label">用户状态</label>
 	<div class="col-md-10">
-		<input class="form-control" placeholder="用户状态( 1：有效  2：失效 )" type="text" name="status" id="status" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="用户状态( 1：有效  2：失效 )不能为空">
+	<select class="form-control input-sm" name="status" id="status" data-bv-notempty="true" data-bv-notempty-message="用户类型( 1：业务员  2：店家 3：消费者 )不能为空">
+						<option value="1">有效 </option>
+						<option value="2">失效</option>
+					</select>
+	 
 	</div>
 </div>
 <div class="form-group">
@@ -57,37 +55,14 @@
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-md-2 control-label">邀请用户Id</label>
+	<label class="col-md-2 control-label">邀请人</label>
 	<div class="col-md-10">
 		<input class="form-control" placeholder="邀请用户Id" type="text" name="parentId" id="parentId" maxlength="50"
 			data-bv-notempty="true"
 			data-bv-notempty-message="邀请用户Id不能为空">
 	</div>
 </div>
-<div class="form-group">
-	<label class="col-md-2 control-label">创建时间</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="创建时间" type="text" name="createTime" id="createTime" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="创建时间不能为空">
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 control-label">创建者Id</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="创建者Id" type="text" name="updateId" id="updateId" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="创建者Id不能为空">
-	</div>
-</div>
-<div class="form-group">
-	<label class="col-md-2 control-label">更新时间</label>
-	<div class="col-md-10">
-		<input class="form-control" placeholder="更新时间" type="text" name="updateTime" id="updateTime" maxlength="50"
-			data-bv-notempty="true"
-			data-bv-notempty-message="更新时间不能为空">
-	</div>
-</div>
+ 
 			<div class="form-actions">
 				<div class="row" align="center">
 					<div class="col-md-12">

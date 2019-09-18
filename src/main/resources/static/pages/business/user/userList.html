@@ -17,26 +17,8 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											主键ID
-											<input id="id" type="text" class="form-control" placeholder="主键ID">
 											手机号码
 											<input id="phone" type="text" class="form-control" placeholder="手机号码">
-											密码
-											<input id="password" type="text" class="form-control" placeholder="密码">
-											用户类型( 1：业务员  2：店家 3：消费者 )
-											<input id="type" type="text" class="form-control" placeholder="用户类型( 1：业务员  2：店家 3：消费者 )">
-											用户状态( 1：有效  2：失效 )
-											<input id="status" type="text" class="form-control" placeholder="用户状态( 1：有效  2：失效 )">
-											邀请码
-											<input id="inviteCode" type="text" class="form-control" placeholder="邀请码">
-											邀请用户Id
-											<input id="parentId" type="text" class="form-control" placeholder="邀请用户Id">
-											创建时间
-											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
-											创建者Id
-											<input id="updateId" type="text" class="form-control" placeholder="创建者Id">
-											更新时间
-											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
 											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:user:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
@@ -58,15 +40,13 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-									<th>主键ID</th>
+									<th>用户id</th>
 									<th>手机号码</th>
-									<th>密码</th>
-									<th>用户类型( 1：业务员  2：店家 3：消费者 )</th>
-									<th>用户状态( 1：有效  2：失效 )</th>
+									<th>用户类型 </th><!-- ( 1：业务员  2：店家 3：消费者 ) -->
+									<th>用户状态</th><!-- ( 1：有效  2：失效 ) -->
 									<th>邀请码</th>
-									<th>邀请用户Id</th>
+									<th>邀请人</th>
 									<th>创建时间</th>
-									<th>创建者Id</th>
 									<th>更新时间</th>
 									<th>操作</th>
                                 </tr>
@@ -112,7 +92,6 @@ layui.use(['layer','util'], function(){
             		"data":function(d){
 						d.id = $('#id').val();
 						d.phone = $('#phone').val();
-						d.password = $('#password').val();
 						d.type = $('#type').val();
 						d.status = $('#status').val();
 						d.inviteCode = $('#inviteCode').val();
@@ -150,16 +129,28 @@ layui.use(['layer','util'], function(){
                 "columns": [
 		{ "data": "id", "defaultContent": ""},
 		{ "data": "phone", "defaultContent": ""},
-		{ "data": "password", "defaultContent": ""},
-		{ "data": "type", "defaultContent": ""},
-		{ "data": "status", "defaultContent": ""},
+		{ "data": "type", "defaultContent": "",
+			"render": function (data, type, row) {
+        		if(data =="2"){
+        			return "后端管理用户";
+        		}
+        		return "前端用户";
+        	}	
+		},
+		{ "data": "status", "defaultContent": "",
+			"render": function (data, type, row) {
+        		if(data =="1"){
+        			return "有效";
+        		}
+        		return "无效";
+        	}		
+		},
 		{ "data": "inviteCode", "defaultContent": ""},
 		{ "data": "parentId", "defaultContent": ""},
         { 
         	"data": "createTime","defaultContent": "",
         	"render": function (data, type, row) {return util.toDateString(data);}
         },
-		{ "data": "updateId", "defaultContent": ""},
         { 
         	"data": "updateTime","defaultContent": "",
         	"render": function (data, type, row) {return util.toDateString(data);}
