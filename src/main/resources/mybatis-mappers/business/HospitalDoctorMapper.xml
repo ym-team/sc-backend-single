@@ -93,7 +93,7 @@
 
 
 
-<insert id="save" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel" useGeneratedKeys="true" keyProperty="hospitalDoctor.id" keyColumn="id">
+<insert id="save" parameterType="com.cloud.business.hospitalDoctor.HospitalDoctorModel" useGeneratedKeys="true" keyProperty="hospitalDoctorModel.id" keyColumn="id">
 		insert into t_hospital_doctor
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 		<if test="hospitalDoctorModel != null">

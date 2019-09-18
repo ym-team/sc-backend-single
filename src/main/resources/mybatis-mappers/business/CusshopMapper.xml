@@ -123,7 +123,7 @@
 
 
 
-<insert id="save" parameterType="com.cloud.business.cusshop.CusshopModel" useGeneratedKeys="true" keyProperty="cusshop.id" keyColumn="id">
+<insert id="save" parameterType="com.cloud.business.cusshop.CusshopModel" useGeneratedKeys="true" keyProperty="cusshopModel.id" keyColumn="id">
 		insert into t_cust_shop
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 		<if test="cusshopModel != null">
