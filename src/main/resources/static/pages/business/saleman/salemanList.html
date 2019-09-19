@@ -17,34 +17,12 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											主键ID
-											<input id="id" type="text" class="form-control" placeholder="主键ID">
-											用户Id
-											<input id="userId" type="text" class="form-control" placeholder="用户Id">
 											业务员真实姓名
 											<input id="realName" type="text" class="form-control" placeholder="业务员真实姓名">
 											身份证号
 											<input id="idCard" type="text" class="form-control" placeholder="身份证号">
 											手机号码
 											<input id="phone" type="text" class="form-control" placeholder="手机号码">
-											认证状态(1：认证通过  2：未认证  3：认证不通过
-											<input id="auditStatus" type="text" class="form-control" placeholder="认证状态(1：认证通过  2：未认证  3：认证不通过">
-											身份证手持
-											<input id="sfzSc" type="text" class="form-control" placeholder="身份证手持">
-											身份证正面
-											<input id="sfzZm" type="text" class="form-control" placeholder="身份证正面">
-											身份证反面
-											<input id="sfzFm" type="text" class="form-control" placeholder="身份证反面">
-											备注
-											<input id="remark" type="text" class="form-control" placeholder="备注">
-											创建时间
-											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
-											创建者Id
-											<input id="updateId" type="text" class="form-control" placeholder="创建者Id">
-											更新时间
-											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
-											个人提成比例分配
-											<input id="rate" type="text" class="form-control" placeholder="个人提成比例分配">
 											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:saleman:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
@@ -66,19 +44,15 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-									<th>主键ID</th>
-									<th>用户Id</th>
 									<th>业务员真实姓名</th>
 									<th>身份证号</th>
 									<th>手机号码</th>
-									<th>认证状态(1：认证通过  2：未认证  3：认证不通过</th>
+									<th>认证状态</th><!-- 1：认证通过  2：未认证  3：认证不通过 -->
 									<th>身份证手持</th>
 									<th>身份证正面</th>
 									<th>身份证反面</th>
 									<th>备注</th>
 									<th>创建时间</th>
-									<th>创建者Id</th>
-									<th>更新时间</th>
 									<th>个人提成比例分配</th>
 									<th>操作</th>
                                 </tr>
@@ -122,8 +96,6 @@ layui.use(['layer','util'], function(){
             		"url" : domainName + "/api-business/saleman/queryListByPage",
             		"type":"get",
             		"data":function(d){
-						d.id = $('#id').val();
-						d.userId = $('#userId').val();
 						d.realName = $('#realName').val();
 						d.idCard = $('#idCard').val();
 						d.phone = $('#phone').val();
@@ -164,8 +136,6 @@ layui.use(['layer','util'], function(){
             	},
             	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
                 "columns": [
-		{ "data": "id", "defaultContent": ""},
-		{ "data": "userId", "defaultContent": ""},
 		{ "data": "realName", "defaultContent": ""},
 		{ "data": "idCard", "defaultContent": ""},
 		{ "data": "phone", "defaultContent": ""},
@@ -176,11 +146,6 @@ layui.use(['layer','util'], function(){
 		{ "data": "remark", "defaultContent": ""},
         { 
         	"data": "createTime","defaultContent": "",
-        	"render": function (data, type, row) {return util.toDateString(data);}
-        },
-		{ "data": "updateId", "defaultContent": ""},
-        { 
-        	"data": "updateTime","defaultContent": "",
         	"render": function (data, type, row) {return util.toDateString(data);}
         },
 		{ "data": "rate", "defaultContent": ""},

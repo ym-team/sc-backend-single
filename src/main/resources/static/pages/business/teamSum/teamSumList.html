@@ -3,183 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../layui/css/layui.css">
 </head>
 <body>
-    <div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <header style="height: 100%">
-                    <div align="left">
-	                    <table style="width: 100%">
-	                   		<tr>
-	                   			<td>
-		                   			<form class="form-inline" onsubmit="return false">
-										<div class="form-group">
-											
-											<input id="id" type="text" class="form-control" placeholder="">
-											
-											<input id="teamId" type="text" class="form-control" placeholder="">
-											
-											<input id="createTime" type="text" class="form-control" placeholder="">
-											团队金额
-											<input id="teamSumFee" type="text" class="form-control" placeholder="团队金额">
-											备注信息
-											<input id="remark" type="text" class="form-control" placeholder="备注信息">
-											当前月份
-											<input id="yearsMonth" type="text" class="form-control" placeholder="当前月份">
-											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:teamSum:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
-										</div>
-									</form>
-	                   			</td>
-	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addTeamSum.html'" permission="back:teamSum:save">
-                                      <i class="layui-icon">&#xe608;</i> 添加
-                                    </button>
-	                   			</td>
-	                   		</tr> 
-	                    </table>
-					</div>
-                </header>
-                
-                <div>
-                    <div class="widget-body no-padding">
-                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
-                            <thead>
-                                <tr>
-                                </tr>                       
-                                <tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th>团队金额</th>
-									<th>备注信息</th>
-									<th>当前月份</th>
-									<th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-        </div>
-    </div>
+	<div>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<header style="height: 100%">
+				<div align="left">
+					<table style="width: 100%">
+						<tr>
+							<td>
+								<form class="form-inline" onsubmit="return false">
+									<div class="form-group">
+										团队金额 <input id="teamSumFee" type="text" class="form-control"
+											placeholder="团队金额"> 当前月份 <input id="yearsMonth"
+											type="text" class="form-control" placeholder="当前月份">
+										<button id="searchBt" class="layui-btn layui-btn-sm"
+											permission="back:teamSum:queryListByPage">
+											<i class="layui-icon">&#xe615;</i>搜索
+										</button>
+									</div>
+								</form>
+							</td>
+							<td align="right">
+								<button class="layui-btn layui-btn-sm"
+									onclick="location.href='addTeamSum.html'"
+									permission="back:teamSum:save">
+									<i class="layui-icon">&#xe608;</i> 添加
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</header>
+
+			<div>
+				<div class="widget-body no-padding">
+					<table id="dt-table"
+						class="table table-striped table-bordered table-hover"
+						style="width: 100%">
+						<thead>
+							<tr>
+							</tr>
+							<tr>
+								<th>主键id</th>
+								<th>团队id</th>
+								<th>团队金额</th>
+								<th>当前月份</th>
+								<th>创建时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 
 <script src="../../../js/constant.js"></script>
-<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="../../../js/libs/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="../../../js/jq.js"></script>
-<script type="text/javascript" src="../../../js/plugin/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="../../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="../../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="../../../layui/layui.js"></script>
 <script type="text/javascript" src="../../../js/my/permission.js"></script>
 <script type="text/javascript">
-var pers = checkPermission();
-var example;
+	var pers = checkPermission();
+	var example;
 
-layui.use(['layer','util'], function(){
-    var layer = layui.layer;
-    var util = layui.util;
-    
-    function init(){
-    	example = 
-        	$('#dt-table').DataTable({
-            	"searching": false,
-            	"processing": false,
-            	"serverSide" : true,
-            	"ordering" :false,
-            	"language": {
-                    "url": "../../../js/plugin/datatables/Chinese.lang"
-                },
-            	"ajax": {
-            		"url" : domainName + "/api-business/teamSum/queryListByPage",
-            		"type":"get",
-            		"data":function(d){
-						d.id = $('#id').val();
-						d.teamId = $('#teamId').val();
-						d.createTime = $('#createTime').val();
-						d.teamSumFee = $('#teamSumFee').val();
-						d.remark = $('#remark').val();
-						d.yearsMonth = $('#yearsMonth').val();
-            		},
-            		"dataSrc": function (json) {
-            			json.recordsTotal=json.total;
-            			json.recordsFiltered=json.total;
-            			return json.data;
-            		},
-        			"error":function(xhr, textStatus, errorThrown){
-        				var msg = xhr.responseText;
-        				console.log(msg);
-        				if (xhr.status == 400) {
-        					layer.msg(JSON.parse(msg).message);
-        				} else if (xhr.status == 401) {
-        					localStorage.removeItem("token");
-        					layer.msg("token过期，请重新登录", {shift: -1, time: 1000}, function(){
-                                location.href = loginPage;
-                            });
-        				} else if (xhr.status == 403) {
-        					layer.msg('未授权');
-        				} else if (xhr.status == 500) {
-        					var info = JSON.parse(msg);
-        					var exception = info.exception;
-        					var message = info.message;
-        					layer.msg('系统错误：' + (exception ? exception : message));
-        				}
-        			}
-            	},
-            	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
-                "columns": [
-		{ "data": "id", "defaultContent": ""},
-		{ "data": "teamId", "defaultContent": ""},
-        { 
-        	"data": "createTime","defaultContent": "",
-        	"render": function (data, type, row) {return util.toDateString(data);}
-        },
-		{ "data": "teamSumFee", "defaultContent": ""},
-		{ "data": "remark", "defaultContent": ""},
-		{ "data": "yearsMonth", "defaultContent": ""},
-                    { 
-                    	"data": "", 
-                    	"defaultContent": "",
-                    	"render": function (data, type, row) {
-                    		var id = row['id'];
-                    		//var name = encodeURIComponent(row['name']);
-                    		var href = "updateTeamSum.html?id=" + id;
-                            var edit = buttonEdit(href, "back:teamSum:update", pers);
-                    		var del = buttonDel(id, "back:teamSum:delete", pers);
-                    		
-                            return edit + del;
-                      	}
-                    },
-                ],
-            } );
-    }
+	layui
+			.use(
+					[ 'layer', 'util' ],
+					function() {
+						var layer = layui.layer;
+						var util = layui.util;
 
-    init();
-});
+						function init() {
+							example = $('#dt-table')
+									.DataTable(
+											{
+												"searching" : false,
+												"processing" : false,
+												"serverSide" : true,
+												"ordering" : false,
+												"language" : {
+													"url" : "../../../js/plugin/datatables/Chinese.lang"
+												},
+												"ajax" : {
+													"url" : domainName
+															+ "/api-business/teamSum/queryListByPage",
+													"type" : "get",
+													"data" : function(d) {
+														d.id = $('#id').val();
+														d.teamId = $('#teamId')
+																.val();
+														d.createTime = $(
+																'#createTime')
+																.val();
+														d.teamSumFee = $(
+																'#teamSumFee')
+																.val();
+														d.remark = $('#remark')
+																.val();
+														d.yearsMonth = $(
+																'#yearsMonth')
+																.val();
+													},
+													"dataSrc" : function(json) {
+														json.recordsTotal = json.total;
+														json.recordsFiltered = json.total;
+														return json.data;
+													},
+													"error" : function(xhr,
+															textStatus,
+															errorThrown) {
+														var msg = xhr.responseText;
+														console.log(msg);
+														if (xhr.status == 400) {
+															layer
+																	.msg(JSON
+																			.parse(msg).message);
+														} else if (xhr.status == 401) {
+															localStorage
+																	.removeItem("token");
+															layer
+																	.msg(
+																			"token过期，请重新登录",
+																			{
+																				shift : -1,
+																				time : 1000
+																			},
+																			function() {
+																				location.href = loginPage;
+																			});
+														} else if (xhr.status == 403) {
+															layer.msg('未授权');
+														} else if (xhr.status == 500) {
+															var info = JSON
+																	.parse(msg);
+															var exception = info.exception;
+															var message = info.message;
+															layer
+																	.msg('系统错误：'
+																			+ (exception ? exception
+																					: message));
+														}
+													}
+												},
+												"dom" : "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
+												"columns" : [
+														{
+															"data" : "id",
+															"defaultContent" : ""
+														},
+														{
+															"data" : "teamId",
+															"defaultContent" : ""
+														},
 
-function del(id){
-    layer.confirm('确定要删除吗？', {
-        btn : [ '确定', '取消' ]
-    }, function() {
-        $.ajax({
-            type : 'delete',
-            url : domainName + "/api-business/teamSum/delete/"+id,
-            success : function(data) {
-                example.ajax.reload();
-                layer.msg("删除成功");
-            }
-        });
-        
-        layer.close(1);
-    });
-}
+														{
+															"data" : "teamSumFee",
+															"defaultContent" : ""
+														},
+														{
+															"data" : "yearsMonth",
+															"defaultContent" : ""
+														},
+														{
+															"data" : "createTime",
+															"defaultContent" : "",
+															"render" : function(
+																	data, type,
+																	row) {
+																return util
+																		.toDateString(data);
+															}
+														},
+														{
+															"data" : "",
+															"defaultContent" : "",
+															"render" : function(
+																	data, type,
+																	row) {
+																var id = row['id'];
+																//var name = encodeURIComponent(row['name']);
+																var href = "updateTeamSum.html?id="
+																		+ id;
+																var edit = buttonEdit(
+																		href,
+																		"back:teamSum:update",
+																		pers);
+																var del = buttonDel(
+																		id,
+																		"back:teamSum:delete",
+																		pers);
 
-$("#searchBt").click(function(){
-	example.ajax.reload();
-});
+																return edit
+																		+ del;
+															}
+														}, ],
+											});
+						}
+
+						init();
+					});
+
+	function del(id) {
+		layer.confirm('确定要删除吗？', {
+			btn : [ '确定', '取消' ]
+		}, function() {
+			$.ajax({
+				type : 'delete',
+				url : domainName + "/api-business/teamSum/delete/" + id,
+				success : function(data) {
+					example.ajax.reload();
+					layer.msg("删除成功");
+				}
+			});
+
+			layer.close(1);
+		});
+	}
+
+	$("#searchBt").click(function() {
+		example.ajax.reload();
+	});
 </script>
 </html>

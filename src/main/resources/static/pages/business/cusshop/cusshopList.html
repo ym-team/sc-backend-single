@@ -1,101 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
 </head>
 <body>
-    <div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <header style="height: 100%">
-                    <div align="left">
-	                    <table style="width: 100%">
-	                   		<tr>
-	                   			<td>
-		                   			<form class="form-inline" onsubmit="return false">
-										<div class="form-group">
-											主键id
-											<input id="id" type="text" class="form-control" placeholder="主键id">
-											店面名称
-											<input id="shopName" type="text" class="form-control" placeholder="店面名称">
-											地址
-											<input id="shopAddress" type="text" class="form-control" placeholder="地址">
-											店面描述
-											<input id="shopDesc" type="text" class="form-control" placeholder="店面描述">
-											店面负责人名称
-											<input id="shopUserName" type="text" class="form-control" placeholder="店面负责人名称">
-											手机电话
-											<input id="shopPhone" type="text" class="form-control" placeholder="手机电话">
-											身份证
-											<input id="shopIdCard" type="text" class="form-control" placeholder="身份证">
-											1 已签约  2 未签约  3 作废
-											<input id="shopXieyiStatus" type="text" class="form-control" placeholder="1 已签约  2 未签约  3 作废">
-											业务员id t_user
-											<input id="bussinessUserId" type="text" class="form-control" placeholder="业务员id t_user">
-											店家用户id t_user
-											<input id="userId" type="text" class="form-control" placeholder="店家用户id t_user">
-											1 正常  2 不正常
-											<input id="shopStatus" type="text" class="form-control" placeholder="1 正常  2 不正常">
-											备注
-											<input id="remark" type="text" class="form-control" placeholder="备注">
-											更新时间
-											<input id="updateTime" type="text" class="form-control" placeholder="更新时间">
-											创建时间
-											<input id="createTime" type="text" class="form-control" placeholder="创建时间">
-											创建者
-											<input id="createId" type="text" class="form-control" placeholder="创建者">
-											更新者
-											<input id="updateId" type="text" class="form-control" placeholder="更新者">
-											<button id="searchBt" class="layui-btn layui-btn-sm" permission="back:cusshop:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
-										</div>
-									</form>
-	                   			</td>
-	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addCusshop.html'" permission="back:cusshop:save">
-                                      <i class="layui-icon">&#xe608;</i> 添加
-                                    </button>
-	                   			</td>
-	                   		</tr> 
-	                    </table>
-					</div>
-                </header>
-                
-                <div>
-                    <div class="widget-body no-padding">
-                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
-                            <thead>
-                                <tr>
-                                </tr>                       
-                                <tr>
-									<th>主键id</th>
-									<th>店面名称</th>
-									<th>地址</th>
-									<th>店面描述</th>
-									<th>店面负责人名称</th>
-									<th>手机电话</th>
-									<th>身份证</th>
-									<th>1 已签约  2 未签约  3 作废</th>
-									<th>业务员id t_user</th>
-									<th>店家用户id t_user</th>
-									<th>1 正常  2 不正常</th>
-									<th>备注</th>
-									<th>更新时间</th>
-									<th>创建时间</th>
-									<th>创建者</th>
-									<th>更新者</th>
-									<th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <header style="height: 100%">
+            <div align="left">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <form class="form-inline" onsubmit="return false">
+                                <div class="form-group">
+                                    店面名称
+                                    <input id="shopName" type="text" class="form-control" placeholder="店面名称">
+                                    店面负责人名称
+                                    <input id="shopUserName" type="text" class="form-control" placeholder="店面负责人名称">
+                                    手机电话
+                                    <input id="shopPhone" type="text" class="form-control" placeholder="手机电话">
+                                    身份证
+                                    <input id="shopIdCard" type="text" class="form-control" placeholder="身份证">
+                                    业务员
+                                    <input id="bussinessUserId" type="text" class="form-control" placeholder="业务员">
+                                    店家用户
+                                    <input id="userId" type="text" class="form-control" placeholder="店家用户">
+                                    签约状态
+                                    <select class="form-control input-sm" name="shopXieyiStatus" id="shopXieyiStatus" data-bv-notempty="true">
+                                        <option value="">全部</option>
+                                        <option value="1">已签约</option>
+                                        <option value="2">未签约</option>
+                                        <option value="3">作废</option>
+                                    </select>
+                                    状态
+                                    <select class="form-control input-sm" name="shopStatus" id="shopStatus" data-bv-notempty="true">
+                                        <option value="">全部</option>
+                                        <option value="1">正常</option>
+                                        <option value="2">不正常</option>
+                                    </select>
+                                    <button id="searchBt" class="layui-btn layui-btn-sm" permission="back:cusshop:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                </div>
+                            </form>
+                        </td>
+                        <td align="right">
+                            <button class="layui-btn layui-btn-sm" onclick="location.href='addCusshop.html'" permission="back:cusshop:save">
+                                <i class="layui-icon">&#xe608;</i> 添加
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+
+        <div>
+            <div class="widget-body no-padding">
+                <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
+                    <thead>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <th>主键id</th>
+                        <th>店面名称</th>
+                        <th>地址</th>
+                        <th>店面描述</th>
+                        <th>店面负责人名称</th>
+                        <th>手机电话</th>
+                        <th>身份证</th>
+                        <th>签约状态</th>
+                        <th>业务员</th>
+                        <th>店家用户</th>
+                        <th>状态</th>
+                        <th>备注</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
 </body>
 
 
@@ -107,132 +96,130 @@
 <script type="text/javascript" src="../../../layui/layui.js"></script>
 <script type="text/javascript" src="../../../js/my/permission.js"></script>
 <script type="text/javascript">
-var pers = checkPermission();
-var example;
+    var pers = checkPermission();
+    var example;
 
-layui.use(['layer','util'], function(){
-    var layer = layui.layer;
-    var util = layui.util;
-    
-    function init(){
-    	example = 
-        	$('#dt-table').DataTable({
-            	"searching": false,
-            	"processing": false,
-            	"serverSide" : true,
-            	"ordering" :false,
-            	"language": {
-                    "url": "../../../js/plugin/datatables/Chinese.lang"
-                },
-            	"ajax": {
-            		"url" : domainName + "/api-business/cusshop/queryListByPage",
-            		"type":"get",
-            		"data":function(d){
-						d.id = $('#id').val();
-						d.shopName = $('#shopName').val();
-						d.shopAddress = $('#shopAddress').val();
-						d.shopDesc = $('#shopDesc').val();
-						d.shopUserName = $('#shopUserName').val();
-						d.shopPhone = $('#shopPhone').val();
-						d.shopIdCard = $('#shopIdCard').val();
-						d.shopXieyiStatus = $('#shopXieyiStatus').val();
-						d.bussinessUserId = $('#bussinessUserId').val();
-						d.userId = $('#userId').val();
-						d.shopStatus = $('#shopStatus').val();
-						d.remark = $('#remark').val();
-						d.updateTime = $('#updateTime').val();
-						d.createTime = $('#createTime').val();
-						d.createId = $('#createId').val();
-						d.updateId = $('#updateId').val();
-            		},
-            		"dataSrc": function (json) {
-            			json.recordsTotal=json.total;
-            			json.recordsFiltered=json.total;
-            			return json.data;
-            		},
-        			"error":function(xhr, textStatus, errorThrown){
-        				var msg = xhr.responseText;
-        				console.log(msg);
-        				if (xhr.status == 400) {
-        					layer.msg(JSON.parse(msg).message);
-        				} else if (xhr.status == 401) {
-        					localStorage.removeItem("token");
-        					layer.msg("token过期，请重新登录", {shift: -1, time: 1000}, function(){
-                                location.href = loginPage;
-                            });
-        				} else if (xhr.status == 403) {
-        					layer.msg('未授权');
-        				} else if (xhr.status == 500) {
-        					var info = JSON.parse(msg);
-        					var exception = info.exception;
-        					var message = info.message;
-        					layer.msg('系统错误：' + (exception ? exception : message));
-        				}
-        			}
-            	},
-            	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
-                "columns": [
-		{ "data": "id", "defaultContent": ""},
-		{ "data": "shopName", "defaultContent": ""},
-		{ "data": "shopAddress", "defaultContent": ""},
-		{ "data": "shopDesc", "defaultContent": ""},
-		{ "data": "shopUserName", "defaultContent": ""},
-		{ "data": "shopPhone", "defaultContent": ""},
-		{ "data": "shopIdCard", "defaultContent": ""},
-		{ "data": "shopXieyiStatus", "defaultContent": ""},
-		{ "data": "bussinessUserId", "defaultContent": ""},
-		{ "data": "userId", "defaultContent": ""},
-		{ "data": "shopStatus", "defaultContent": ""},
-		{ "data": "remark", "defaultContent": ""},
-        { 
-        	"data": "updateTime","defaultContent": "",
-        	"render": function (data, type, row) {return util.toDateString(data);}
-        },
-        { 
-        	"data": "createTime","defaultContent": "",
-        	"render": function (data, type, row) {return util.toDateString(data);}
-        },
-		{ "data": "createId", "defaultContent": ""},
-		{ "data": "updateId", "defaultContent": ""},
-                    { 
-                    	"data": "", 
-                    	"defaultContent": "",
-                    	"render": function (data, type, row) {
-                    		var id = row['id'];
-                    		//var name = encodeURIComponent(row['name']);
-                    		var href = "updateCusshop.html?id=" + id;
-                            var edit = buttonEdit(href, "back:cusshop:update", pers);
-                    		var del = buttonDel(id, "back:cusshop:delete", pers);
-                    		
-                            return edit + del;
-                      	}
+    layui.use(['layer', 'util'], function () {
+        var layer = layui.layer;
+        var util = layui.util;
+
+        function init() {
+            example =
+                $('#dt-table').DataTable({
+                    "searching": false,
+                    "processing": false,
+                    "serverSide": true,
+                    "ordering": false,
+                    "language": {
+                        "url": "../../../js/plugin/datatables/Chinese.lang"
                     },
-                ],
-            } );
+                    "ajax": {
+                        "url": domainName + "/api-business/cusshop/queryListByPage",
+                        "type": "get",
+                        "data": function (d) {
+                            d.shopName = $('#shopName').val();
+                            d.shopUserName = $('#shopUserName').val();
+                            d.shopPhone = $('#shopPhone').val();
+                            d.shopIdCard = $('#shopIdCard').val();
+                            d.shopXieyiStatus = $('#shopXieyiStatus').val();
+                            d.bussinessUserId = $('#bussinessUserId').val();
+                            d.userId = $('#userId').val();
+                            d.shopStatus = $('#shopStatus').val();
+                        },
+                        "dataSrc": function (json) {
+                            json.recordsTotal = json.total;
+                            json.recordsFiltered = json.total;
+                            return json.data;
+                        },
+                        "error": function (xhr, textStatus, errorThrown) {
+                            var msg = xhr.responseText;
+                            console.log(msg);
+                            if (xhr.status == 400) {
+                                layer.msg(JSON.parse(msg).message);
+                            } else if (xhr.status == 401) {
+                                localStorage.removeItem("token");
+                                layer.msg("token过期，请重新登录", {shift: -1, time: 1000}, function () {
+                                    location.href = loginPage;
+                                });
+                            } else if (xhr.status == 403) {
+                                layer.msg('未授权');
+                            } else if (xhr.status == 500) {
+                                var info = JSON.parse(msg);
+                                var exception = info.exception;
+                                var message = info.message;
+                                layer.msg('系统错误：' + (exception ? exception : message));
+                            }
+                        }
+                    },
+                    "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
+                    "columns": [
+                        {"data": "id", "defaultContent": ""},
+                        {"data": "shopName", "defaultContent": ""},
+                        {"data": "shopAddress", "defaultContent": ""},
+                        {"data": "shopDesc", "defaultContent": ""},
+                        {"data": "shopUserName", "defaultContent": ""},
+                        {"data": "shopPhone", "defaultContent": ""},
+                        {"data": "shopIdCard", "defaultContent": ""},
+                        {
+                            "data": "shopXieyiStatus", "defaultContent": "",
+                            "render": function (data, type, row) {
+                                if (data == 1) {
+                                    return "已签约";
+                                }
+                                if (data == 2) {
+                                    return "未签约";
+                                }
+                                return "作废";
+                            }
+                        },
+                        {"data": "bussinessUserId", "defaultContent": ""},
+                        {"data": "userId", "defaultContent": ""},
+                        {
+                            "data": "shopStatus", "defaultContent": "",
+                            "render": function (data, type, row) {
+                                return data == 1 ? "正常" : "不正常";
+                            }
+                        },
+                        {"data": "remark", "defaultContent": ""},
+                        {
+                            "data": "",
+                            "defaultContent": "",
+                            "render": function (data, type, row) {
+                                var id = row['id'];
+                                //var name = encodeURIComponent(row['name']);
+                                var href = "updateCusshop.html?id=" + id;
+                                var edit = buttonEdit(href, "back:cusshop:update", pers);
+                                var del = buttonDel(id, "back:cusshop:delete", pers);
+
+                                return edit + del;
+                            }
+                        },
+                    ],
+                });
+        }
+
+        init();
+    });
+
+    function del(id) {
+        layer.confirm('确定要删除吗？', {
+            btn: ['确定', '取消']
+        }, function () {
+            $.ajax({
+                type: 'delete',
+                url: domainName + "/api-business/cusshop/delete/" + id,
+                success: function (data) {
+                    example.ajax.reload();
+                    layer.msg("删除成功");
+                }
+            });
+
+            layer.close(1);
+        });
     }
 
-    init();
-});
-
-function del(id){
-    layer.confirm('确定要删除吗？', {
-        btn : [ '确定', '取消' ]
-    }, function() {
-        $.ajax({
-            type : 'delete',
-            url : domainName + "/api-business/cusshop/delete/"+id,
-            success : function(data) {
-                example.ajax.reload();
-                layer.msg("删除成功");
-            }
-        });
-        
-        layer.close(1);
+    $("#searchBt").click(function () {
+        example.ajax.reload();
     });
-}
-
-$("#searchBt").click(function(){
-	example.ajax.reload();
-});
 </script>
 </html>

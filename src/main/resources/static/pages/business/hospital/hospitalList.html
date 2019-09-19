@@ -19,8 +19,6 @@
                                 <div class="form-group">
                                     医院名称
                                     <input id="name" type="text" class="form-control" placeholder="医院名称">
-                                    医院地址
-                                    <input id="address" type="text" class="form-control" placeholder="医院地址">
                                     手机号码
                                     <input id="phone" type="text" class="form-control" placeholder="手机号码">
                                     联系人
@@ -49,14 +47,9 @@
                         <th>主键ID</th>
                         <th>医院名称</th>
                         <th>医院地址</th>
-                        <th>logo</th>
                         <th>手机号码</th>
                         <th>医院介绍</th>
                         <th>联系人</th>
-                        <th>更新者id</th>
-                        <th>更新时间</th>
-                        <th>创建者Id</th>
-                        <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -100,7 +93,6 @@
                         "type": "get",
                         "data": function (d) {
                             d.name = $('#name').val();
-                            d.address = $('#address').val();
                             d.phone = $('#phone').val();
                             d.contactor = $('#contactor').val();
                         },
@@ -134,30 +126,14 @@
                         {"data": "id", "defaultContent": ""},
                         {"data": "name", "defaultContent": ""},
                         {"data": "address", "defaultContent": ""},
-                        {"data": "logo", "defaultContent": ""},
                         {"data": "phone", "defaultContent": ""},
                         {"data": "remark", "defaultContent": ""},
                         {"data": "contactor", "defaultContent": ""},
-                        {"data": "updateId", "defaultContent": ""},
-                        {
-                            "data": "updateTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
-                        {"data": "createId", "defaultContent": ""},
-                        {
-                            "data": "createTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
                         {
                             "data": "",
                             "defaultContent": "",
                             "render": function (data, type, row) {
                                 var id = row['id'];
-                                //var name = encodeURIComponent(row['name']);
                                 var href = "updateHospital.html?id=" + id;
                                 var edit = buttonEdit(href, "back:hospital:update", pers);
                                 var del = buttonDel(id, "back:hospital:delete", pers);
