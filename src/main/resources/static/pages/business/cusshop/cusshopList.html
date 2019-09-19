@@ -117,10 +117,7 @@
                         "url": domainName + "/api-business/cusshop/queryListByPage",
                         "type": "get",
                         "data": function (d) {
-                            d.id = $('#id').val();
                             d.shopName = $('#shopName').val();
-                            d.shopAddress = $('#shopAddress').val();
-                            d.shopDesc = $('#shopDesc').val();
                             d.shopUserName = $('#shopUserName').val();
                             d.shopPhone = $('#shopPhone').val();
                             d.shopIdCard = $('#shopIdCard').val();
@@ -128,7 +125,6 @@
                             d.bussinessUserId = $('#bussinessUserId').val();
                             d.userId = $('#userId').val();
                             d.shopStatus = $('#shopStatus').val();
-                            d.remark = $('#remark').val();
                         },
                         "dataSrc": function (json) {
                             json.recordsTotal = json.total;

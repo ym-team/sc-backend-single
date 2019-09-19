@@ -21,38 +21,12 @@
                                     <input id="consuName" type="text" class="form-control" placeholder="顾客姓名">
                                     电话
                                     <input id="consuPhone" type="text" class="form-control" placeholder="电话">
-                                    店家id
-                                    <input id="shopId" type="text" class="form-control" placeholder="店家id">
-                                    客户年龄
-                                    <input id="consuAge" type="text" class="form-control" placeholder="客户年龄">
-                                    确定项目
-                                    <input id="consuConfirmItem" type="text" class="form-control" placeholder="确定项目">
-                                    意向项目
-                                    <input id="consuWanttoItem" type="text" class="form-control" placeholder="意向项目">
-                                    享受政策
-                                    <input id="enjoyPolicy" type="text" class="form-control" placeholder="享受政策">
-                                    服务顾问
-                                    <input id="serviceConsult" type="text" class="form-control" placeholder="服务顾问">
-                                    顾客分析
-                                    <input id="consuAnaylise" type="text" class="form-control" placeholder="顾客分析">
-                                    顾客工作
-                                    <input id="consuWork" type="text" class="form-control" placeholder="顾客工作">
-                                    顾客性格
-                                    <input id="consuCharacter" type="text" class="form-control" placeholder="顾客性格">
-                                    顾客年收入
-                                    <input id="consuIncome" type="text" class="form-control" placeholder="顾客年收入">
-                                    顾客消费价值观
-                                    <input id="consuValue" type="text" class="form-control" placeholder="顾客消费价值观">
-                                    铺垫次数
-                                    <input id="consuPreCount" type="text" class="form-control" placeholder="铺垫次数">
-                                    最大的抗拒点
-                                    <input id="consuMaxReject" type="text" class="form-control" placeholder="最大的抗拒点">
-                                    业务员id
-                                    <input id="bussinessUserId" type="text" class="form-control" placeholder="业务员id">
-                                    1 正常 2 不正常
-                                    <input id="consuStatus" type="text" class="form-control" placeholder="1 正常  2 不正常">
-                                    备注
-                                    <input id="remark" type="text" class="form-control" placeholder="备注">
+                                    状态
+                                    <select class="form-control input-sm" name="consuStatus" id="consuStatus" data-bv-notempty="true">
+                                        <option value="">全部</option>
+                                        <option value="1">正常</option>
+                                        <option value="2">不正常</option>
+                                    </select>
                                     <button id="searchBt" class="layui-btn layui-btn-sm" permission="back:cusconsumer:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
                                 </div>
                             </form>
@@ -77,7 +51,7 @@
                         <th>主键id</th>
                         <th>顾客姓名</th>
                         <th>电话</th>
-                        <th>店家id</th>
+                        <th>店家</th>
                         <th>客户年龄</th>
                         <th>确定项目</th>
                         <th>意向项目</th>
@@ -90,13 +64,9 @@
                         <th>顾客消费价值观</th>
                         <th>铺垫次数</th>
                         <th>最大的抗拒点</th>
-                        <th>业务员id</th>
-                        <th>1 正常 2 不正常</th>
+                        <th>业务员</th>
+                        <th>状态</th>
                         <th>备注</th>
-                        <th>更新时间</th>
-                        <th>创建时间</th>
-                        <th>创建者</th>
-                        <th>更新者</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -139,29 +109,9 @@
                         "url": domainName + "/api-business/cusconsumer/queryListByPage",
                         "type": "get",
                         "data": function (d) {
-                            d.id = $('#id').val();
                             d.consuName = $('#consuName').val();
                             d.consuPhone = $('#consuPhone').val();
-                            d.shopId = $('#shopId').val();
-                            d.consuAge = $('#consuAge').val();
-                            d.consuConfirmItem = $('#consuConfirmItem').val();
-                            d.consuWanttoItem = $('#consuWanttoItem').val();
-                            d.enjoyPolicy = $('#enjoyPolicy').val();
-                            d.serviceConsult = $('#serviceConsult').val();
-                            d.consuAnaylise = $('#consuAnaylise').val();
-                            d.consuWork = $('#consuWork').val();
-                            d.consuCharacter = $('#consuCharacter').val();
-                            d.consuIncome = $('#consuIncome').val();
-                            d.consuValue = $('#consuValue').val();
-                            d.consuPreCount = $('#consuPreCount').val();
-                            d.consuMaxReject = $('#consuMaxReject').val();
-                            d.bussinessUserId = $('#bussinessUserId').val();
                             d.consuStatus = $('#consuStatus').val();
-                            d.remark = $('#remark').val();
-                            d.updateTime = $('#updateTime').val();
-                            d.createTime = $('#createTime').val();
-                            d.createId = $('#createId').val();
-                            d.updateId = $('#updateId').val();
                         },
                         "dataSrc": function (json) {
                             json.recordsTotal = json.total;
@@ -207,32 +157,21 @@
                         {"data": "consuPreCount", "defaultContent": ""},
                         {"data": "consuMaxReject", "defaultContent": ""},
                         {"data": "bussinessUserId", "defaultContent": ""},
-                        {"data": "consuStatus", "defaultContent": ""},
+                        {
+                            "data": "consuStatus", "defaultContent": "",
+                            "render": function (data, type, row) {
+                                return data == 1 ? "正常" : "不正常";
+                            }
+                        },
                         {"data": "remark", "defaultContent": ""},
-                        {
-                            "data": "updateTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
-                        {
-                            "data": "createTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
-                        {"data": "createId", "defaultContent": ""},
-                        {"data": "updateId", "defaultContent": ""},
                         {
                             "data": "",
                             "defaultContent": "",
                             "render": function (data, type, row) {
                                 var id = row['id'];
-                                //var name = encodeURIComponent(row['name']);
                                 var href = "updateCusconsumer.html?id=" + id;
                                 var edit = buttonEdit(href, "back:cusconsumer:update", pers);
                                 var del = buttonDel(id, "back:cusconsumer:delete", pers);
-
                                 return edit + del;
                             }
                         },
