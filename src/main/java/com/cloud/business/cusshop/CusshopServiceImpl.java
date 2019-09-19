@@ -36,7 +36,7 @@ public class CusshopServiceImpl implements ICusshopService {
     /**
      * 新增
      *
-     * @param CusshopModel
+     * @param cusshopBOS
      * @return long
      */
     @Override
@@ -53,7 +53,7 @@ public class CusshopServiceImpl implements ICusshopService {
     /**
      * 批量新增
      *
-     * @param List<CusshopBOS>
+     * @param listCusshopBOS
      * @return int
      */
     @Override
@@ -67,7 +67,7 @@ public class CusshopServiceImpl implements ICusshopService {
     /**
      * 查询详情
      *
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return CusshopVO
      */
     @Override
@@ -78,7 +78,7 @@ public class CusshopServiceImpl implements ICusshopService {
     }
 
     /**
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return List<CusshopVO>
      * ${table.JavaName}
      */
@@ -91,7 +91,7 @@ public class CusshopServiceImpl implements ICusshopService {
 
 
     /**
-     * @param CusshopBOQP
+     * @param cusshopBOQP
      * @param page
      * @return PageQuery<CusshopVO>
      */
@@ -105,7 +105,7 @@ public class CusshopServiceImpl implements ICusshopService {
 
 
     /**
-     * @param CusshopBOU
+     * @param cusshopBOU
      * @return int
      */
     @Override
@@ -119,7 +119,7 @@ public class CusshopServiceImpl implements ICusshopService {
 
 
     /**
-     * @param List<CusshopBOU>
+     * @param listCusshopBOU
      * @return int
      */
     @Override
@@ -130,7 +130,7 @@ public class CusshopServiceImpl implements ICusshopService {
 
 
     /**
-     * @param CusshopBOD
+     * @param cusshopBOD
      * @return int
      */
     @Override
@@ -140,7 +140,7 @@ public class CusshopServiceImpl implements ICusshopService {
     }
 
     /**
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return Long
      */
     @Override
@@ -148,6 +148,4 @@ public class CusshopServiceImpl implements ICusshopService {
         CusshopModel cusshopModel = BeanConvertUtils.convert(cusshopBOQ, CusshopModel.class);
         return this.cusshopMapper.queryCount(cusshopModel);
     }
-
-
 }

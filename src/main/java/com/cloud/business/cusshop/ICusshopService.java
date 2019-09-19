@@ -17,93 +17,88 @@ import java.util.List;
  */
 public interface ICusshopService {
 
-
     /**
      * 新增 店面入驻 信息
      *
-     * @param CusshopBOS
+     * @param cusshopBOS
      * @return int
      * @throws Exception
      */
-    public long save(CusshopBOS cusshopBOS) throws Exception;
-
+    long save(CusshopBOS cusshopBOS) throws Exception;
 
     /**
      * 批量新增
      *
-     * @param List<CusshopBOS>
+     * @param listCusshopBOS
      * @return int
      * @throws Exception
      */
-    public int saveList(List<CusshopBOS> listCusshopBOS) throws Exception;
-
+    int saveList(List<CusshopBOS> listCusshopBOS) throws Exception;
 
     /**
      * 查询详情
      *
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return CusshopVO
      * @throws Exception
      */
-    public CusshopVO queryDetail(CusshopBOQ cusshopBOQ) throws Exception;
+    CusshopVO queryDetail(CusshopBOQ cusshopBOQ) throws Exception;
 
     /**
      * 查询列表
      *
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return List<CusshopVO>
      * @throws Exception
      */
-    public List<CusshopVO> queryList(CusshopBOQ cusshopBOQ) throws Exception;
+    List<CusshopVO> queryList(CusshopBOQ cusshopBOQ) throws Exception;
 
 
     /**
      * 分页查询列表
      *
-     * @param CusshopBOQP
+     * @param cusshopBOQP
      * @return PageQuery<CusshopVO>
      * @throws Exception
      */
-    public PageQuery<CusshopVO> queryListByPage(CusshopBOQP cusshopBOQP, PageInfo page) throws Exception;
+    PageQuery<CusshopVO> queryListByPage(CusshopBOQP cusshopBOQP, PageInfo page) throws Exception;
 
 
     /**
      * 更新
      *
-     * @param CusshopBOU
+     * @param cusshopBOU
      * @return int
      * @throws Exception
      */
-    public int update(CusshopBOU cusshopBOU) throws Exception;
+    int update(CusshopBOU cusshopBOU) throws Exception;
 
 
     /**
      * 批量更新
      *
-     * @param List<CusshopBOU>
+     * @param listCusshopBOU
      * @return int
      * @throws Exception
      */
-    public int updateList(List<CusshopBOU> listCusshopBOU) throws Exception;
+    int updateList(List<CusshopBOU> listCusshopBOU) throws Exception;
 
 
     /**
      * 物理删除
      *
-     * @param CusshopBOD
+     * @param cusshopBOD
      * @return int
      * @throws Exception
      */
-    public int delete(CusshopBOD cusshopBOD) throws Exception;
+    int delete(CusshopBOD cusshopBOD) throws Exception;
 
     /**
      * 根据入参条件查询 总数
      *
-     * @param CusshopBOQ
+     * @param cusshopBOQ
      * @return Long
      * @throws Exception
      */
-    public Long queryCount(CusshopBOQ cusshopBOQ) throws Exception;
-
-
+    Long queryCount(CusshopBOQ cusshopBOQ) throws Exception;
 }

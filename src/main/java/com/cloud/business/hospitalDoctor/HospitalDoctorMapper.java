@@ -16,88 +16,86 @@ public interface HospitalDoctorMapper {
     /**
      * 新增  信息
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return int
      * @throws Exception
      */
-    public int save(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    int save(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
 
     /**
      * 批量新增
      *
-     * @param List<HospitalDoctorModel>
+     * @param listHospitalDoctorModel
      * @return int
      * @throws Exception
      */
-    public int saveList(@Param("listHospitalDoctorModel") List<HospitalDoctorModel> listHospitalDoctorModel);
+    int saveList(@Param("listHospitalDoctorModel") List<HospitalDoctorModel> listHospitalDoctorModel);
 
 
     /**
      * 查询详情
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return HospitalDoctorModel
      * @throws Exception
      */
-    public HospitalDoctorModel queryDetail(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    HospitalDoctorModel queryDetail(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
     /**
      * 查询列表
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return List<HospitalDoctorModel>
      * @throws Exception
      */
-    public List<HospitalDoctorModel> queryList(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    List<HospitalDoctorModel> queryList(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
 
     /**
      * 分页查询列表
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return Page<HospitalDoctorModel>
      * @throws Exception
      */
-    public Page<HospitalDoctorModel> queryListByPage(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    Page<HospitalDoctorModel> queryListByPage(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
 
     /**
      * 更新
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return int
      * @throws Exception
      */
-    public int update(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    int update(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
 
     /**
      * 批量更新
      *
-     * @param List<HospitalDoctorModel>
+     * @param listHospitalDoctorModel
      * @return int
      * @throws Exception
      */
-    public int updateList(@Param("listHospitalDoctorModel") List<HospitalDoctorModel> listHospitalDoctorModel);
+    int updateList(@Param("listHospitalDoctorModel") List<HospitalDoctorModel> listHospitalDoctorModel);
 
 
     /**
      * 物理删除
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @return int
      * @throws Exception
      */
-    public int delete(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
+    int delete(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 
     /**
      * 根据入参条件查询 总数
      *
-     * @param HospitalDoctorModel
+     * @param hospitalDoctorModel
      * @throws Exception
      */
-    public Long queryCount(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
-
-
+    Long queryCount(@Param("hospitalDoctorModel") HospitalDoctorModel hospitalDoctorModel);
 }
