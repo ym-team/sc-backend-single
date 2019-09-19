@@ -1,12 +1,11 @@
 package com.cloud.business.hospital;
 
 
-import com.alibaba.fastjson.JSON;
+import com.cloud.util.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 医院表
@@ -16,13 +15,9 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class HospitalBOU implements Serializable {
+public class HospitalBOU extends BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键ID
-     */
-    private Long id;
     /**
      * 医院名称
      */
@@ -47,24 +42,4 @@ public class HospitalBOU implements Serializable {
      * 联系人
      */
     private String contactor;
-    /**
-     * 更新者id
-     */
-    private Long updateId;
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-    /**
-     * 创建者Id
-     */
-    private Long createId;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 }
