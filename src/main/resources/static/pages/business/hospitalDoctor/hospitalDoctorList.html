@@ -23,7 +23,8 @@
                                     <input id="position" type="text" class="form-control" placeholder="职位">
                                     联系电话
                                     <input id="phone" type="text" class="form-control" placeholder="联系电话">
-                                    <button id="searchBt" class="layui-btn layui-btn-sm" permission="back:hospitalDoctor:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                    <button id="searchBt" class="layui-btn layui-btn-sm" permission="back:hospitalDoctor:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索
+                                    </button>
                                 </div>
                             </form>
                         </td>
@@ -51,10 +52,6 @@
                         <th>联系电话</th>
                         <th>所属医院</th>
                         <th>备注</th>
-                        <th>创建人</th>
-                        <th>创建时间</th>
-                        <th>更新人</th>
-                        <th>更新时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -96,17 +93,9 @@
                         "url": domainName + "/api-business/hospitalDoctor/queryListByPage",
                         "type": "get",
                         "data": function (d) {
-                            d.id = $('#id').val();
                             d.name = $('#name').val();
                             d.position = $('#position').val();
-                            d.headImg = $('#headImg').val();
                             d.phone = $('#phone').val();
-                            d.hospitalId = $('#hospitalId').val();
-                            d.remark = $('#remark').val();
-                            d.createId = $('#createId').val();
-                            d.createTime = $('#createTime').val();
-                            d.updateId = $('#updateId').val();
-                            d.updateTime = $('#updateTime').val();
                         },
                         "dataSrc": function (json) {
                             json.recordsTotal = json.total;
@@ -140,22 +129,8 @@
                         {"data": "position", "defaultContent": ""},
                         {"data": "headImg", "defaultContent": ""},
                         {"data": "phone", "defaultContent": ""},
-                        {"data": "hospitalId", "defaultContent": ""},
+                        {"data": "hospitalName", "defaultContent": ""},
                         {"data": "remark", "defaultContent": ""},
-                        {"data": "createId", "defaultContent": ""},
-                        {
-                            "data": "createTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
-                        {"data": "updateId", "defaultContent": ""},
-                        {
-                            "data": "updateTime", "defaultContent": "",
-                            "render": function (data, type, row) {
-                                return util.toDateString(data);
-                            }
-                        },
                         {
                             "data": "",
                             "defaultContent": "",
@@ -172,6 +147,7 @@
                     ],
                 });
         }
+
         init();
     });
 

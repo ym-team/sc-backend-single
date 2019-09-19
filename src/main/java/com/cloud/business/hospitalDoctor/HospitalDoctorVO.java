@@ -37,6 +37,10 @@ public class HospitalDoctorVO extends BaseEntity implements Serializable {
      */
     private Long hospitalId;
     /**
+     * 医院名称
+     */
+    private String hospitalName;
+    /**
      * 备注
      */
     private String remark;

@@ -17,93 +17,85 @@ import java.util.List;
  */
 public interface IHospitalDoctorService {
 
-
     /**
      * 新增  信息
      *
-     * @param HospitalDoctorBOS
+     * @param hospitalDoctorBOS
      * @return int
      * @throws Exception
      */
-    public long save(HospitalDoctorBOS hospitalDoctorBOS) throws Exception;
-
+    long save(HospitalDoctorBOS hospitalDoctorBOS) throws Exception;
 
     /**
      * 批量新增
      *
-     * @param List<HospitalDoctorBOS>
+     * @param listHospitalDoctorBOS
      * @return int
      * @throws Exception
      */
-    public int saveList(List<HospitalDoctorBOS> listHospitalDoctorBOS) throws Exception;
-
+    int saveList(List<HospitalDoctorBOS> listHospitalDoctorBOS) throws Exception;
 
     /**
      * 查询详情
      *
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return HospitalDoctorVO
      * @throws Exception
      */
-    public HospitalDoctorVO queryDetail(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
+    HospitalDoctorVO queryDetail(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
 
     /**
      * 查询列表
      *
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return List<HospitalDoctorVO>
      * @throws Exception
      */
-    public List<HospitalDoctorVO> queryList(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
+    List<HospitalDoctorVO> queryList(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
 
 
     /**
      * 分页查询列表
      *
-     * @param HospitalDoctorBOQP
+     * @param hospitalDoctorBOQP
      * @return PageQuery<HospitalDoctorVO>
      * @throws Exception
      */
-    public PageQuery<HospitalDoctorVO> queryListByPage(HospitalDoctorBOQP hospitalDoctorBOQP, PageInfo page) throws Exception;
-
+    PageQuery<HospitalDoctorVO> queryListByPage(HospitalDoctorBOQP hospitalDoctorBOQP, PageInfo page) throws Exception;
 
     /**
      * 更新
      *
-     * @param HospitalDoctorBOU
+     * @param hospitalDoctorBOU
      * @return int
      * @throws Exception
      */
-    public int update(HospitalDoctorBOU hospitalDoctorBOU) throws Exception;
-
+    int update(HospitalDoctorBOU hospitalDoctorBOU) throws Exception;
 
     /**
      * 批量更新
      *
-     * @param List<HospitalDoctorBOU>
+     * @param listHospitalDoctorBOU
      * @return int
      * @throws Exception
      */
-    public int updateList(List<HospitalDoctorBOU> listHospitalDoctorBOU) throws Exception;
-
+    int updateList(List<HospitalDoctorBOU> listHospitalDoctorBOU) throws Exception;
 
     /**
      * 物理删除
      *
-     * @param HospitalDoctorBOD
+     * @param hospitalDoctorBOD
      * @return int
      * @throws Exception
      */
-    public int delete(HospitalDoctorBOD hospitalDoctorBOD) throws Exception;
+    int delete(HospitalDoctorBOD hospitalDoctorBOD) throws Exception;
 
     /**
      * 根据入参条件查询 总数
      *
-     * @param HospitalDoctorBOQ
+     * @param hospitalDoctorBOQ
      * @return Long
      * @throws Exception
      */
-    public Long queryCount(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
-
-
+    Long queryCount(HospitalDoctorBOQ hospitalDoctorBOQ) throws Exception;
 }

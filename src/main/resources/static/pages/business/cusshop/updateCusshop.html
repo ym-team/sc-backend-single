@@ -58,34 +58,40 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">1 已签约 2 未签约 3 作废</label>
+                <label class="col-md-2 control-label">签约状态</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="1 已签约  2 未签约  3 作废" type="text" name="shopXieyiStatus" id="shopXieyiStatus" maxlength="50" data-bv-notempty="true"
-                           data-bv-notempty-message="1 已签约  2 未签约  3 作废不能为空">
+                    <select class="form-control input-sm" name="shopXieyiStatus" id="shopXieyiStatus" data-bv-notempty="true">
+                        <option value="">全部</option>
+                        <option value="1">已签约</option>
+                        <option value="2">未签约</option>
+                        <option value="3">作废</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">业务员id t_user</label>
+                <label class="col-md-2 control-label">业务员</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="业务员id t_user" type="text" name="bussinessUserId" id="bussinessUserId" maxlength="50" data-bv-notempty="true"
-                           data-bv-notempty-message="业务员id t_user不能为空">
+                    <input class="form-control" placeholder="业务员" type="text" name="bussinessUserId" id="bussinessUserId" data-bv-notempty="true" data-bv-notempty-message="业务员id t_user不能为空">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">店家用户id t_user</label>
+                <label class="col-md-2 control-label">店家用户</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="店家用户id t_user" type="text" name="userId" id="userId" maxlength="50" data-bv-notempty="true"
+                    <input class="form-control" placeholder="店家用户" type="text" name="userId" id="userId" maxlength="50" data-bv-notempty="true"
                            data-bv-notempty-message="店家用户id t_user不能为空">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">1 正常 2 不正常</label>
+                <label class="col-md-2 control-label">状态</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="1 正常  2 不正常" type="text" name="shopStatus" id="shopStatus" maxlength="50" data-bv-notempty="true"
-                           data-bv-notempty-message="1 正常  2 不正常不能为空">
+                    <select class="form-control input-sm" name="shopStatus" id="shopStatus" data-bv-notempty="true">
+                        <option value="">全部</option>
+                        <option value="1">正常</option>
+                        <option value="2">不正常</option>
+                    </select>
                 </div>
             </div>
 

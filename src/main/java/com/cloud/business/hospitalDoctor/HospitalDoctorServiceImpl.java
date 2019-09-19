@@ -7,6 +7,9 @@ package com.cloud.business.hospitalDoctor;
  */
 
 import com.cloud.business.hospital.HospitalMapper;
+import com.cloud.business.hospital.HospitalModel;
+import com.cloud.business.user.UserMapper;
+import com.cloud.business.user.UserModel;
 import com.cloud.user.model.LoginAppUser;
 import com.cloud.util.AppUserUtil;
 import com.cloud.util.BeanConvertUtils;
@@ -15,6 +18,7 @@ import com.cloud.util.page.PageQuery;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,6 +109,12 @@ public class HospitalDoctorServiceImpl implements IHospitalDoctorService {
         PageHelper.startPage(page.getCurrPage(), page.getPageSize(), page.getOrderby());
         Page<HospitalDoctorModel> queryListByPage = this.hospitalDoctorMapper.queryListByPage(hospitalDoctorModel);
         for (HospitalDoctorModel model : queryListByPage.getResult()) {
+            HospitalModel hm = new HospitalModel();
+            hm.setId(model.getHospitalId());
+            HospitalModel hospitalModel = hospitalMapper.queryDetail(hm);
+            if (hospitalModel != null) {
+                model.setHospitalName(hospitalModel.getName());
+            }
         }
         return new PageQuery(queryListByPage, HospitalDoctorVO.class);
     }
