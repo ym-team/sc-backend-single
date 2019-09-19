@@ -23,14 +23,13 @@ import java.util.Map;
  */
 @RestController
 public class HospitalController {
-
     @Autowired
     private IHospitalService hospitalService;
 
     /**
      * 添加信息
      *
-     * @param HospitalBOS
+     * @param hospitalBOS
      * @return long
      * @throws Exception
      */
@@ -45,7 +44,7 @@ public class HospitalController {
     /**
      * 批量添加信息
      *
-     * @param HospitalBOS
+     * @param listHospitalBOS
      * @return
      * @throws Exception
      */
@@ -60,7 +59,7 @@ public class HospitalController {
     /**
      * 更新信息
      *
-     * @param HospitalBOU
+     * @param hospitalBOU
      * @throws Exception
      */
     @LogAnnotation(module = "更新信息")
@@ -73,7 +72,7 @@ public class HospitalController {
     /**
      * 批量更新信息
      *
-     * @param List<HospitalBOU>
+     * @param listHospitalBOU
      * @throws Exception
      */
     @LogAnnotation(module = "批量更新")
@@ -87,14 +86,13 @@ public class HospitalController {
     /**
      * 删除信息
      *
-     * @param HospitalBOD
+     * @param id
      * @throws Exception
      */
     @LogAnnotation(module = "删除信息")
     @PreAuthorize("hasAuthority('back:hospital:delete')")
-    //@PutMapping("/api-business/hospital/delete")
     @DeleteMapping("/api-business/hospital/delete/{id}")
-    public void delete(@PathVariable Long id) throws Exception {     //@RequestBody HospitalBOD hospitalBOD
+    public void delete(@PathVariable Long id) throws Exception {
         HospitalBOD hospitalBOD = new HospitalBOD();
         hospitalBOD.setId(id);
         long count = this.hospitalService.delete(hospitalBOD);
@@ -104,14 +102,13 @@ public class HospitalController {
     /**
      * 查询详情信息
      *
-     * @param HospitalQueryVo
+     * @param id
      * @return
      * @throws Exception
      */
     @LogAnnotation(module = "查询详情信息")
     @PreAuthorize("hasAuthority('back:hospital:queryDetail')")
     @GetMapping("/api-business/hospital/queryDetail")
-    //public HospitalVO queryDetail(@RequestBody(required=false)  HospitalBOQ hospitalBOQ){
     public HospitalVO queryDetail(@RequestParam(required = false) long id) throws Exception {
         HospitalBOQ hospitalBOQ = new HospitalBOQ();
         hospitalBOQ.setId(id);
@@ -121,7 +118,7 @@ public class HospitalController {
     /**
      * 查询列表
      *
-     * @param HospitalBOQ
+     * @param hospitalBOQ
      * @return List<HospitalVO>
      * @throws Exception
      */
@@ -135,14 +132,13 @@ public class HospitalController {
     /**
      * 分页查询列表
      *
-     * @param HospitalBOQP
+     * @param params
      * @return List<HospitalVO>
      * @throws Exception
      */
     @LogAnnotation(module = "分页查询列表")
     @PreAuthorize("hasAuthority('back:hospital:queryListByPage')")
     @GetMapping("/api-business/hospital/queryListByPage")
-    //public PageQuery<HospitalVO> queryListByPage(@RequestBody(required=false) HospitalBOQP hospitalBOP){
     public PageQuery<HospitalVO> queryListByPage(@RequestParam Map<String, Object> params) throws Exception {
         HospitalBOQP hospitalBOQP = JSON.parseObject(JSON.toJSONString(params), HospitalBOQP.class);
         PageInfo pageInfo = new PageInfo();
@@ -155,7 +151,7 @@ public class HospitalController {
     /**
      * 查询总数
      *
-     * @param HospitalBOQ
+     * @param hospitalBOQ
      * @return Long
      * @throws Exception
      */
@@ -165,6 +161,4 @@ public class HospitalController {
     public Long queryCount(HospitalBOQ hospitalBOQ) throws Exception {
         return this.hospitalService.queryCount(hospitalBOQ);
     }
-
-
 }
