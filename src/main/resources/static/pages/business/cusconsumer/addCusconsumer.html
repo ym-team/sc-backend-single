@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">店家id</label>
+                <label class="col-md-2 control-label">店家</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="店家id" type="text" name="shopId" id="shopId" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="店家id不能为空">
+                    <input class="form-control" placeholder="店家" type="text" name="shopId" id="shopId" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="店家id不能为空">
                 </div>
             </div>
             <div class="form-group">
@@ -99,15 +99,19 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">业务员id</label>
+                <label class="col-md-2 control-label">业务员</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="业务员id" type="text" name="bussinessUserId" id="bussinessUserId" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="业务员id不能为空">
+                    <input class="form-control" placeholder="业务员" type="text" name="bussinessUserId" id="bussinessUserId" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="业务员id不能为空">
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">1 正常 2 不正常</label>
+                <label class="col-md-2 control-label">状态</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="1 正常  2 不正常" type="text" name="consuStatus" id="consuStatus" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="1 正常  2 不正常不能为空">
+                    <select class="form-control input-sm" name="consuStatus" id="consuStatus"  data-bv-notempty="true" >
+                        <option value="">全部</option>
+                        <option value="1">正常</option>
+                        <option value="2">不正常</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
