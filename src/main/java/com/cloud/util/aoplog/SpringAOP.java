@@ -39,7 +39,7 @@ public class SpringAOP {
      * 后面括弧里面表示方法的参数，两个句点表示任何参数
      */
     //@Pointcut("execution(*  com.cloud.business.bussinessSum.*.*(..))")
-    @Pointcut("execution(*  com.cloud.business.bussinessSum.*.*(..))")
+    @Pointcut("execution(*  com.cloud.business.hospital.*.*(..))")
     public void executionService() {}
  
     
