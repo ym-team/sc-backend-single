@@ -17,6 +17,11 @@
                         <td>
                             <form class="form-inline" onsubmit="return false">
                                 <div class="form-group">
+                                
+                                    主键id
+                                    <input id="id" type="text" class="form-control" placeholder="主键id">
+                                  
+                                  
                                     合作者用户ID 如医院id 店面id
                                     <input id="amortizationId" type="text" class="form-control" placeholder="合作者用户ID 如医院id 店面id">
                                     状态
@@ -49,16 +54,12 @@
                     <tr>
                     </tr>
                     <tr>
-                        <th></th>
+                        <th>主键id</th>
                         <th>合作者用户ID 如医院id 店面id</th>
-                        <th></th>
+                        <th>状态</th>
                         <th>医院提成比例</th>
                         <th>提成类型 1医院 2店面</th>
-                        <th>创建时间</th>
-                        <th></th>
                         <th>备注信息</th>
-                        <th>更新者</th>
-                        <th>创建者</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -153,6 +154,8 @@
                                 return edit + del;
                             }
                         },
+                        
+                        
                     ],
                 });
         }
