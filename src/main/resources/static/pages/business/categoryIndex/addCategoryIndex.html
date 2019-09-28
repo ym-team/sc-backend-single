@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../../layui/css/layui.css" media="all" />
+<script src="../../../js/constant.js"></script>
+<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../../js/jq.js"></script>
+<script type="text/javascript"
+	src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../../js/common.js"></script>
+<script type="text/javascript" src="../../../layui/layui.js"></script>
+</head>
+<body>
+<form class="layui-form" onsubmit="return false" id="form">
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">描述</label>
+			<div class="layui-input-block">
+				<input type="text" name="descriptor" id="descriptor"
+					placeholder="描述" class="layui-input">
+					<input type="hidden" id="categoryId" name="categoryId">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">图片</label>
+			<div class="layui-input-block">
+
+				<select class="input-sm" id="fileSource">
+					<option value="LOCAL">本地上传</option>
+					<option value="ALIYUN">阿里云上传</option>
+				</select>
+				<div class="layui-upload-drag" id="uploadcourseLogo">
+					<i class="layui-icon"> </i>
+					<p>点击上传图片</p>
+					<img class="layui-upload-img" width='120' id="picUrlImg"
+						name="picUrlImg"> <input type="hidden" id=picUrl value=""
+						name="picUrl">
+				</div>
+			</div>
+		</div>
+
+		 
+
+		 
+		<!-- end:-->
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button type="submit" class="layui-btn" onclick="add()">保存</button>
+				<button type="reset" class="layui-btn layui-btn-primary"
+					onclick="location.href='categoryIndexList.html'">返回</button>
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+	
+	var categoryId = getUrlParam("categoryId");
+	$("#categoryId").val(categoryId);
+		layui.use('form', function() {
+			var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+			//但是，如果你的HTML是动态生成的，自动渲染就会失效
+			//因此你需要在相应的地方，执行下述方法来进行渲染
+			form.render();
+		});
+
+		layui.use('layer', function() {
+			var layer = layui.layer;
+		});
+		function add() {
+			var picUrl = $("#picUrl").val();
+			if(picUrl==''){
+				layer.msg("图片不能为空!");
+				return;
+			}
+			
+			
+			var formdata = $("#form").serializeObject();
+			$.ajax({
+				type : 'post',
+				url : domainName + '/api-business/categoryIndex/save',
+				contentType : "application/json; charset=utf-8",
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("succes", {
+						shift : -1,
+						time : 1000
+					}, function() {
+						location.href = "categoryIndexList.html";
+					});
+				}
+			});
+		}
+
+		
+		
+		layui.use('upload', function(){
+	    	var upload = layui.upload;
+	    	upload.render({
+	    	    elem: '#uploadcourseLogo' //绑定元素
+	    	    ,accept: 'file' //允许上传的文件类型
+	    	    ,url: domainName + '/files?fileSource=' + $("#fileSource").val()
+	    	    ,done: function(res, index, upload){
+	    	    	layer.msg("上传成功");
+	    	    	var url = res.url;
+					$('#picUrlImg').attr('src', url);
+					$('#picUrl').val(url);
+	    		 	example.ajax.reload();
+	    	    }
+	    	  });
+	    	
+	    	$("#fileSource").change(function(){
+	    		var url = domainName + '/files?fileSource=' + $("#fileSource").val();
+	    		$("#test1").attr("lay-data", "{url: '" + url + "'}");
+	    	});
+	    });
+	</script>
+</body>
+
+
+
+
+</html>

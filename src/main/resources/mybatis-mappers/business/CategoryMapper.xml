@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.category.CategoryMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.category.CategoryModel">
+            <result property="id" column="id"/>
+            <result property="createId" column="create_id"/>
+            <result property="categoryName" column="category_name"/>
+            <result property="status" column="status"/>
+            <result property="remark" column="remark"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateId" column="update_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	create_id
+,
+	category_name
+,
+	status
+,
+	remark
+,
+	create_time
+,
+	update_time
+,
+	update_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="categoryModel != null">
+	<if test="categoryModel.id > 0 ">
+		AND id =	#{categoryModel.id}
+ </if>
+	<if test="categoryModel.createId > 0 ">
+		AND create_id =	#{categoryModel.createId}
+ </if>
+	<if test="categoryModel.categoryName != null and categoryModel.categoryName !=''">
+	AND category_name =	#{categoryModel.categoryName}
+ </if>
+	<if test="categoryModel.status > 0 ">
+		AND status =	#{categoryModel.status}
+ </if>
+	<if test="categoryModel.remark != null and categoryModel.remark !=''">
+	AND remark =	#{categoryModel.remark}
+ </if>
+	<if test="categoryModel.createTime != null and categoryModel.createTime !=''">
+	AND create_time =	#{categoryModel.createTime}
+ </if>
+	<if test="categoryModel.updateTime != null and categoryModel.updateTime !=''">
+	AND update_time =	#{categoryModel.updateTime}
+ </if>
+	<if test="categoryModel.updateId > 0 ">
+		AND update_id =	#{categoryModel.updateId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.category.CategoryModel" useGeneratedKeys="true" keyProperty="categoryModel.id" keyColumn="id">
+		insert into t_category
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="categoryModel != null">
+		<if test="categoryModel.id >0">
+				id
+, 
+        </if>
+		<if test="categoryModel.createId >0">
+				create_id
+, 
+        </if>
+		<if test="categoryModel.categoryName != null">
+				category_name
+, 
+        </if>
+		<if test="categoryModel.status != null">
+				status
+, 
+        </if>
+		<if test="categoryModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="categoryModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="categoryModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="categoryModel.updateId >0">
+				update_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="categoryModel.id >0">
+			#{categoryModel.id}
+, 
+		 </if>
+			<if test="categoryModel.createId >0">
+			#{categoryModel.createId}
+, 
+		 </if>
+			<if test="categoryModel.categoryName != null and categoryModel.categoryName !=''">
+			#{categoryModel.categoryName}
+, 
+		 </if>
+			<if test="categoryModel.status != null and categoryModel.status !=''">
+			#{categoryModel.status}
+, 
+		 </if>
+			<if test="categoryModel.remark != null and categoryModel.remark !=''">
+			#{categoryModel.remark}
+, 
+		 </if>
+			<if test="categoryModel.createTime != null and categoryModel.createTime !=''">
+			#{categoryModel.createTime}
+, 
+		 </if>
+			<if test="categoryModel.updateTime != null and categoryModel.updateTime !=''">
+			#{categoryModel.updateTime}
+, 
+		 </if>
+			<if test="categoryModel.updateId >0">
+			#{categoryModel.updateId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_category
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="categoryModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="categoryModel.createId >0">
+						create_id
+, 
+		        	</if>
+				
+					<if test="categoryModel.categoryName != null">
+									category_name
+, 
+		        	</if>
+				
+					<if test="categoryModel.status >0">
+						status
+, 
+		        	</if>
+				
+					<if test="categoryModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="categoryModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="categoryModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="categoryModel.updateId >0">
+						update_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listCategoryModel" item="categoryModel" index="index"
+				separator="," >
+			(
+			
+				<if test="categoryModel.id >0">
+				#{categoryModel.id}
+, 
+			     	</if>
+			
+				<if test="categoryModel.createId >0">
+				#{categoryModel.createId}
+, 
+			     	</if>
+			
+				<if test="categoryModel.categoryName != null">
+				#{categoryModel.categoryName}
+, 
+			     	</if>
+			
+				<if test="categoryModel.status >0">
+				#{categoryModel.status}
+, 
+			     	</if>
+			
+				<if test="categoryModel.remark != null">
+				#{categoryModel.remark}
+, 
+			     	</if>
+			
+				<if test="categoryModel.createTime != null">
+				#{categoryModel.createTime}
+, 
+			     	</if>
+			
+				<if test="categoryModel.updateTime != null">
+				#{categoryModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="categoryModel.updateId >0">
+				#{categoryModel.updateId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.category.CategoryModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_category 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.category.CategoryModel">
+		select <include refid="baseColumns"/> from t_category 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.category.CategoryModel">
+        select
+        <include refid="baseColumns"/>  from t_category
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.category.CategoryModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_category 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.category.CategoryModel" >
+		update t_category 
+		<set> 
+					
+			<if test="categoryModel.id > 0">
+				id = #{categoryModel.id}
+,
+			</if>
+					
+			<if test="categoryModel.createId > 0">
+				create_id = #{categoryModel.createId}
+,
+			</if>
+					
+			<if test="categoryModel.categoryName != null and categoryModel.categoryName !=''">
+				category_name =	#{categoryModel.categoryName}
+,
+			</if>
+					
+			<if test="categoryModel.status >0">
+				status = #{categoryModel.status}
+,
+			</if>
+					
+			<if test="categoryModel.remark != null and categoryModel.remark !=''">
+				remark =	#{categoryModel.remark}
+,
+			</if>
+					
+			<if test="categoryModel.createTime != null and categoryModel.createTime !=''">
+				create_time =	#{categoryModel.createTime}
+,
+			</if>
+					
+			<if test="categoryModel.updateTime != null and categoryModel.updateTime !=''">
+				update_time =	#{categoryModel.updateTime}
+,
+			</if>
+					
+			<if test="categoryModel.updateId > 0">
+				update_id = #{categoryModel.updateId}
+			</if>
+		</set>	
+			where id = #{categoryModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listCategoryModel" item="categoryModel" index="index" open="" close="" separator=";">
+		update t_category 
+		<set> 
+					
+			<if test="categoryModel.id > 0">
+				id = #{categoryModel.id}
+,
+			</if>
+					
+			<if test="categoryModel.createId > 0">
+				create_id = #{categoryModel.createId}
+,
+			</if>
+					
+			<if test="categoryModel.categoryName != null and categoryModel.categoryName !=''">
+				category_name =	#{categoryModel.categoryName}
+,
+			</if>
+					
+			<if test="categoryModel.status >0">
+				status = #{categoryModel.status}
+,
+			</if>
+					
+			<if test="categoryModel.remark != null and categoryModel.remark !=''">
+				remark =	#{categoryModel.remark}
+,
+			</if>
+					
+			<if test="categoryModel.createTime != null and categoryModel.createTime !=''">
+				create_time =	#{categoryModel.createTime}
+,
+			</if>
+					
+			<if test="categoryModel.updateTime != null and categoryModel.updateTime !=''">
+				update_time =	#{categoryModel.updateTime}
+,
+			</if>
+					
+			<if test="categoryModel.updateId > 0">
+				update_id = #{categoryModel.updateId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.category.CategoryModel">
+		 delete from t_category 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

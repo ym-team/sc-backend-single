@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+	<input type="hidden" id="id" name="id">
+	<fieldset>
+	
+
+	
+			
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="" type="text" name="id" id="id" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="" type="text" name="categoryId" id="categoryId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">图片地址</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="图片地址" type="text" name="picUrl" id="picUrl" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="图片地址不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">状态1有效；0无效</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="状态1有效；0无效" type="text" name="status" id="status" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="状态1有效；0无效不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">备注信息</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="备注信息" type="text" name="remark" id="remark" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="备注信息不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">描述</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="描述" type="text" name="descriptor" id="descriptor" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="描述不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">创建时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建时间" type="text" name="createTime" id="createTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建时间不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">更新时间</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="更新时间" type="text" name="updateTime" id="updateTime" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="更新时间不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">创建用户id</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="创建用户id" type="text" name="createId" id="createId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="创建用户id不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">是否展示前端页面1展示；0不展示</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="是否展示前端页面1展示；0不展示" type="text" name="isShow" id="isShow" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="是否展示前端页面1展示；0不展示不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">前端页面排序</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="前端页面排序" type="text" name="isSort" id="isSort" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="前端页面排序不能为空">
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label">更新人</label>
+	<div class="col-md-10">
+		<input class="form-control" placeholder="更新人" type="text" name="updateId" id="updateId" maxlength="50"
+			data-bv-notempty="true"
+			data-bv-notempty-message="更新人不能为空">
+	</div>
+</div>
+
+			
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button class="btn btn-primary" onclick="location.href='categoryIndexList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+
+	<script src="../../../js/constant.js"></script>
+	<script type="text/javascript" src="../../../js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../../js/jq.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../../js/common.js"></script>
+	<script type="text/javascript" src="../../../layui/layui.js"></script>
+<script type="text/javascript">
+	layui.use('layer', function(){
+	    var layer = layui.layer;
+	});
+	
+	initData();
+	
+	function initData(){
+		/**
+		$("#id").val(getUrlParam("id"));
+		$("#name").val(decodeURIComponent(getUrlParam("name")));
+		$("#permission").val(decodeURIComponent(getUrlParam("permission")));
+		*/
+		
+		$("#id").val(getUrlParam("id"));
+		var id = getUrlParam("id");
+		
+		$.ajax({
+			type : 'get',
+			url : domainName + '/api-business/categoryIndex/queryDetail',
+			contentType: "application/json; charset=utf-8",  
+			data : { "id": id},
+			success : function(data) {
+				console.log(data);
+$('#id').val(data.id);
+$('#categoryId').val(data.categoryId);
+$('#picUrl').val(data.picUrl);
+$('#status').val(data.status);
+$('#remark').val(data.remark);
+$('#descriptor').val(data.descriptor);
+$('#createTime').val(data.createTime);
+$('#updateTime').val(data.updateTime);
+$('#createId').val(data.createId);
+$('#isShow').val(data.isShow);
+$('#isSort').val(data.isSort);
+$('#updateId').val(data.updateId);
+			}
+		});
+		
+		
+	}
+	
+	function update() {
+		$('#form').bootstrapValidator();
+		var bootstrapValidator = $("#form").data('bootstrapValidator');
+		bootstrapValidator.validate();
+	    if(!bootstrapValidator.isValid()){
+		   return;
+	    }
+	    
+	    var formdata = $("#form").serializeObject();
+
+		$.ajax({
+			type : 'put',
+			url : domainName + '/api-business/categoryIndex/update',
+			contentType: "application/json; charset=utf-8",  
+			data : JSON.stringify(formdata),
+			success : function(data) {
+				layer.msg("成功", {shift: -1, time: 1000}, function(){
+                    location.href = "categoryIndexList.html";
+                });
+			}
+		});
+	}
+		
+</script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.business.categoryIndex.CategoryIndexMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="baseResultMap" type="com.cloud.business.categoryIndex.CategoryIndexModel">
+            <result property="id" column="id"/>
+            <result property="categoryId" column="category_id"/>
+            <result property="picUrl" column="pic_url"/>
+            <result property="status" column="status"/>
+            <result property="remark" column="remark"/>
+            <result property="descriptor" column="descriptor"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="createId" column="create_id"/>
+            <result property="isShow" column="is_show"/>
+            <result property="isSort" column="is_sort"/>
+            <result property="updateId" column="update_id"/>
+	</resultMap>
+
+
+
+<sql id="baseColumns">
+	id
+,
+	category_id
+,
+	pic_url
+,
+	status
+,
+	remark
+,
+	descriptor
+,
+	create_time
+,
+	update_time
+,
+	create_id
+,
+	is_show
+,
+	is_sort
+,
+	update_id
+</sql>
+
+
+
+<sql id="queryConditions">
+	WHERE 1=1
+	<if test="categoryIndexModel != null">
+	<if test="categoryIndexModel.id > 0 ">
+		AND id =	#{categoryIndexModel.id}
+ </if>
+	<if test="categoryIndexModel.categoryId > 0 ">
+		AND category_id =	#{categoryIndexModel.categoryId}
+ </if>
+	<if test="categoryIndexModel.picUrl != null and categoryIndexModel.picUrl !=''">
+	AND pic_url =	#{categoryIndexModel.picUrl}
+ </if>
+	<if test="categoryIndexModel.status > 0 ">
+		AND status =	#{categoryIndexModel.status}
+ </if>
+	<if test="categoryIndexModel.remark != null and categoryIndexModel.remark !=''">
+	AND remark =	#{categoryIndexModel.remark}
+ </if>
+	<if test="categoryIndexModel.descriptor != null and categoryIndexModel.descriptor !=''">
+	AND descriptor =	#{categoryIndexModel.descriptor}
+ </if>
+	<if test="categoryIndexModel.createTime != null and categoryIndexModel.createTime !=''">
+	AND create_time =	#{categoryIndexModel.createTime}
+ </if>
+	<if test="categoryIndexModel.updateTime != null and categoryIndexModel.updateTime !=''">
+	AND update_time =	#{categoryIndexModel.updateTime}
+ </if>
+	<if test="categoryIndexModel.createId > 0 ">
+		AND create_id =	#{categoryIndexModel.createId}
+ </if>
+	<if test="categoryIndexModel.isShow > 0 ">
+		AND is_show =	#{categoryIndexModel.isShow}
+ </if>
+	<if test="categoryIndexModel.isSort > 0 ">
+		AND is_sort =	#{categoryIndexModel.isSort}
+ </if>
+	<if test="categoryIndexModel.updateId > 0 ">
+		AND update_id =	#{categoryIndexModel.updateId}
+</if>	
+</if>
+</sql>
+
+
+<sql id="limit">
+	<if test="page != null">
+		limit #{page.start},#{page.pageSize}
+	</if>
+</sql>
+
+
+
+<insert id="save" parameterType="com.cloud.business.categoryIndex.CategoryIndexModel" useGeneratedKeys="true" keyProperty="categoryIndexModel.id" keyColumn="id">
+		insert into t_category_index
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="categoryIndexModel != null">
+		<if test="categoryIndexModel.id >0">
+				id
+, 
+        </if>
+		<if test="categoryIndexModel.categoryId >0">
+				category_id
+, 
+        </if>
+		<if test="categoryIndexModel.picUrl != null">
+				pic_url
+, 
+        </if>
+		<if test="categoryIndexModel.status != null">
+				status
+, 
+        </if>
+		<if test="categoryIndexModel.remark != null">
+				remark
+, 
+        </if>
+		<if test="categoryIndexModel.descriptor != null">
+				descriptor
+, 
+        </if>
+		<if test="categoryIndexModel.createTime != null">
+				create_time
+, 
+        </if>
+		<if test="categoryIndexModel.updateTime != null">
+				update_time
+, 
+        </if>
+		<if test="categoryIndexModel.createId >0">
+				create_id
+, 
+        </if>
+		<if test="categoryIndexModel.isShow != null">
+				is_show
+, 
+        </if>
+		<if test="categoryIndexModel.isSort != null">
+				is_sort
+, 
+        </if>
+		<if test="categoryIndexModel.updateId >0">
+				update_id
+		</if>
+		</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			
+			<if test="categoryIndexModel.id >0">
+			#{categoryIndexModel.id}
+, 
+		 </if>
+			<if test="categoryIndexModel.categoryId >0">
+			#{categoryIndexModel.categoryId}
+, 
+		 </if>
+			<if test="categoryIndexModel.picUrl != null and categoryIndexModel.picUrl !=''">
+			#{categoryIndexModel.picUrl}
+, 
+		 </if>
+			<if test="categoryIndexModel.status != null and categoryIndexModel.status !=''">
+			#{categoryIndexModel.status}
+, 
+		 </if>
+			<if test="categoryIndexModel.remark != null and categoryIndexModel.remark !=''">
+			#{categoryIndexModel.remark}
+, 
+		 </if>
+			<if test="categoryIndexModel.descriptor != null and categoryIndexModel.descriptor !=''">
+			#{categoryIndexModel.descriptor}
+, 
+		 </if>
+			<if test="categoryIndexModel.createTime != null and categoryIndexModel.createTime !=''">
+			#{categoryIndexModel.createTime}
+, 
+		 </if>
+			<if test="categoryIndexModel.updateTime != null and categoryIndexModel.updateTime !=''">
+			#{categoryIndexModel.updateTime}
+, 
+		 </if>
+			<if test="categoryIndexModel.createId >0">
+			#{categoryIndexModel.createId}
+, 
+		 </if>
+			<if test="categoryIndexModel.isShow != null and categoryIndexModel.isShow !=''">
+			#{categoryIndexModel.isShow}
+, 
+		 </if>
+			<if test="categoryIndexModel.isSort != null and categoryIndexModel.isSort !=''">
+			#{categoryIndexModel.isSort}
+, 
+		 </if>
+			<if test="categoryIndexModel.updateId >0">
+			#{categoryIndexModel.updateId}
+			</if>	
+		</trim>
+		</insert>
+		
+		
+	<insert id="saveList" >
+		insert into  t_category_index
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				
+					<if test="categoryIndexModel.id >0">
+						id
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.categoryId >0">
+						category_id
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.picUrl != null">
+									pic_url
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.status >0">
+						status
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.remark != null">
+									remark
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.descriptor != null">
+									descriptor
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.createTime != null">
+									create_time
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.updateTime != null">
+									update_time
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.createId >0">
+						create_id
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.isShow >0">
+						is_show
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.isSort >0">
+						is_sort
+, 
+		        	</if>
+				
+					<if test="categoryIndexModel.updateId >0">
+						update_id
+					</if>
+			</trim>
+		VALUES
+			<foreach collection="listCategoryIndexModel" item="categoryIndexModel" index="index"
+				separator="," >
+			(
+			
+				<if test="categoryIndexModel.id >0">
+				#{categoryIndexModel.id}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.categoryId >0">
+				#{categoryIndexModel.categoryId}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.picUrl != null">
+				#{categoryIndexModel.picUrl}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.status >0">
+				#{categoryIndexModel.status}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.remark != null">
+				#{categoryIndexModel.remark}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.descriptor != null">
+				#{categoryIndexModel.descriptor}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.createTime != null">
+				#{categoryIndexModel.createTime}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.updateTime != null">
+				#{categoryIndexModel.updateTime}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.createId >0">
+				#{categoryIndexModel.createId}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.isShow >0">
+				#{categoryIndexModel.isShow}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.isSort >0">
+				#{categoryIndexModel.isSort}
+, 
+			     	</if>
+			
+				<if test="categoryIndexModel.updateId >0">
+				#{categoryIndexModel.updateId}
+				</if>	
+			)
+			</foreach>
+		</insert>	
+		
+		
+	<select id="queryDetail" parameterType="com.cloud.business.categoryIndex.CategoryIndexModel" resultMap="baseResultMap" >
+		select <include refid="baseColumns"/>  from t_category_index 
+		<include refid="queryConditions"/>
+	</select>	
+	
+	
+	<select id="queryList" resultMap="baseResultMap"
+		parameterType="com.cloud.business.categoryIndex.CategoryIndexModel">
+		select <include refid="baseColumns"/> from t_category_index 
+			<include refid="queryConditions"/>
+				order by id desc
+	</select>
+	
+	
+	  <select id="queryListByPage" resultMap="baseResultMap"
+            parameterType="com.cloud.business.categoryIndex.CategoryIndexModel">
+        select
+        <include refid="baseColumns"/>  from t_category_index
+        <include refid="queryConditions"/>
+    </select>
+	
+	<select id="queryCount" parameterType="com.cloud.business.categoryIndex.CategoryIndexModel"
+		resultType="java.lang.Long">
+		SELECT COUNT(1) FROM t_category_index 
+		<include refid="queryConditions"/>
+	</select>
+	
+	
+	
+	
+	<update id="update" parameterType="com.cloud.business.categoryIndex.CategoryIndexModel" >
+		update t_category_index 
+		<set> 
+					
+			<if test="categoryIndexModel.id > 0">
+				id = #{categoryIndexModel.id}
+,
+			</if>
+					
+			<if test="categoryIndexModel.categoryId > 0">
+				category_id = #{categoryIndexModel.categoryId}
+,
+			</if>
+					
+			<if test="categoryIndexModel.picUrl != null and categoryIndexModel.picUrl !=''">
+				pic_url =	#{categoryIndexModel.picUrl}
+,
+			</if>
+					
+			<if test="categoryIndexModel.status >0">
+				status = #{categoryIndexModel.status}
+,
+			</if>
+					
+			<if test="categoryIndexModel.remark != null and categoryIndexModel.remark !=''">
+				remark =	#{categoryIndexModel.remark}
+,
+			</if>
+					
+			<if test="categoryIndexModel.descriptor != null and categoryIndexModel.descriptor !=''">
+				descriptor =	#{categoryIndexModel.descriptor}
+,
+			</if>
+					
+			<if test="categoryIndexModel.createTime != null and categoryIndexModel.createTime !=''">
+				create_time =	#{categoryIndexModel.createTime}
+,
+			</if>
+					
+			<if test="categoryIndexModel.updateTime != null and categoryIndexModel.updateTime !=''">
+				update_time =	#{categoryIndexModel.updateTime}
+,
+			</if>
+					
+			<if test="categoryIndexModel.createId > 0">
+				create_id = #{categoryIndexModel.createId}
+,
+			</if>
+					
+			<if test="categoryIndexModel.isShow >0">
+				is_show = #{categoryIndexModel.isShow}
+,
+			</if>
+					
+			<if test="categoryIndexModel.isSort >0">
+				is_sort = #{categoryIndexModel.isSort}
+,
+			</if>
+					
+			<if test="categoryIndexModel.updateId > 0">
+				update_id = #{categoryIndexModel.updateId}
+			</if>
+		</set>	
+			where id = #{categoryIndexModel.id} 
+	</update>
+	
+	
+	<update id="updateList" >
+	  <foreach collection="listCategoryIndexModel" item="categoryIndexModel" index="index" open="" close="" separator=";">
+		update t_category_index 
+		<set> 
+					
+			<if test="categoryIndexModel.id > 0">
+				id = #{categoryIndexModel.id}
+,
+			</if>
+					
+			<if test="categoryIndexModel.categoryId > 0">
+				category_id = #{categoryIndexModel.categoryId}
+,
+			</if>
+					
+			<if test="categoryIndexModel.picUrl != null and categoryIndexModel.picUrl !=''">
+				pic_url =	#{categoryIndexModel.picUrl}
+,
+			</if>
+					
+			<if test="categoryIndexModel.status >0">
+				status = #{categoryIndexModel.status}
+,
+			</if>
+					
+			<if test="categoryIndexModel.remark != null and categoryIndexModel.remark !=''">
+				remark =	#{categoryIndexModel.remark}
+,
+			</if>
+					
+			<if test="categoryIndexModel.descriptor != null and categoryIndexModel.descriptor !=''">
+				descriptor =	#{categoryIndexModel.descriptor}
+,
+			</if>
+					
+			<if test="categoryIndexModel.createTime != null and categoryIndexModel.createTime !=''">
+				create_time =	#{categoryIndexModel.createTime}
+,
+			</if>
+					
+			<if test="categoryIndexModel.updateTime != null and categoryIndexModel.updateTime !=''">
+				update_time =	#{categoryIndexModel.updateTime}
+,
+			</if>
+					
+			<if test="categoryIndexModel.createId > 0">
+				create_id = #{categoryIndexModel.createId}
+,
+			</if>
+					
+			<if test="categoryIndexModel.isShow >0">
+				is_show = #{categoryIndexModel.isShow}
+,
+			</if>
+					
+			<if test="categoryIndexModel.isSort >0">
+				is_sort = #{categoryIndexModel.isSort}
+,
+			</if>
+					
+			<if test="categoryIndexModel.updateId > 0">
+				update_id = #{categoryIndexModel.updateId}
+			</if>
+		</set>	
+			where id = #{Id} 
+		</foreach>	
+	</update>
+		
+	
+	
+	
+	
+	<delete id="delete" parameterType="com.cloud.business.categoryIndex.CategoryIndexModel">
+		 delete from t_category_index 
+		<include refid="queryConditions"/>
+	</delete>
+	
+	
+
+
+</mapper>

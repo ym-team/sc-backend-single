@@ -1,0 +1,10 @@
+insert into menu(parentId, name, url, css, sort, createTime, updateTime) values (17,'', 'pages/business/category/categoryList.html', 'fa-cube', '1', '2019-09-28 10:58:31', '2019-09-28 10:58:31');
+
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:save', '添加信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31');
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:saveList', '批量添加信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31');
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:update', '修改信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31');
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:updateList', '批量添加信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31'); 
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:delete', '删除信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31'); 
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:queryDetail', '查询详情信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31');  
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:queryList', '查询列表信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31');
+insert into sys_permission(permission, name, createTime, updateTime) values('back:category:queryListByPage', '分页查询列表信息', '2019-09-28 10:58:31', '2019-09-28 10:58:31'); 
