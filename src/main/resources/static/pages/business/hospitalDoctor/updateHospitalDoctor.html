@@ -26,7 +26,14 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">头像</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="头像" type="text" name="headImg" id="headImg" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="头像不能为空">
+                    <img id="headImgId" src="" style="height: 100px;width: 100px;">
+                    <select class="input-sm" id="fileSource">
+                        <option value="LOCAL">本地上传</option>
+                    </select>
+                    <button type="button" class="layui-btn" id="test1">
+                        <i class="layui-icon">&#xe67c;</i>上传文件
+                    </button>
+                    <input class="form-control" placeholder="头像" type="hidden" name="headImg" id="headImg">
                 </div>
             </div>
 
@@ -38,9 +45,10 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">医院Id</label>
+                <label class="col-md-2 control-label">医院</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="医院Id" type="text" name="hospitalId" id="hospitalId" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="医院Id不能为空">
+                    <select class="input-sm" name="hospitalId" id="hospitalId" data-bv-notempty-message="医院能为空">
+                    </select>
                 </div>
             </div>
 
@@ -91,9 +99,26 @@
                 $('#name').val(data.name);
                 $('#position').val(data.position);
                 $('#headImg').val(data.headImg);
+                $('#headImgId').attr("src", data.headImg);
                 $('#phone').val(data.phone);
                 $('#hospitalId').val(data.hospitalId);
                 $('#remark').val(data.remark);
+            }
+        });
+    }
+
+    initHospitalData();
+
+    function initHospitalData() {
+        $.ajax({
+            type: 'get',
+            url: domainName + '/api-business/hospital/queryList',
+            contentType: "application/json; charset=utf-8",
+            data: {},
+            success: function (data) {
+                for (var k in data) {
+                    $("#hospitalId").append("<option value='" + data[k].id + "'>" + data[k].name + "</option>");
+                }
             }
         });
     }
