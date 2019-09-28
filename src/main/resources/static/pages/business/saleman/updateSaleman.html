@@ -12,7 +12,8 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">业务员真实姓名</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="业务员真实姓名" type="text" name="realName" id="realName" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="业务员真实姓名不能为空">
+                    <input class="form-control" placeholder="业务员真实姓名" type="text" name="realName" id="realName" maxlength="50" data-bv-notempty="true"
+                           data-bv-notempty-message="业务员真实姓名不能为空">
                 </div>
             </div>
 
@@ -44,27 +45,6 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">身份证手持</label>
-                <div class="col-md-10">
-                    <input class="form-control" placeholder="身份证手持" type="text" name="sfzSc" id="sfzSc" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="身份证手持不能为空">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-2 control-label">身份证正面</label>
-                <div class="col-md-10">
-                    <input class="form-control" placeholder="身份证正面" type="text" name="sfzZm" id="sfzZm" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="身份证正面不能为空">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-2 control-label">身份证反面</label>
-                <div class="col-md-10">
-                    <input class="form-control" placeholder="身份证反面" type="text" name="sfzFm" id="sfzFm" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="身份证反面不能为空">
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label class="col-md-2 control-label">备注</label>
                 <div class="col-md-10">
                     <input class="form-control" placeholder="备注" type="text" name="remark" id="remark" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="备注不能为空">
@@ -74,7 +54,29 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">个人提成比例分配</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="个人提成比例分配" type="text" name="rate" id="rate" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="个人提成比例分配不能为空">
+                    <input class="form-control" placeholder="个人提成比例分配" type="text" name="rate" id="rate" maxlength="50" data-bv-notempty="true"
+                           data-bv-notempty-message="个人提成比例分配不能为空">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">身份证手持</label>
+                <div class="col-md-10">
+                    <img name="sfzSc" id="sfzSc" src="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">身份证正面</label>
+                <div class="col-md-10">
+                    <img name="sfzZm" id="sfzZm" src="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">身份证反面</label>
+                <div class="col-md-10">
+                    <img name="sfzFm" id="sfzFm" src="">
                 </div>
             </div>
 
@@ -122,14 +124,11 @@
                 $('#idCard').val(data.idCard);
                 $('#phone').val(data.phone);
                 $('#auditStatus').val(data.auditStatus);
-                $('#sfzSc').val(data.sfzSc);
-                $('#sfzZm').val(data.sfzZm);
-                $('#sfzFm').val(data.sfzFm);
                 $('#remark').val(data.remark);
-                $('#createTime').val(data.createTime);
-                $('#updateId').val(data.updateId);
-                $('#updateTime').val(data.updateTime);
                 $('#rate').val(data.rate);
+                $('#sfzSc').attr("src", data.sfzSc);
+                $('#sfzZm').attr("src", data.sfzZm);
+                $('#sfzFm').attr("src", data.sfzFm);
             }
         });
     }

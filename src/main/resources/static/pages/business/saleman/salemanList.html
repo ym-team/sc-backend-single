@@ -23,6 +23,14 @@
                                     <input id="idCard" type="text" class="form-control" placeholder="身份证号">
                                     手机号码
                                     <input id="phone" type="text" class="form-control" placeholder="手机号码">
+                                    认证状态
+                                    <select class="form-control input-sm" name="auditStatus" id="auditStatus" data-bv-notempty="true">
+                                        <option value="">全部</option>
+                                        <option value="1">认证通过</option>
+                                        <option value="2">未认证</option>
+                                        <option value="3">认证不通过</option>
+                                        <option value="4">待审核</option>
+                                    </select>
                                     <button id="searchBt" class="layui-btn layui-btn-sm" permission="back:saleman:queryListByPage"><i class="layui-icon">&#xe615;</i>搜索</button>
                                 </div>
                             </form>
@@ -47,10 +55,7 @@
                         <th>业务员真实姓名</th>
                         <th>身份证号</th>
                         <th>手机号码</th>
-                        <th>认证状态</th><!-- 1：认证通过  2：未认证  3：认证不通过 -->
-                        <th>身份证手持</th>
-                        <th>身份证正面</th>
-                        <th>身份证反面</th>
+                        <th>认证状态</th>
                         <th>个人提成比例分配</th>
                         <th>备注</th>
                         <th>创建时间</th>
@@ -100,14 +105,6 @@
                             d.idCard = $('#idCard').val();
                             d.phone = $('#phone').val();
                             d.auditStatus = $('#auditStatus').val();
-                            d.sfzSc = $('#sfzSc').val();
-                            d.sfzZm = $('#sfzZm').val();
-                            d.sfzFm = $('#sfzFm').val();
-                            d.remark = $('#remark').val();
-                            d.createTime = $('#createTime').val();
-                            d.updateId = $('#updateId').val();
-                            d.updateTime = $('#updateTime').val();
-                            d.rate = $('#rate').val();
                         },
                         "dataSrc": function (json) {
                             json.recordsTotal = json.total;
@@ -157,9 +154,6 @@
                                 return "";
                             }
                         },
-                        {"data": "sfzSc", "defaultContent": ""},
-                        {"data": "sfzZm", "defaultContent": ""},
-                        {"data": "sfzFm", "defaultContent": ""},
                         {"data": "rate", "defaultContent": ""},
                         {"data": "remark", "defaultContent": ""},
                         {
