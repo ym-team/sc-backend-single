@@ -72,6 +72,17 @@ function buttonEdit(href, permission, pers){
 }
 
 
+function buttonAdd(href, permission, pers,title){
+	if(permission != ""){
+		if ($.inArray(permission, pers) < 0) {
+			return "";
+		}
+	}
+	
+	var btn = $("<button class='layui-btn layui-btn-xs' title='"+title+"' onclick='window.location=\"" + href +"\"'>"+title+"</button>");
+	return btn.prop("outerHTML");
+}
+
 function deleteCurrentTab(){
 	var lay_id = $(parent.document).find("ul.layui-tab-title").children("li.layui-this").attr("lay-id");
 	parent.active.tabDelete(lay_id);
