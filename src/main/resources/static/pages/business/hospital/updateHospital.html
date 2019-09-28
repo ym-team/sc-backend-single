@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../layui/css/layui.css">
 </head>
 <body>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -19,14 +21,22 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">医院地址</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="医院地址" type="text" name="address" id="address" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="医院地址不能为空">
+                    <input class="form-control" placeholder="医院地址" type="text" name="address" id="address" maxlength="50" data-bv-notempty="true"
+                           data-bv-notempty-message="医院地址不能为空">
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-md-2 control-label">logo</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="logo" type="text" name="logo" id="logo" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="logo不能为空">
+                    <img id="logoId" src="" style="height: 100px;width: 100px;">
+                    <select class="input-sm" id="fileSource">
+                        <option value="LOCAL">本地上传</option>
+                    </select>
+                    <button type="button" class="layui-btn" id="test1">
+                        <i class="layui-icon">&#xe67c;</i>上传文件
+                    </button>
+                    <input class="form-control" placeholder="logo" type="hidden" name="logo" id="logo">
                 </div>
             </div>
 
@@ -47,7 +57,8 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">联系人</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="联系人" type="text" name="contactor" id="contactor" maxlength="50" data-bv-notempty="true" data-bv-notempty-message="联系人不能为空">
+                    <input class="form-control" placeholder="联系人" type="text" name="contactor" id="contactor" maxlength="50" data-bv-notempty="true"
+                           data-bv-notempty-message="联系人不能为空">
                 </div>
             </div>
             <div class="form-actions">
@@ -87,11 +98,11 @@
             contentType: "application/json; charset=utf-8",
             data: {"id": id},
             success: function (data) {
-                console.log(data);
                 $('#id').val(data.id);
                 $('#name').val(data.name);
                 $('#address').val(data.address);
                 $('#logo').val(data.logo);
+                $('#logoId').attr("src", data.logo);
                 $('#phone').val(data.phone);
                 $('#remark').val(data.remark);
                 $('#contactor').val(data.contactor);
@@ -119,6 +130,26 @@
             }
         });
     }
+
+    layui.use('upload', function () {
+        var upload = layui.upload;
+
+        upload.render({
+            elem: '#test1' //绑定元素
+            , accept: 'file' //允许上传的文件类型
+            , url: domainName + '/files?fileSource=' + $("#fileSource").val()
+            , done: function (res, index, upload) {
+                $("#logoId").attr("src", res.url);
+                $("#logo").val(res.url);
+                layer.msg("上传成功");
+            }
+        });
+
+        $("#fileSource").change(function () {
+            var url = domainName + '/files?fileSource=' + $("#fileSource").val();
+            $("#test1").attr("lay-data", "{url: '" + url + "'}");
+        });
+    });
 </script>
 </body>
 </html>
